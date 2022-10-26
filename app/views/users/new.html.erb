@@ -1,0 +1,12 @@
+<h1>REGISTRARSE</h1>
+
+<%= simple_form_for @user do |u|%>
+	<%= u.error_notification %>
+	<%= u.input :mail, placeholder: "Email", class: "form-control mb-2" %>
+	<%= u.input :password, placeholder: "Contrase;a", class: "form-control mb-2" %>
+	<%= u.input :dni, placeholder: "DNI", class: "form-control mb-2" %>
+	<%= u.input :genero, placeholder: "Genero", class: "form-control mb-2" %>
+	<%= u.input :fecha_nacimiento, class: "form-control mb-2" %>
+	<%= u.input :telefono, placeholder: "Email", class: "form-control mb-2" %>
+    <%= u.submit "Registrar", class: "btn btn-primary mb-2" %>
+<%end%>

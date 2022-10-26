@@ -1,0 +1,5 @@
+<div> Perfil </div>
+<p> <%= @user.mail %> </p>
+<div> <%= link_to 'Autos', cars_path%> </div>
+<div> <%= button_to "Cerrar sesion", logout_path, method: :delete %>
+

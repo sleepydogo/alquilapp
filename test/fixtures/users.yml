@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dni: 1
+  genero: MyString
+  fecha_nacimiento: 2022-10-26
+  telefono: 1
+  mail: MyString
+  password_digest: MyString
+
+two:
+  dni: 1
+  genero: MyString
+  fecha_nacimiento: 2022-10-26
+  telefono: 1
+  mail: MyString
+  password_digest: MyString
