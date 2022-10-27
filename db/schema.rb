@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_182142) do
     t.integer "genero"
     t.date "birthdate"
     t.integer "telephone"
+    t.integer "rango"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

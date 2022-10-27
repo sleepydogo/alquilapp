@@ -11,7 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.integer :genero
       t.date :birthdate
       t.integer :telephone
-	  t.integer :rango
+	  t.integer :rango,  default: :A_Verificar
 
       ## Recoverable
       t.string   :reset_password_token
