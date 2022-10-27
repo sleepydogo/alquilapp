@@ -3,4 +3,17 @@
 	<% if @user %>
 		Mi mail: <%= @user.mail %>
 	<% end %>
+
+	<%= form_with url: "/cars", method: :get do |form| %>
+		<%= form.text_field :search_modelo %>
+  		<%= form.submit "Search" %>
+	<% end %>
+
+	<h1 class="title">Lista</h1>
+	<% @cars.each do |c| %>
+		<div class="row">
+			<div class="col-sm"> <%= link_to c.modelo, c %> </div>
+		</div>
+	<% end %>
+
 </div>

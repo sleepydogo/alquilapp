@@ -2,11 +2,12 @@
 
 <%= simple_form_for @user do |u|%>
 	<%= u.error_notification %>
-	<%= u.input :mail, placeholder: "Email", class: "form-control mb-2" %>
-	<%= u.input :password, placeholder: "Contrase;a", class: "form-control mb-2" %>
-	<%= u.input :dni, placeholder: "DNI", class: "form-control mb-2" %>
-	<%= u.input :genero, placeholder: "Genero", class: "form-control mb-2" %>
-	<%= u.input :fecha_nacimiento, class: "form-control mb-2" %>
-	<%= u.input :telefono, placeholder: "Email", class: "form-control mb-2" %>
+	<%= u.input :mail, placeholder: "Inserte su Email", label: 'Email', class: "form-control mb-2" %>
+	<%= u.input :password, placeholder: "Inserte su Contrasena", label: 'Contrasena', class: "form-control mb-2" %>
+	<%= u.input :dni, placeholder: "Inserte su DNI", class: "form-control mb-2" %>
+	<%= u.input :nombre, placeholder: "Inserte su Nombre", label: 'Nombre', class: "form-control mb-2" %>
+	<%= u.input :genero, :label => "Genero", :collection => ["Masculino","Femenino"], :selected => "Masculino" %>
+	<%= u.input :fecha_nacimiento, label: 'Fecha de nacimiento', class: "form-control mb-2" %>
+	<%= u.input :telefono, placeholder: "Inserte su numero de Telefono", label: 'Telefono', class: "form-control mb-2" %>
     <%= u.submit "Registrar", class: "btn btn-primary mb-2" %>
 <%end%>

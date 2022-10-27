@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 	get '/logout', to: 'sessions#destroy' #no se si es necesario
 	post '/logout', to: 'sessions#destroy' #no se si es necesario
 	delete '/logout', to: 'sessions#destroy'
+
+	#Para la busqueda
   
 	# ROOT
    	root "sessions#login"
