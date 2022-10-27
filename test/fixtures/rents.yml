@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  precio: 1.5
+  fecha: 2022-10-27 15:20:06
+
+two:
+  precio: 1.5
+  fecha: 2022-10-27 15:20:06
