@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+	has_many :rents
+
   	enum genero: [:Femenino, :Masculino]
 	enum :rango, [:Admin, :Supervisor, :Usuario, :No_Aceptado, :A_Verificar], default: :A_Verificar
 	
