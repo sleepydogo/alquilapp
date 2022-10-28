@@ -11,4 +11,6 @@
   <% end %>
 </div>
 
-<%= link_to "New car", new_car_path %>
+<% if (user_signed_in? && !!current_user.Admin?) %>
+	<%= link_to "New car", new_car_path %>
+<% end %>
