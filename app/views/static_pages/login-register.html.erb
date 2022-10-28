@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="app/assets/images/Logo_3-removebg-preview.png">
+	<link rel="stylesheet" href="app/assets/stylesheets/login-styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+		rel="stylesheet">
+	<title>Alquilapp</title>
+</head>
+
+<body>
+	<header>
+		<div class="title">
+			<h1>
+				Alquilapp
+			</h1>
+		</div>
+	</header>
+	<main>
+		<div class="contenedor__principal">
+			<div class="caja__back">
+				<div class="caja__back-login">
+					<h3>Iniciar sesion</h3>
+					<button id="btn__iniciar-sesion">Iniciar sesion</button>
+				</div>
+				<div class="caja__back-register">
+					<h3>Ya tienes tu entrada?</h3>
+					<p>Ingresa tu mail para solicitar tu QR.</p>
+					<button id="btn__registrarse">Solicitar</button>
+				</div>
+			</div>
+
+			<div class="contenedor__login-register">
+
+				<form action="http://localhost:3000/checkout" class="formulario__login" method="POST">
+					<h2>Iniciar sesion</h2>
+					<input type="text" placeholder="Nombre">
+					<input type="text" placeholder="Apellido">
+					<input type="text" placeholder="Correo electronico">
+					<input type="password" placeholder="Contrasenia">
+					<button id="btn__pago" type="submit">Comprar</button>
+				</form>
+
+				<form action="" class="formulario__register">
+					<h2>Solicitar QR</h2>
+					<input type="text" placeholder="Correo electronico">
+					<input type="password" placeholder="Contrasenia">
+					<button>Solicitar QR</button>
+				</form>
+
+			</div>
+		</div>
+	</main>
+	<script src="javascript/controllers/login-script.js"></script>
+</body>
+
+</html>
