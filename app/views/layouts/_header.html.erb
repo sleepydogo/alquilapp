@@ -2,7 +2,6 @@
 	<%= link_to 'Registrar', new_user_registration_path%>
 	<%= link_to 'Iniciar Sesion', new_user_session_path%>
 <% else %>
-	<%= link_to 'Mi perfil', user_path(current_user)%>
 	<%= button_to "Cerrar sesion", destroy_user_session_path, method: :delete %>
 <% end %>
 

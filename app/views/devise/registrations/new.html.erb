@@ -1,54 +1,85 @@
-<h2>Registro</h2>
+<section class="h-100 bg-dark">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="row g-0">
+            <div class="col-xl-6 d-none d-xl-block">
+              <img src="https://i.pinimg.com/564x/13/e9/e7/13e9e7710de407b310c8aa6f856094a2.jpg"
+                alt="Sample photo" class="img-fluid"
+                style="border-top-left-radius: .50rem; border-bottom-left-radius: .50rem;" />
+            </div>
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black">
+                <h3 class="display-5">Registro</h3>
+                  
+                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                    <%= render "devise/shared/error_messages", resource: resource %>
+                    
+                    <div class="field form-group">
+                      <%= f.label :email, 'E-Mail' %><br />
+                      <%= f.email_field :email, autofocus: true, class:"form-control" %>
+                    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-	
-  <div class="field">
-    <%= f.label :email, 'E-Mail' %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+                    <div class="field form-group">
+                      <%= f.label :password, 'Contraseña' %>
+                      <% if @minimum_password_length %>
+                      <em>(<%= @minimum_password_length %> carácteres minimos)</em>
+                      <% end %><br />
+                      <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+                    </div>
 
-  <div class="field">
-    <%= f.label :password, 'Contrasena' %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+                    <div class="field form-group">
+                      <%= f.label :password_confirmation, 'Repita la contraseña' %><br />
+                      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+                    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, 'Repita la contrasena' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+                    <div class="field form-group">
+                      <%= f.label :name, 'Nombre' %><br />
+                      <%= f.text_area :name, size: "26x1", class:"form-control" %>
+                    </div>
 
-  <div class="field">
-    <%= f.label :name, 'Nombre' %><br />
-    <%= f.text_area :name, size: "26x1" %>
-  </div>
+                    <div class="field form-group">
+                    <%= f.label :name, 'Apellido' %><br />
+                    <%= f.text_area :name, size: "26x1", class:"form-control" %>
+                  </div>
 
-  <div class="field">
-    <%= f.label :dni, 'DNI' %><br />
-    <%= f.number_field :dni %>
-  </div>
+                    <div class="field form-group">
+                      <%= f.label :dni, 'DNI' %><br />
+                      <%= f.number_field :dni, class:"form-control" %>
+                    </div>
 
-  <div class="field">
-    <%= f.label :genero, 'Genero' %><br />
-    <%= f.select :genero, options_for_select([['Masculino','Masculino'],['Femenino','Femenino']], :selected => params[:genero]), {}, { :class => 'span3 controls controls-row' } %>
-  </div>
+                    <div class="field form-group">
+                      <%= f.label :genero, 'Genero' %><br />
+                      <%= f.select :genero, options_for_select([['Masculino','Masculino'],['Femenino','Femenino']], :selected => params[:genero]), {}, { :class => 'span3 controls controls-row' } %>
+                    </div>
 
-  <div class="field">
-    <%= f.label :telephone, 'Numero de telefono' %><br />
-    <%= f.telephone_field :telephone %>
-  </div>
+                    <div class="field form-group">
+                      <%= f.label :telephone, 'Telefono' %><br />
+                      <%= f.telephone_field :telephone, class:"form-control" %>
+                    </div>
 
-  <div class="field">
-    <%= f.label :birthdate, 'Fecha de nacimiento', style: "display: block" %>
-    <%= f.date_field :birthdate %>
-  </div>	
+                    <div class="field form-group">
+                      <%= f.label :birthdate, 'Fecha de nacimiento', style: "display: block" %>
+                      <%= f.date_field :birthdate %>
+                      <br />
+                    </div>	
+                    <br />
 
-  <div class="actions">
-    <%= f.submit "Registrarse" %>
-  </div>
-<% end %>
+                    <div class="form-label" for="customFile">Adjuntar documentos</label>
+                    <input type="file" class="form-control" id="customFile" />
+                    <br />
+                    
+                    
+                    
+                    <div class="actions">
+                      <%= f.submit "Registrarse" %> 
+                    </div>
+
+
+                  <% end %>
+                  <br />
+
+
 
 <%= render "devise/shared/links" %>

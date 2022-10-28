@@ -2,15 +2,23 @@
 
 <h1>Cars</h1>
 
-<div id="cars">
+
+<div class="row row-cols-1 row-cols-md-3">
   <% @cars.each do |car| %>
-    <%= render car %>
-    <p>
-      <%= link_to "Show this car", car %>
-    </p>
-  <% end %>
-</div>
+      <div class="col mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title"> Modelo: <%= car.modelo %></h5>
+            <p class="card-text">Patente: <%= car.patente %><br>
+          </div>
+        </div>
+      </div>
+<% end %>
+  </div>
 
 <% if (user_signed_in? && !!current_user.Admin?) %>
 	<%= link_to "New car", new_car_path %>
 <% end %>
+
+
+
