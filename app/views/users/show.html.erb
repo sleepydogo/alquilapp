@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="row">
+<div>  <%= @user.email %>  </div>
+<div>  <%= @user.name %>  </div>
+<div>  <%= @user.dni %>  </div>
+</div>
+
+<div>
+	<% if (user_signed_in? && (!!current_user.Admin? || (current_user.id == @user.id))) %>	
+  		 <div> Editar </div> |
+	<% end %>
+
+	<% if (user_signed_in? && !!current_user.Admin?) %>
+	  <div> Index </div>
+	  <%= button_to "Destroy profile", @user, method: :delete %>
+	<% end %>
+</div>
