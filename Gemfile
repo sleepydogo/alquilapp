@@ -71,5 +71,8 @@ group :test do
   gem "webdrivers"
 end
 
+## Gemas aniadidas
+
 gem "devise"
+gem "mercadopago-sdk"
 

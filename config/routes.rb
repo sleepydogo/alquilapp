@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'billetera/mercadopago'
   
   resources :cars
   resources :rents
