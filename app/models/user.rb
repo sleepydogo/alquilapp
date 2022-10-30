@@ -13,8 +13,8 @@ class User < ApplicationRecord
 	validates :email, presence: true, uniqueness: true #se fija si esta puesto y si es unico en el formulario/en la consola
 	validates :dni, presence: true, uniqueness: true
 	validates :telephone, presence: true, numericality: true
-	#validates :en_edad
-	#validates_format_of :email,:with => Devise::email_regexp #Se fija el formato de el email
+	validate :en_edad
+	validates_format_of :email,:with => Devise::email_regexp #Se fija el formato de el email
 
 	def en_edad
         if (((Date.today.year - birthdate.year) <21) && (Date.today.month < birthdate.month) && (Date.today.day < birthdate.day))
