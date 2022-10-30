@@ -2,6 +2,10 @@
 
 <%= render @car %>
 
+<div style="width:400px; height:auto">
+	<%= image_tag(@car.photo, style:'width:100%') %>
+</div>
+
 <div>
 	<% if (user_signed_in? && !!current_user.Admin?) %>	
   		<%= link_to "Edit this car", edit_car_path(@car) %> |

@@ -3,5 +3,6 @@
 	<%= link_to 'Iniciar Sesion', new_user_session_path%>
 <% else %>
 	<%= button_to "Cerrar sesion", destroy_user_session_path, method: :delete %>
+	<%= link_to 'Mi perfil', user_path(current_user)%>
 <% end %>
 

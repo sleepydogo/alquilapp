@@ -68,11 +68,6 @@
                     </div>
 
                     <div class="field form-group">
-                    <%= f.label :name, 'Apellido' %><br />
-                    <%= f.text_area :name, size: "26x1", class:"form-control" %>
-                  </div>
-
-                    <div class="field form-group">
                       <%= f.label :dni, 'DNI' %><br />
                       <%= f.number_field :dni, class:"form-control" %>
                     </div>
@@ -94,9 +89,10 @@
                     </div>	
                     <br />
 
-                    <div class="form-label" for="customFile">Adjuntar documentos</label>
-                    <input type="file" class="form-control" id="customFile" />
-                    <br />
+                   	<div class="field form-group">
+                      <%= f.label :file, 'Documentos' %><br />
+                      <%= f.file_field :file %>
+                    </div>
                     
                     
                     
