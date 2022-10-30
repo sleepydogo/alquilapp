@@ -3,7 +3,8 @@ class CreateCars < ActiveRecord::Migration[7.0]
     create_table :cars do |t|
       t.string :patente
       t.string :modelo
-	  t.float :combustible, default: 0 
+	  t.float :combustible, default: 0
+	  t.boolean :alquilado, default: false 
 
       t.timestamps
     end

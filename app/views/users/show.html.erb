@@ -16,3 +16,5 @@
 	  <%= button_to "Destroy profile", @user, method: :delete %>
 	<% end %>
 </div>
+
+<%= link_to 'Download', @user.file, download: '' %>

@@ -21,6 +21,11 @@
     <%= form.text_field :modelo %>
   </div>
 
+	<div>
+		<%= form.label :photo, "Foto del auto"%>
+		<%= form.file_field :photo %>
+	</div>
+
   <div>
     <%= form.submit %>
   </div>
