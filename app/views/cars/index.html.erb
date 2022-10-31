@@ -2,6 +2,7 @@
 <%= stylesheet_link_tag 'bootstrap' %>
 <%= stylesheet_link_tag 'cars-index-styles'%>
 </head>
+<%= render 'shared/nav' if user_signed_in? %>
 
 
 <p style="color: green"><%= notice %></p>

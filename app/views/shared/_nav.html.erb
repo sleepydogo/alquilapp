@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand bg-info navbar-dark navbar-fixed-top ">
+  <a class="navbar-brand" href="/">
+    <img src="https://cdn.discordapp.com/attachments/1008875904862277632/1019675393587937392/Logo_3.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    Alquilapp
+  </a>
+  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active"><a class="nav-link" href="">Inicio</a></li>
+      <li class="nav-item"><a class="nav-link" href="/users/edit">Mi perfil</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Mis alquileres</a></li>
+      <li class="nav-item"><a class="nav-link" href="/cars/new">Alquilar</a></li>
+ </ul>
+
+ <ul class="nav navbar-nav my-2 my-lg-0">
+      <li class="nav-link"><%= button_to "Cerrar sesion", destroy_user_session_path, method: :delete %><i class="fas fa-user"></i>Cerrar sesión</a></li>
+ </ul>
+</nav>
+
+
+
