@@ -1,4 +1,12 @@
-<h1>New rent</h1>
+<head>
+<%= stylesheet_link_tag 'bootstrap' %>
+</head>
+<%= render 'shared/nav' if user_signed_in? %>
+
+
+
+<h1>Nuevo alquiler</h1>
+
 
 <%= render "form", rent: @rent %>
 
