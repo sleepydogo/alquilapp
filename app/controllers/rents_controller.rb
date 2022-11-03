@@ -21,10 +21,8 @@ class RentsController < ApplicationController
 
   # POST /rents or /rents.json
   def create
-	#@funca = params[:elauto]
+	#@funca = params[:car_id].to_i
     @rent = Rent.new(rent_params)
-	@rent.car_id = 1
-	@rent.car_id = params[:car_id]
 	@rent.user_id = current_user.id
     respond_to do |format|
       if @rent.save
@@ -66,8 +64,12 @@ class RentsController < ApplicationController
       @rent = Rent.find(params[:id])
     end
 
+	def set_user
+      @car = User.find(params[:car_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def rent_params
-      params.require(:rent).permit(:precio, :fecha)
+      params.require(:rent).permit(:precio, :fecha, :car_id)
     end
 end

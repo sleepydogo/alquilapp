@@ -21,6 +21,8 @@
     <%= form.datetime_field :fecha %>
   </div>
 
+	<%= form.hidden_field :car_id, value: params[:autito] %>
+
   <div>
     <%= form.submit %>
   </div>
