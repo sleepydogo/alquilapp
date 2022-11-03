@@ -21,8 +21,11 @@ class RentsController < ApplicationController
 
   # POST /rents or /rents.json
   def create
+	#@funca = params[:elauto]
     @rent = Rent.new(rent_params)
-
+	@rent.car_id = 1
+	@rent.car_id = params[:car_id]
+	@rent.user_id = current_user.id
     respond_to do |format|
       if @rent.save
         format.html { redirect_to rent_url(@rent), notice: "Rent was successfully created." }

@@ -34,7 +34,8 @@
               <div class="card-text">
                   Alquiler por hora: $1000
               </div>
-              <a href="#" class="card-button"> Alquilar</a>
+              <a href="/rents/new(:first_step,:autoid => car.id)" class="card-button"> Alquilar </a>
+			  <%= link_to "Alquilar", new_rent_path(car_id: car.id)  %>
           </div>
       </div>
       <% end %>

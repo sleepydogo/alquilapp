@@ -76,5 +76,5 @@ end
 
 gem "devise"
 gem "mercadopago-sdk"
-gem "popper-js"
+gem "popper_js"
 
