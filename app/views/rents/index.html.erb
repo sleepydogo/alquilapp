@@ -1,3 +1,9 @@
+<head>
+<%= stylesheet_link_tag 'bootstrap' %>
+</head>
+<%= render 'shared/nav' if user_signed_in? %>
+
+
 <p style="color: green"><%= notice %></p>
 
 <h1>Rents</h1>

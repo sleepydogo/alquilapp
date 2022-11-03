@@ -9,32 +9,47 @@
 
 
 
+
+
 <h1>Vehiculos disponibles</h1>
 
 
-<div class="album text-muted">
-   <div class="container">
-      <div class="row">
-         <% @cars.each do |car| %>
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTma4Tw5U-65fdEavhrDikwE8oI_XqZDJ0hzI4AfrBn&s" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title"><%= car.modelo %></h5>
-              <p class="card-text">Patente: <%= car.patente %></p>
-              <a href="#" class="btn btn-primary">Alquilar</a>
-            </div>
+<div class="container" style="margin-top:50px;">
+  <div class="row">
+    <% @cars.each do |car| %>
+      <div class="col-md-3">
+          <div class="card-sl">
+             <div class="card-image">
+                  <img
+                      src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+              </div>
+
+              <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
+              <div class="card-heading">
+                  <%= car.modelo %>
+              </div>
+              <div class="card-text">
+                  <%= car.patente %>
+              </div>
+              <div class="card-text">
+                  Alquiler por hora: $1000
+              </div>
+              <a href="#" class="card-button"> Alquilar</a>
           </div>
-        <% end %>
-    </div>
-  </div>
-</div>
+      </div>
+      <% end %>
+  </div>  
 
 
-
+  <%= turbo_frame_tag "modal" %>
 
 <% if (user_signed_in? && !!current_user.Admin?) %>
 	<%= link_to "New car", new_car_path %>
 <% end %>
+
+
+
+
 
 
 
