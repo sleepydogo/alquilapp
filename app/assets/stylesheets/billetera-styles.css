@@ -11677,8 +11677,8 @@ a:focus {
 
 .sidebar .sidebar-heading {
     text-align: center;
-    font-weight: 800;
-    font-size: 0.65rem;
+    font-weight: 100;
+    font-size: 1rem;
 }
 
 .sidebar .sidebar-card {

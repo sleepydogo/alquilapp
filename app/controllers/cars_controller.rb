@@ -67,4 +67,8 @@ class CarsController < ApplicationController
     def car_params
       params.require(:car).permit(:patente, :modelo, :photo)
     end
+
+    def car_location
+      
+    end
 end
