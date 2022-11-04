@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'billetera/mercadopago'
-  
+  get 'static_pages/home_logged_user'
   resources :cars
   resources :rents
   devise_for :users, components: {registrations: 'registrations', sessions: 'sessions'}
