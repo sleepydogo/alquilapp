@@ -2,10 +2,18 @@
 
 <%= render @car %>
 
-<div style="width:400px; height:auto">
-	<%= image_tag(@car.photo, style:'width:100%') %>
-</div>
 
+<% if @car.photo.attached? %>
+		<div style="width:400px; height:auto">
+			<%= image_tag(@car.photo, style:'width:100%') %>
+		</div>
+<% elsif %>
+			<div style="width:400px; height:auto">
+                  <img
+                      src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+              </div>
+			</div>
+<% end %>
 <div>
 	<% if (user_signed_in? && !!current_user.Admin?) %>	
   		<%= link_to "Edit this car", edit_car_path(@car) %> |
