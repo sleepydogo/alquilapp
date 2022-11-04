@@ -24,6 +24,11 @@ class RentsController < ApplicationController
 	#@funca = params[:car_id].to_i
     @rent = Rent.new(rent_params)
 	@rent.user_id = current_user.id
+	@rent.fecha = DateTime.now
+	if (@rent.tiempo < DateTime.now)
+		@rent.tiempo = @rent.tiempo.change(day: (@rent.tiempo.day + 1))
+	end
+	@rent.precio = (((@rent.tiempo - @rent.fecha)/60)/60) * 1000
     respond_to do |format|
       if @rent.save
         format.html { redirect_to rent_url(@rent), notice: "Rent was successfully created." }
@@ -64,12 +69,8 @@ class RentsController < ApplicationController
       @rent = Rent.find(params[:id])
     end
 
-	def set_user
-      @car = User.find(params[:car_id])
-    end
-
     # Only allow a list of trusted parameters through.
     def rent_params
-      params.require(:rent).permit(:precio, :fecha, :car_id)
+      params.require(:rent).permit(:precio, :fecha, :car_id, :tiempo)
     end
 end

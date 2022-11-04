@@ -49,10 +49,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_120212) do
   end
 
   create_table "rents", force: :cascade do |t|
-    t.float "precio"
-    t.datetime "fecha"
+    t.float "precio", default: 0.0
+    t.datetime "fecha", default: "2022-11-04 17:37:48"
     t.float "combustible_gastado", default: 0.0
-    t.integer "tiempo_minutos", default: 0
+    t.datetime "tiempo"
     t.integer "car_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
@@ -70,7 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_120212) do
     t.date "birthdate"
     t.integer "telephone"
     t.integer "rango"
-    t.float "saldo", default: 0.0
+    t.float "saldo", default: 500.0
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

@@ -12,14 +12,9 @@
   <% end %>
 
   <div>
-    <%= form.label :precio, style: "display: block" %>
-    <%= form.text_field :precio %>
-  </div>
-
-  <div>
-    <%= form.label :fecha, style: "display: block" %>
-    <%= form.datetime_field :fecha %>
-  </div>
+    <%= form.label :tiempo, '¿Hasta cuando?', style: "display: block" %>
+    <%= form.time_field :tiempo %>
+  </div>		
 
 	<%= form.hidden_field :car_id, value: params[:autito] %>
 

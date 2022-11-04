@@ -12,7 +12,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.date :birthdate
       t.integer :telephone
 	  t.integer :rango,  default: :A_Verificar
-	  t.float :saldo, default: 0
+	  t.float :saldo, default: 500
 
       ## Recoverable
       t.string   :reset_password_token
