@@ -1,20 +1,51 @@
 <head>
-<%= stylesheet_link_tag 'bootstrap' %>
+<%= stylesheet_link_tag 'bootstrap', 'rent-index-style' %>
 </head>
+
 <%= render 'shared/nav' if user_signed_in? %>
 
 
 <p style="color: green"><%= notice %></p>
 
-<h1>Rents</h1>
+<h1>Mis alquileres</h1>
 
-<div id="rents">
-  <% @rents.each do |rent| %>
-    <%= render rent %>
-    <p>
-      <%= link_to "Show this rent", rent %>
-    </p>
-  <% end %>
+
+
+
+<div class="container">
+<div class="row">
+    <div class="col-lg-4">
+    <% @rents.each do |rent| %>
+        <div class="card card-margin">
+            <div class="card-header no-border">
+                <h5 class="card-title"><%= Car.find(rent.car_id).patente %></h5>
+            </div>
+              <div class="card-body pt-0">
+                  <div class="widget-49">
+                      <div class="widget-49-title-wrapper">
+                          <div class="widget-49-date-primary">
+                              <span class="widget-49-date-day"><%= rent.fecha.day %></span>
+                              <span class="widget-49-date-month"><%= rent.fecha.month %></span>
+                          </div>
+                          <div class="widget-49-meeting-info">
+                              <span class="widget-49-pro-title">Precio del alquiler: <%= rent.precio %></span>
+                              <span class="widget-49-meeting-time">Hora de comienzo del alquiler: <%= rent.fecha.hour %> hs </span>
+                          </div>
+                      </div>
+                      <ol class="widget-49-meeting-points">
+                          <li class="widget-49-meeting-item"><span>Combustible gastado: <%= rent.combustible_gastado %></span></li>
+                          <li class="widget-49-meeting-item"><span>Tiempo de alquiler: <%= rent.tiempo %></span></li>
+                          <li class="widget-49-meeting-item"><span>Session timeout increase to 30 minutes</span></li>
+                      </ol>
+                      <div class="widget-49-meeting-action">
+                          <a href="#" class="btn btn-sm btn-flash-border-primary">Detalles</a>
+                      </div>
+                  </div>
+            </div>
+        </div>
+      <% end %>
+    </div>
+</div>
 </div>
 
-<%= link_to "New rent", new_rent_path %>
+
