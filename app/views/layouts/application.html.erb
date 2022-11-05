@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Alquilapp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -21,7 +20,7 @@
     <div class="d-flex" id="wrapper">
       <!-- Sidebar-->
       <div class="border-end bg-white" id="sidebar-wrapper">
-        <div class="sidebar-heading border-bottom bg-light">Alquilapp</div>
+        <div class="sidebar-heading border-bottom bg-light"> </div>
         <div class="list-group list-group-flush">
           <!--  
               Hay que incluir este codigo
@@ -42,6 +41,12 @@
         <!-- Top navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
           <div class="container-fluid">
+            <div class="col col-lg-3">  
+              <div class='row'>
+                <%= image_tag "Logo_3-removebg-preview.png", height: 40 %>
+                <a class='nav-brand h3 pt-1 pl-3 text-gray-800' href="/">Alquilapp</a>
+              </div>
+            </div>
             <button class="btn btn-primary" id="sidebarToggle">Menu lateral</button>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
