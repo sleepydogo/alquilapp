@@ -7,19 +7,6 @@
 
 <%= render 'shared/nav' if user_signed_in? %>
 
-<%= render @car %>
-
-	<% if (user_signed_in? && !!current_user.Admin?) %>	
-  		<%= link_to "Edit this car", edit_car_path(@car) %> |
-	<% end %>
-  <%= link_to "Back to cars", cars_path %>
-
-	<% if (user_signed_in? && !!current_user.Admin?) %>
-	  <%= button_to "Destroy this car", @car, method: :delete %>
-	<% end %>
-	<%= link_to "Alquilar", new_rent_path(autito: @car)  %>
-</div>
-
 
 
 
