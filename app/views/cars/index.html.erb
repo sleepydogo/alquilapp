@@ -13,6 +13,7 @@
 
 <h1>Vehiculos disponibles</h1>
 
+
 <% if !Car.where(alquilado: false).empty? %>
 
 <div class="container" style="margin-top:50px;">
@@ -30,7 +31,6 @@
                       src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
               </div>
 			<% end %>
-
               <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
               <div class="card-heading">
                   <%= car.modelo %>
@@ -41,7 +41,7 @@
               <div class="card-text">
                   Alquiler por hora: $1000
               </div>
-              <div class="card-button"> <%= link_to "Ver auto", car  %> </div>
+              <div><%= link_to "Alquilar", car, :class => "card-button" %>
 
           </div>
       </div>
@@ -60,6 +60,7 @@
 <% if (user_signed_in? && !!current_user.Admin?) %>
 	<%= link_to "Nuevo auto", new_car_path %>
 <% end %>
+
 
 
 
