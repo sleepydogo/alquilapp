@@ -14,13 +14,13 @@
         <!-- Favicon-->
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
-        <%= stylesheet_link_tag 'bootstrap', "user-home-styles" %>
+        <%= stylesheet_link_tag 'bootstrap','user-home-styles'%>
       </head>
   <body>
     <div class="d-flex" id="wrapper">
       <!-- Sidebar-->
       <div class="border-end bg-white" id="sidebar-wrapper">
-        <div class="sidebar-heading border-bottom bg-light"> </div>
+        <div class="sidebar-heading border-bottom bg-light pb-3">Coscu army</div>
         <div class="list-group list-group-flush">
           <!--  
               Hay que incluir este codigo
@@ -39,12 +39,12 @@
       <!-- Page content wrapper-->
       <div id="page-content-wrapper">
         <!-- Top navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom pb-1 ">
           <div class="container-fluid">
             <div class="col col-lg-3">  
               <div class='row'>
                 <%= image_tag "Logo_3-removebg-preview.png", height: 40 %>
-                <a class='nav-brand h3 pt-1 pl-3 text-gray-800' href="/">Alquilapp</a>
+                <h1 class='h3 pt-1 pl-3 text-gray-800' href="/">Alquilapp</h1>
               </div>
             </div>
             <button class="btn btn-primary" id="sidebarToggle">Menu lateral</button>
