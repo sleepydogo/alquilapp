@@ -41,8 +41,8 @@
               <div class="card-text">
                   Alquiler por hora: $1000
               </div>
-              <a href="/rents/new(:first_step,:autoid => car.id)" class="card-button"> Alquilar </a>
-			  <%= link_to "Alquilar", car  %>
+              <div class="card-button"> <%= link_to "Ver auto", car  %> </div>
+
           </div>
       </div>
       <% end %>
@@ -58,7 +58,7 @@
   <%= turbo_frame_tag "modal" %>
 
 <% if (user_signed_in? && !!current_user.Admin?) %>
-	<%= link_to "New car", new_car_path %>
+	<%= link_to "Nuevo auto", new_car_path %>
 <% end %>
 
 
