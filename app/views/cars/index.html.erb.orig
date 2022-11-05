@@ -15,6 +15,7 @@
 <% if !Car.where(alquilado: false).empty? %>
 
 <div class="container" style="margin-top:50px;">
+<<<<<<< HEAD
   <div class="row">
     <% @cars_not_rented.each do |car| %>
       <div class="col-md-3">
@@ -44,6 +45,32 @@
           </div>
       </div>
       <% end %>
+  </div>  
+=======
+        <div class="row">
+        <% @cars_not_rented.each do |car| %>
+            <div class="col-md-3">
+                <div class="card-sl">
+                    <div class="card-image">
+                        <img <%= image_tag(car.photo, style:'width:100%') %>
+                    </div>
+                    <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
+                    <div class="card-heading">
+                        <%= car.modelo %>
+                    </div>
+                    <div class="card-text">
+                         
+                    </div>
+                    <div class="card-text">
+                        $67,400
+                    </div>
+                    <%= link_to "Alquilar", car, :class => "card-button" %>
+                </div>
+            </div>
+          <% end %>
+        </div>  
+>>>>>>> d29d3dcee1456c198a23b0f8cec851c9d3697e0f
+
 <% elsif %>
          <img
                       src="https://cdn.motor1.com/images/mgl/QRK8Z/s3/10-cars-that-could-disappear-soon.webp" />
