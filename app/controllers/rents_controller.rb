@@ -29,6 +29,7 @@ class RentsController < ApplicationController
 		@rent.tiempo = @rent.tiempo.change(day: (@rent.tiempo.day + 1))
 	end
 	@rent.precio = (((@rent.tiempo - @rent.fecha)/60)/60) * 1000
+	Car.find(@rent.car_id).update(alquilado: true)
     respond_to do |format|
       if @rent.save
         format.html { redirect_to rent_url(@rent), notice: "Rent was successfully created." }
