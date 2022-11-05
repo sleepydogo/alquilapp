@@ -8,5 +8,80 @@
     <%= favicon_link_tag 'Logo_3-removebg-preview.png' %>
   
   <body>
-    <%= yield %>
+
+  <% if user_signed_in? %>
+      <head>
+        <title>Home</title>
+        <!-- Favicon-->
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
+        <%= stylesheet_link_tag 'bootstrap', "user-home-styles" %>
+      </head>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <!-- Sidebar-->
+      <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light">Alquilapp</div>
+        <div class="list-group list-group-flush">
+          <!--  
+              Hay que incluir este codigo
+                < % if el-usuario-tiene-alquiler-activo? %>
+                    < % = render '<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Estado de alquiler</a>' %>
+                < % else %>
+                    < % = render '<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Alquilar</a>' %>
+                < % end %>-->
+          <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/">Home</a>
+          <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cars">Alquilar</a>
+          <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!" onclick="alert('Estamos trabajando en esta funcionalidad!');">Estado de alquiler</a>
+          <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/billetera/mercadopago">Billetera</a>
+          <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/users/edit">Perfil</a>
+        </div>
+      </div>
+      <!-- Page content wrapper-->
+      <div id="page-content-wrapper">
+        <!-- Top navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+          <div class="container-fluid">
+            <button class="btn btn-primary" id="sidebarToggle">Menu lateral</button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class = 'col-md-10'> </div>
+              <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                  <li>
+                    <%= button_to "Cerrar sesion", destroy_user_session_path, method: :delete, type:"button", class:"btn btn-primary" , id:'sidebarToggle' %> 
+                  </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- Page content-->
+          <%= yield%>
+      </div>
+    </div>
+
+    
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script>
+      window.addEventListener('DOMContentLoaded', event => {
+          const sidebarToggle = document.body.querySelector('#sidebarToggle');
+          if (sidebarToggle) {
+              sidebarToggle.addEventListener('click', event => {
+                  event.preventDefault();
+                  document.body.classList.toggle('sb-sidenav-toggled');
+                  localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+              });
+          }
+      });
+
+
+    </script>
+  </body>
+</html>
+  <% else %>
+      <%= yield %>
+  <% end %>
+    
+
 </html>
