@@ -24,15 +24,15 @@ class RentsController < ApplicationController
 	#@funca = params[:car_id].to_i
     @rent = Rent.new(rent_params)
 	@rent.user_id = current_user.id
-	@rent.fecha = DateTime.now
+	#@rent.fecha = DateTime.now
 	if (@rent.tiempo < DateTime.now)
 		@rent.tiempo = @rent.tiempo.change(day: (@rent.tiempo.day + 1))
 	end
 	@rent.precio = (((@rent.tiempo - @rent.fecha)/60)/60) * 1000
-    @rent.car.update(alquilado: true)
-	@rent.user.update(alquilando: true)
     respond_to do |format|
       if @rent.save
+		@rent.car.update(alquilado: true)
+	    @rent.user.update(alquilando: true)
         format.html { redirect_to rent_url(@rent), notice: "Rent was successfully created." }
         format.json { render :show, status: :created, location: @rent }
       else

@@ -24,12 +24,12 @@
                   <div class="widget-49">
                       <div class="widget-49-title-wrapper">
                           <div class="widget-49-date-primary">
-                              <span class="widget-49-date-day"><%= rent.fecha.day %></span>
-                              <span class="widget-49-date-month"><%= rent.fecha.month %></span>
+                              <span class="widget-49-date-day"><%= rent.created_at.day %></span>
+                              <span class="widget-49-date-month"><%= rent.created_at.month %></span>
                           </div>
                           <div class="widget-49-meeting-info">
                               <span class="widget-49-pro-title">Precio del alquiler: <%= rent.precio %></span>
-                              <span class="widget-49-meeting-time">Hora de comienzo del alquiler: <%= rent.fecha.hour %> hs </span>
+                              <span class="widget-49-meeting-time">Hora de comienzo del alquiler: <%= rent.created_at.hour %> hs </span>
                           </div>
                       </div>
                       <ol class="widget-49-meeting-points">

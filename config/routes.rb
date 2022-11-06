@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :rents
 
 
-  devise_for :users, components: {registrations: 'registrations', sessions: 'sessions'}
+  devise_for :users, components: {registrations: 'registrations', sessions: 'sessions'} #Las de devise siempre tienen que estar encima de las de USER
 
   resources :users, only: [:show]
 
