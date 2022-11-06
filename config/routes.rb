@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   resources :cars
   resources :rents
+
+
+  devise_for :users, components: {registrations: 'registrations', sessions: 'sessions'}
+
   resources :users, only: [:show]
 
   resources :users do
@@ -11,9 +15,6 @@ Rails.application.routes.draw do
 		patch :update_rango
 	end
   end
-
-  devise_for :users, components: {registrations: 'registrations', sessions: 'sessions'}
-
 
 #, controllers: {
  #       sessions: 'users/sessions'

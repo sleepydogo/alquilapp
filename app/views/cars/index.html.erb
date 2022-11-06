@@ -54,7 +54,7 @@
   <%= turbo_frame_tag "modal" %>
 
 <% if (user_signed_in? && !!current_user.Admin?) %>
-	<%= link_to "Nuevo auto", new_car_path %>
+	<%= link_to "Nuevo auto", new_car_path, :class => "btn btn-light" %>
 <% end %>
 
 
