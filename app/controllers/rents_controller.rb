@@ -28,7 +28,7 @@ class RentsController < ApplicationController
 	if (@rent.tiempo < DateTime.now)
 		@rent.tiempo = @rent.tiempo.change(day: (@rent.tiempo.day + 1))
 	end
-	@rent.precio = (((@rent.tiempo - @rent.fecha)/60)/60) * 1000
+	@rent.precio = (((@rent.tiempo - DateTime.now)/60)/60) * 1000
     respond_to do |format|
       if @rent.save
 		@rent.car.update(alquilado: true)
@@ -63,6 +63,21 @@ class RentsController < ApplicationController
       format.html { redirect_to rents_url, notice: "Rent was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def terminar_alquiler
+	@rent = Rent.find(params[:id])
+	if (DateTime.now > @rent.tiempo)
+		excedente = -((((@rent.tiempo - DateTime.now)/60)/60) * 1000) #Se cobra el exceso de tiempo
+		@rent.update(precio: (@rent.precio + excedente))
+	end
+	@rent.update(tiempo: DateTime.now)
+	@rent.update(combustible_gastado: rand(@rent.car.tanque)) #Por ahora el combustible gastado es generado al azar.
+	comb_gastado= (@rent.combustible_gastado * 160)
+	@rent.update(precio: (@rent.precio + comb_gastado))
+	@rent.car.update(alquilado: false)
+	@rent.user.update(alquilando: false, saldo: (@rent.user.saldo - @rent.precio))
+	redirect_to root_path
   end
 
   private

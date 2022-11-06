@@ -5,15 +5,26 @@ Rails.application.routes.draw do
   resources :cars
   resources :rents
 
-
   devise_for :users, components: {registrations: 'registrations', sessions: 'sessions'} #Las de devise siempre tienen que estar encima de las de USER
 
   resources :users, only: [:show]
 
   resources :users do
+	  member do
+	  	patch :update_rango
+	  end
+  end
+
+  resources :rents do
 	member do
-		patch :update_rango
+		patch :terminar_alquiler
 	end
+  end
+
+  resources :billetera do 
+    member do 
+      patch :crear_preferencia
+    end
   end
 
 #, controllers: {

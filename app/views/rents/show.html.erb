@@ -8,3 +8,5 @@
 
   <%= button_to "Destroy this rent", @rent, method: :delete %>
 </div>
+
+<%= button_to 'Terminar Alquiler', terminar_alquiler_rent_path(@rent), method: :patch, class: "btn btn-sm btn-danger" %>
