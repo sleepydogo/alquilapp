@@ -20,11 +20,12 @@
                     <div class="d-sm-flex align-items-center mb-4">
                         <div class='row'>
                             <div class='col'>
-                                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                                <h1 class="h3 pt-1 text-gray-800">Billetera</h1>
                             </div>
-                            <div class='col'>
-                                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Cargar saldo</a>
+                            <div class='col pl-3'>
+                                <div class='row'>
+                                    <div class="cho-container"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -323,6 +324,24 @@
             </div>
         </div>
     </div>
+
+    <!-- SDK MercadoPago.js V2--> 
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script>
+      const mp = new MercadoPago('TEST-31e745d3-e9c6-4450-b8e2-f50b8f106133', {
+        locale: 'en-US'
+      });
+      mp.checkout({
+        preference: {
+          id: '1'
+        },
+        render: {
+          container: '.cho-container',
+          label: 'Cargar saldo',
+        }
+      });
+    </script>
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
