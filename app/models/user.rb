@@ -16,16 +16,24 @@ class User < ApplicationRecord
 	validate :en_edad
 	validates_format_of :email,:with => Devise::email_regexp #Se fija el formato de el email
 	validate :dni_con_sentido
+	validate :documento_puesto
 
+	private
 	def en_edad
         if (((Date.today.year - birthdate.year) <21) && (Date.today.month < birthdate.month) && (Date.today.day < birthdate.day))
-            errors.add(:birthdate, "Debes ser mayor a 21.")
+            errors.add(:base, "Debes ser mayor a 21.")
         end
     end
 
 	def dni_con_sentido
 		if (dni > 200000000)
-			errors.add(:dni, "Escribe un DNI correcto")
+			errors.add(:base, "Escribe un DNI correcto")
+		end
+	end
+
+	def documento_puesto
+		if(!file.attached?)
+			errors.add(:base, "Documentos necesarios")
 		end
 	end
 end
