@@ -11,14 +11,10 @@
   <% if user_signed_in? %>
       <head>
         <title>Home</title>
-        <!-- Favicon-->
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
         <%= stylesheet_link_tag 'bootstrap','user-home-styles'%>
       </head>
-  <body>
+    <body>
     <div class="d-flex" id="wrapper">
-      <!-- Sidebar-->
       <div class="border-end bg-white" id="sidebar-wrapper">
         <div class="sidebar-heading border-bottom bg-light pb-3">Coscu army</div>
         <div class="list-group list-group-flush">
@@ -96,7 +92,6 @@
 
     </script>
   </body>
-</html>
   <% else %>
       <%= yield %>
   <% end %>

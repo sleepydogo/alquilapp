@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_30_120212) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_06_222258) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -56,8 +56,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_120212) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["car_id"], name: "index_rents_on_car_id"
-    t.index ["user_id"], name: "index_rents_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,8 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_120212) do
     t.date "birthdate"
     t.integer "telephone"
     t.integer "rango"
-    t.float "saldo", default: 500.0
-    t.boolean "alquilando", default: false
+    t.float "saldo", default: 0.0
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -82,6 +79,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_120212) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "rents", "cars"
-  add_foreign_key "rents", "users"
 end

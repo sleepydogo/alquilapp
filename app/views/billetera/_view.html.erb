@@ -9,11 +9,30 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 </head>
 
-<pre> 
-<%= JSON.pretty_generate(@preference) %></pre>
 <body id="page-top">
+        <!-- Modal -->
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Main Content -->
         <div id="content-wrapper" class="d-flex flex-column">
-            <!-- Main Content -->
             <div id="content">
                 <!-- Begin Page Content -->
                 <div class="container-fluid mt-3">
@@ -24,7 +43,10 @@
                                 <h1 class="h3 pt-1 pr-5 text-gray-800">Billetera</h1>
                             </div>
                             <div class='col ml-4 pt-1'>
-                                <div class="cho-container"></div>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#foo">
+                                      Cargar saldo 
+                                    </button>
+                                <!-- div class="cho-container"></div-->                            
                             </div>
                         </div>
                     </div>
@@ -131,7 +153,7 @@
                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
+                                            aria-labelwhateverledby="dropdownMenuLink">
                                             <div class="dropdown-header">Dropdown Header:</div>
                                             <a class="dropdown-item" href="#">Action</a>
                                             <a class="dropdown-item" href="#">Another action</a>
@@ -326,18 +348,17 @@
     <!-- SDK MercadoPago.js V2--> 
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script>
-      const mp = new MercadoPago('TEST-31e745d3-e9c6-4450-b8e2-f50b8f106133', {
-        locale: 'en-US'
-      });
-      mp.checkout({
-        preference: {
-          id: '1'
-        },
-        render: {
-          container: '.cho-container',
-          label: 'Cargar saldo',
-        }
-      });
+        // Mercado pago
+        const mp = new MercadoPago('TEST-31e745d3-e9c6-4450-b8e2-f50b8f106133', { locale: 'en-US'});
+        mp.checkout({
+          preference: {
+            id: '1'
+          },
+          render: {
+            container: '.cho-container',
+            label: 'Cargar saldo',
+          }
+        });
     </script>
 
     <!--
