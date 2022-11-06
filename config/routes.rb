@@ -15,12 +15,6 @@ Rails.application.routes.draw do
 	  end
   end
 
-  resources :billetera do 
-    member do 
-      patch :crear_preferencia
-    end
-  end
-
 #, controllers: {
  #       sessions: 'users/sessions'
 #		registrations: 'users/registrations'

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: MyString
+  precio: 9.99
+  saldo: 9.99
+  aceptado: false
+  request: MyText
+  response: MyText
+  fecha: 2022-11-06 19:22:58
+
+two:
+  user: MyString
+  precio: 9.99
+  saldo: 9.99
+  aceptado: false
+  request: MyText
+  response: MyText
+  fecha: 2022-11-06 19:22:58
