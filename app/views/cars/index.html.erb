@@ -2,7 +2,7 @@
 <%= stylesheet_link_tag 'bootstrap' %>
 <%= stylesheet_link_tag 'cars-index-styles'%>
 </head>
-<%= render 'shared/nav' if user_signed_in? %>
+
 
 
 <p style="color: green"><%= notice %></p>
@@ -53,9 +53,7 @@
 
   <%= turbo_frame_tag "modal" %>
 
-<% if (user_signed_in? && !!current_user.Admin?) %>
-	<%= link_to "Nuevo auto", new_car_path, :class => "btn btn-light" %>
-<% end %>
+
 
 
 
