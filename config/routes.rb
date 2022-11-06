@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
   get 'billetera/mercadopago'
   get 'static_pages/home_logged_user'
+
   resources :cars
   resources :rents
-  devise_for :users, components: {registrations: 'registrations', sessions: 'sessions'}
   resources :users, only: [:show]
+
+  resources :users do
+	member do
+		patch :update_rango
+	end
+  end
+
+  devise_for :users, components: {registrations: 'registrations', sessions: 'sessions'}
 
 
 #, controllers: {

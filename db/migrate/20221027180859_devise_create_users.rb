@@ -13,6 +13,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.integer :telephone
 	  t.integer :rango,  default: :A_Verificar
 	  t.float :saldo, default: 500
+	  t.boolean :alquilando, default: false
 
       ## Recoverable
       t.string   :reset_password_token

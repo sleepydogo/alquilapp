@@ -17,4 +17,11 @@
 	<% end %>
 </div>
 
+<% if ((@user.A_Verificar?) && (!!current_user.Admin? || !!current_user.Supervisor?))  %>
+
 <%= link_to 'Download', @user.file, download: '' %>
+
+<%= button_to 'Aceptar', update_rango_user_path(@user, rango: 'Usuario'), method: :patch, class: "btn btn-sm btn-success" %>
+<%= button_to 'Declinar', update_rango_user_path(@user, rango: 'No_Aceptado'), method: :patch, class: "btn btn-sm btn-danger" %>
+
+<% end %>

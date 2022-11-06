@@ -4,7 +4,7 @@
     <%= stylesheet_link_tag 'bootstrap', "wallet-styles" %>    
 </head>
 <body>
-
+<%= javascript_include_tag "application" %>
 
 
 
@@ -87,6 +87,13 @@
     							Acepto los términos y condiciones de usuario
   							</label>
 						</div>
+						<% if (user_signed_in? && !!current_user.Admin?) %>
+								 <div class="row m-0">
+                                 <%= button_to "Borrar Auto", @car, method: :delete , :class => "btn btn-primary"%>
+								 <%= button_to "Editar Auto",@car, :class => "btn btn-primary"%>
+								                      </div>
+						<% end %>
+                        </div>
                     </div>
                 </div>
             </div>

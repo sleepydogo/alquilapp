@@ -3,7 +3,7 @@ class RentsController < ApplicationController
 
   # GET /rents or /rents.json
   def index
-    @rents = Rent.all
+    @rents = Rent.all.order(created_at: :desc)
   end
 
   # GET /rents/1 or /rents/1.json
@@ -29,7 +29,8 @@ class RentsController < ApplicationController
 		@rent.tiempo = @rent.tiempo.change(day: (@rent.tiempo.day + 1))
 	end
 	@rent.precio = (((@rent.tiempo - @rent.fecha)/60)/60) * 1000
-	Car.find(@rent.car_id).update(alquilado: true)
+    @rent.car.update(alquilado: true)
+	@rent.user.update(alquilando: true)
     respond_to do |format|
       if @rent.save
         format.html { redirect_to rent_url(@rent), notice: "Rent was successfully created." }

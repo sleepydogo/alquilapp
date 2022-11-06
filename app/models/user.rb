@@ -9,8 +9,6 @@ class User < ApplicationRecord
 
   	enum genero: [:Femenino, :Masculino]
 	enum :rango, [:Admin, :Supervisor, :Usuario, :No_Aceptado, :A_Verificar, :Baneado], default: :A_Verificar #Los rangos de el usuario
-	
-	enum tipo: [:regular, :supervisor, :admin]
 
 	validates :email, presence: true, uniqueness: true #se fija si esta puesto y si es unico en el formulario/en la consola
 	validates :dni, presence: true, uniqueness: true
