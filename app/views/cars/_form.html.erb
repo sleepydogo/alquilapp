@@ -21,10 +21,15 @@
     <%= form.text_field :modelo %>
   </div>
 
-	<div>
-		<%= form.label :photo, "Foto del auto"%>
-		<%= form.file_field :photo %>
-	</div>
+  <div>
+	<%= form.label :tanque, "Capacidad de tanque de combustible"%>
+	<%= form.number_field :tanque %>
+  </div>
+
+  <div>
+	<%= form.label :photo, "Foto del auto"%>
+	<%= form.file_field :photo %>
+  </div>
 
   <div>
     <%= form.submit %>

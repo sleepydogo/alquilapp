@@ -15,6 +15,12 @@ Rails.application.routes.draw do
 	  end
   end
 
+  resources :rents do
+	member do
+		patch :terminar_alquiler
+	end
+  end
+
   resources :billetera do 
     member do 
       patch :crear_preferencia
