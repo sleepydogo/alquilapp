@@ -157,3 +157,9 @@ table.table .avatar {
     margin-top: 10px;
     font-size: 13px;
 }
+
+.btn.btn-primary {
+    background-color: black;
+    border: none;
+    font-weight: 600;
+}

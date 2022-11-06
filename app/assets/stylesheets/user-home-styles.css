@@ -16,6 +16,12 @@
     font-size: 1.2rem;
 }
 
+.btn.btn-primary {
+    background-color: black;
+    border: none;
+    font-weight: 600;
+}
+
 #sidebar-wrapper .list-group {
     width: 15rem;
 }
