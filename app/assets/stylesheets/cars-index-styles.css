@@ -1,12 +1,5 @@
-@import "bootstrap";
 
-    /*  Helper Styles */
-    body {
-      font-family: Varela Round;
-      background: #f1f1f1;
-  }
-
-  a {
+ a {
       text-decoration: none;
   }
 
@@ -79,6 +72,13 @@
       color: #fff;
 
   }
+
+
+  .btn.btn-primary {
+    background-color: black;
+    border: none;
+    font-weight: 600;
+}
 
 
   @keyframes pulse {

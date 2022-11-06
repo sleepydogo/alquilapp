@@ -1,10 +1,6 @@
 <head>
 <%= stylesheet_link_tag 'bootstrap', 'rent-index-style' %>
 </head>
-
-<%= render 'shared/nav' if user_signed_in? %>
-
-
 <p style="color: green"><%= notice %></p>
 
 <h1>Mis alquileres</h1>
@@ -38,7 +34,7 @@
                           <li class="widget-49-meeting-item"><span>Session timeout increase to 30 minutes</span></li>
                       </ol>
                       <div class="widget-49-meeting-action">
-                          <a href="#" class="btn btn-sm btn-flash-border-primary">Detalles</a>
+                          <a <%= link_to "Detalles", rent, :class => "btn btn-sm btn-flash-border-primary" %></a>
                       </div>
                   </div>
             </div>

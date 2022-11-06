@@ -30,6 +30,13 @@
           <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!" onclick="alert('Estamos trabajando en esta funcionalidad!');">Estado de alquiler</a>
           <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/billetera/mercadopago">Billetera</a>
           <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/users/edit">Perfil</a>
+          <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/rents">Mis alquileres</a>
+          <a></a>
+          <% if (user_signed_in? && !!current_user.Admin?) %>
+            <a class="list-group-item list-group-item-action list-group-item-bold p-3" <%= link_to "Nuevo auto", new_car_path %></a>
+            <a class="list-group-item list-group-item-action list-group-item-bold p-3" href="/users">Validación de usuarios</a>
+            <% end %>
+          
         </div>
       </div>
       <!-- Page content wrapper-->

@@ -10,4 +10,6 @@ class UsersController < ApplicationController
 		redirect_to @user, notice: 'Rango cambiado a #{@user.rango}'
 	end
 
+	
+
 end

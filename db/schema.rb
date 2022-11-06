@@ -42,26 +42,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_06_222258) do
   create_table "cars", force: :cascade do |t|
     t.string "patente"
     t.string "modelo"
-    t.float "combustible", default: 0.0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "pagos", force: :cascade do |t|
-    t.string "user"
-    t.decimal "precio"
-    t.decimal "saldo"
-    t.boolean "aceptado"
-    t.text "request"
-    t.text "response"
-    t.datetime "fecha"
+    t.float "tanque", default: 0.0
+    t.boolean "alquilado", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "rents", force: :cascade do |t|
-    t.float "precio"
-    t.datetime "fecha"
+    t.float "precio", default: 0.0
+    t.float "combustible_gastado", default: 0.0
+    t.datetime "tiempo"
+    t.integer "car_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
