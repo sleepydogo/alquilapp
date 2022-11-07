@@ -303,6 +303,12 @@ button::-moz-focus-inner,
     border-style: none;
 }
 
+.btn.btn-primary {
+    background-color: black;
+    border: none;
+    font-weight: 600;
+}
+
 input[type="radio"],
 input[type="checkbox"] {
     box-sizing: border-box;

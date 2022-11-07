@@ -4,6 +4,9 @@
 </head>
 <body>
   <div class="container-fluid">
+    <% if (current_user.A_Verificar?) %>
+      <p style="color: black"><strong>Su usuario no se encuentra validado por lo que no tendrá disponibles todas las funcionalidades de la aplicación</strong></p>
+    <% end %>
     <h1 class="mt-4">Bienvenido a Alquilapp</h1>
     <p>Somos un emprendimiento de La Plata, bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blas</p>
     <p>Si su cuenta es nueva recibe media hora gratis bla blabla blabla blabla blabla blabla blabla blabla bla</p>
