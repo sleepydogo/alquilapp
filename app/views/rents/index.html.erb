@@ -1,7 +1,10 @@
 <head>
 <%= stylesheet_link_tag 'bootstrap', 'rent-index-style' %>
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
 </head>
 <p style="color: green"><%= notice %></p>
+<%= ensure_log %>
 
 <h1>Mis alquileres</h1>
 
@@ -11,7 +14,7 @@
 <div class="container">
 <div class="row">
     <div class="col-lg-4">
-    <% @rents.each do |rent| %>
+    <% current_user.rents.each do |rent| %>
         <div class="card card-margin">
             <div class="card-header no-border">
                 <h5 class="card-title"><%= Car.find(rent.car_id).patente %></h5>
@@ -20,12 +23,11 @@
                   <div class="widget-49">
                       <div class="widget-49-title-wrapper">
                           <div class="widget-49-date-primary">
-                              <span class="widget-49-date-day"><%= rent.created_at.day %></span>
-                              <span class="widget-49-date-month"><%= rent.created_at.month %></span>
+                              <span class="widget-49-date-day"><%= rent.created_at.day %>/<%= rent.created_at.month %></span>
                           </div>
                           <div class="widget-49-meeting-info">
-                              <span class="widget-49-pro-title">Precio del alquiler: <%= rent.precio %></span>
-                              <span class="widget-49-meeting-time">Hora de comienzo del alquiler: <%= rent.created_at.hour %> hs </span>
+                              <span class="widget-49-pro-title">Precio del alquiler: $<%= number_with_precision rent.precio, :precision => 2 %></span>
+                              <span class="widget-49-meeting-time">Hora de comienzo del alquiler: <%= rent.created_at.hour %>:<%= rent.created_at.min %> hs </span>
                           </div>
                       </div>
                       <ol class="widget-49-meeting-points">

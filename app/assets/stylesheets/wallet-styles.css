@@ -9,7 +9,7 @@
 
 body {
     padding: 0px;
-    background-color: #ddc3c3;
+    background-color: #F4F7FD;
 }
 
 .container {
@@ -41,6 +41,7 @@ body {
     background-color: transparent;
 }
 
+
 .form-control2 {
     font-size: 14px;
     height: 20px;
@@ -55,6 +56,27 @@ body {
     border-bottom: 2px solid #ccc;
     margin: 0;
 }
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.portrait {
+    height: 80px;
+    width: 30px;
+}
+
+.landscape {
+    height: 30px;
+    width: 80px;
+}
+
+.square {
+    height: 75px;
+    width: 75px;
+}
+
 
 .form-control2:focus {
     box-shadow: none;

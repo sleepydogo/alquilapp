@@ -10,4 +10,23 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: attributes)
   end
 
+  
+
+  def ensure_adm
+    if( (user_signed_in?) && current_user.rango == 'Usuario')
+      redirect_to root_path
+    end
+  end
+  helper_method :ensure_adm
+
+  def ensure_log
+    if(!(user_signed_in?))
+      redirect_to root_path
+    end
+  end
+  helper_method :ensure_log
+
+
+
+
 end
