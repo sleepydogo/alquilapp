@@ -1,12 +1,103 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @rent %>
+<head>
+    <%= stylesheet_link_tag 'bootstrap', "wallet-styles" %>    
+</head>
+<body>
+<%= javascript_include_tag "application" %>
 
-<div>
-  <%= link_to "Edit this rent", edit_rent_path(@rent) %> |
-  <%= link_to "Back to rents", rents_path %>
 
-  <%= button_to "Destroy this rent", @rent, method: :delete %>
-</div>
+<div class="container">
+        <div class="row m-0">
+            <div class="col-lg-7 pb-5 pe-lg-5">
+                <div class="row">
+                    <div class="col-12 p-5">
+                      <img <%= image_tag(Car.find(@rent.car_id).photo, style:'width:100%') %>
+                    </div>
+                    <div class="row m-0 bg-light">
+                        <div class="col-md-4 col-6 ps-30 pe-0 my-4">
+                            <p class="text-muted">Kilometros</p>
+                            <p class="h5">1000<span class="ps-1">Km</span></p>
+                        </div>
+                        <div class="col-md-4 col-6  ps-30 my-4">
+                            <p class="text-muted">Modelo</p>
+                            <p class="h5 m-0">2017</p>
+                        </div>
+                        <div class="col-md-4 col-6 ps-30 my-4">
+                            <p class="text-muted">Patente</p>
+                            <p class="h5 m-0"><%= Car.find(@rent.car_id).patente %></p>
+                        </div>
+                        <div class="col-md-4 col-6 ps-30 my-4">
+                            <p class="text-muted">ID</p>
+                            <p class="h5 m-0">#<%= @rent.car_id %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 p-0 ps-lg-4">
+                <div class="row m-0">
+                    <div class="col-12 px-4">
+                        <div class="d-flex align-items-end mt-4 mb-2">
+                            <p class="h4 m-0"><span class="pe-1"></span></p>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <p class="textmuted fw-bold">Total</p>
+                            <div class="d-flex align-text-top ">
+                                <span class="fas fa-dollar-sign mt-1 pe-1 fs-14 "></span><span class="h4">$<%= number_with_precision @rent.precio, :precision => 2 %></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 px-0">
+                        <div class="row bg-light m-0">
+                            <div class="col-12 px-4 my-4">
+                                <p class="fw-bold">Detalle del alquiler</p>
+                            </div>
+                            <div class="col-12 px-4">
+                                <div class="d-flex  mb-4">
+                                    <span class="">
+                                        <p class="text-muted">Hora de comienzo: </p>
+                                        <%= @rent.created_at %>
+                                           
+                                    </span>
+                                </div>
+                                <div class="d-flex  mb-4">
+                                    <span class="">
+                                        <p class="text-muted">Combustible gastado: </p>
+                                        <%= @rent.combustible_gastado %>
+                                           
+                                    </span>
+                                </div>
+                                <div class="d-flex mb-5">
+                                    <span class="me-5">
+                                        <p class="text-muted">Nombre y apellido del inquilino</p>
+                                        <%= current_user.name %>
+                                    </span>
+                                </div>
+                                <div class="d-flex mb-5">
+                                    <span class="me-5">
+                                      <% if (user_signed_in? && !!current_user.Admin?) %>              
+                                        <%= button_to 'Terminar Alquiler', terminar_alquiler_rent_path(@rent), method: :patch, class: "btn btn-danger" %>
+                                      <% end %>
+                                    </span>
+                                </div>
+                                <div class="d-flex mb-5">
+                                  <span class="me-5">
+                                    <%= link_to "Volver a Mis Alquileres", rents_path, :class => 'btn btn-primary' %>
+                                    <%= link_to "Extender alquiler", edit_rent_path(@rent), :class => 'btn btn-primary' %> 
+                                  </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-0">
+                            <div class="col-12  mb-4 p-0">
+                                </div>
+                            </div>
+                        </div>
 
-<%= button_to 'Terminar Alquiler', terminar_alquiler_rent_path(@rent), method: :patch, class: "btn btn-sm btn-danger" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
