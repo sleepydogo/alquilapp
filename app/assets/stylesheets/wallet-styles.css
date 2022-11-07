@@ -7,10 +7,11 @@
 
 }
 
-body {
-    padding: 0px;
-    background-color: #F4F7FD;
+body{
+    background: #F4F7FD;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+   
 
 .container {
     margin: 20px auto;
