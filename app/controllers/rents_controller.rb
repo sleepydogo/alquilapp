@@ -8,6 +8,15 @@ class RentsController < ApplicationController
 
   # GET /rents/1 or /rents/1.json
   def show
+	@rent = Rent.find(params[:id])
+	@hour = @rent.tiempo.hour - DateTime.now.hour 
+	@minute= @rent.tiempo.min - DateTime.now.min
+ 	if (DateTime.now.day < @rent.tiempo.day)
+		@hour= @hour+24
+	end
+	if (DateTime.now.min > @rent.tiempo.min)
+		@minute= @minute+60
+	end
   end
 
   # GET /rents/new
