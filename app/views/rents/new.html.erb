@@ -4,8 +4,9 @@
 
 </head>
 
-<%= ensure_log %>
-
+<% if (Car.all.empty?) %>
+ <% ensure_not_empty%>
+<% end %>
 
 <%= form_with(model: @rent) do |form| %>
   <% if @rent.errors.any? %>
@@ -27,6 +28,7 @@
 
 
 <br>
+
 
 
 
