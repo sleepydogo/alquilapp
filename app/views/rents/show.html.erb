@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="d-flex mb-5">
                                     <span class="me-5">
-                                      <% if (user_signed_in? && @rent.activo?) %>              
+                                      <% if (user_signed_in? && @rent.activo? && @rent.car.estacionado?) %>              
                                         <%= button_to 'Terminar Alquiler', terminar_alquiler_rent_path(@rent), method: :patch, class: "btn btn-danger" %>
                                       <% end %>
                                     </span>
