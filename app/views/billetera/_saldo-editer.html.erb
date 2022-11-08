@@ -7,7 +7,7 @@
 
 <section class="h-100" style="background-color: #eee;">
   <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100 ">
+    <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-lg-8 col-xl-6">
         <div class="card border-top border-bottom border-3 pb-1" style="border-color: #f37a27 !important;">
           <div class="card-body p-5">
@@ -23,7 +23,6 @@
                 <p>012j1gvs356c</p>
               </div>
             </div>
-
             <div class="mx-n5 px-5 py-4" style="background-color: #f2f2f2;">
               <div class="row">
                 <div class="col-md-8 col-lg-9">
@@ -33,7 +32,28 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
                   </div>
-                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                  <%= form_with(model: pago) do |form| %>
+                    <% if pago.errors.any? %>
+                      <div style="color: red">
+                        <h2>
+                          <%= pluralize(pago.errors.count, "error") %>  --> Error! No se ha podido realizar el pago
+                        </h2>
+                        <ul>
+                          <% pago.errors.each do |error| %>
+                            <li><%= error.full_message %></li>
+                          <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
+                    <%= form.number_field :precio, step: 0.5 %>
+                    <% form.hidden_field :usuario_id, value: current_user.id %>
+                    <% form.hidden_field :aceptado, value: False %>
+                    <% form.hidden_field :request, value: 'request' %>
+                    <% form.hidden_field :response, value: 'response' %>
+                    <% form.hidden_field :fecha, value: 'fecha' %>
+                    <%= form.submit 'Crear pago' %>
+                  <% end %>
+                  <input type="text" class="form-control" aria-label="Monto (to the nearest dollar)">
                   <div class="input-group-append">
                     <span class="input-group-text">.00</span>
                   </div>
