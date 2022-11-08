@@ -3,13 +3,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <title>Billetera</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 </head>
 
-<pre> <%= JSON.pretty_generate(@preference) %> </pre>
+<!--pre> <%= JSON.pretty_generate(@preference) %> </pre-->
 <body id="page-top">
         <!-- Main Content -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -23,9 +21,9 @@
                                 <h1 class="h3 pt-1 pr-5 text-gray-800">Billetera</h1>
                             </div>
                             <div class='col ml-4 pt-1'>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#foo">
-                                      Cargar saldo 
-                                </button>
+                                <a class="btn btn-primary" href='/billetera/pago'>
+                                    Cargar saldo 
+                                </a>
                                 <div class="cho-container"></div>                            
                             </div>
                         </div>
@@ -284,15 +282,7 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Alquilapp 2022</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+
 
         </div>
         <!-- End of Content Wrapper -->
