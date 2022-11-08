@@ -1,42 +1,49 @@
-<%= form_with(model: car) do |form| %>
-  <% if car.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
 
-      <ul>
-        <% car.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div>
-    <%= form.label :patente, style: "display: block" %>
-    <%= form.text_field :patente %>
-  </div>
 
-  <div>
-    <%= form.label :modelo, style: "display: block" %>
-    <%= form.text_field :modelo %>
-  </div>
+<div class='container justify-content-center align-items-center py-5'>
+  <h1>Cargar auto</h1>
 
-  <div>
-	<%= form.label :tanque, "Capacidad de tanque de combustible"%>
-	<%= form.number_field :tanque %>
-  </div>
+    <%= form_with(model: car) do |form| %>
+      <% if car.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
 
-  <div>
-	<%= form.label :kilometraje, "Kilometraje"%>
-	<%= form.number_field :kilometraje %>
-  </div>
+          <ul>
+            <% car.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div>
-	<%= form.label :photo, "Foto del auto"%>
-	<%= form.file_field :photo %>
-  </div>
+      <div>
+        <%= form.label :patente, style: "display: block" %>
+        <%= form.text_field :patente %>
+      </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+      <div>
+        <%= form.label :modelo, style: "display: block" %>
+        <%= form.text_field :modelo %>
+      </div>
+
+      <div>
+    	<%= form.label :tanque, "Capacidad de tanque de combustible"%>
+    	<%= form.number_field :tanque %>
+      </div>
+
+      <div>
+    	<%= form.label :kilometraje, "Kilometraje"%>
+    	<%= form.number_field :kilometraje %>
+      </div>
+
+      <div>
+    	<%= form.label :photo, "Foto del auto"%>
+    	<%= form.file_field :photo %>
+      </div>
+
+      <div>
+        <%= form.submit %>
+      </div>
+    <% end %>
+</div>
