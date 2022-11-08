@@ -38,7 +38,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Saldo en la cuenta</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$0.0</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$<%= number_with_precision current_user.saldo, :precision => 2 %></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
