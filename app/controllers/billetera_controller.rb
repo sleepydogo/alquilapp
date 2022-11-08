@@ -23,7 +23,6 @@ class BilleteraController < ApplicationController
         name: @pago.user
       }
     }
-  
     preference_response = sdk.preference.create(preference_data)
     @preference = preference_response[:response]
     puts @preference
@@ -35,4 +34,10 @@ class BilleteraController < ApplicationController
     end
   end
 
+  def wh
+    res_arr = {
+      transaction_id: params[:transaction_id],
+      total: params[:total],
+    }
+  end
 end
