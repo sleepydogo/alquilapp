@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   get 'billetera/mercadopago'
+  
   get 'static_pages/home_logged_user'
+
+  get 'billetera/pago', to: 'billetera#pago'
+
+  post 'billetera/alquilapp_webhook', to: 'billetera#alquilapp_webhook'
+
 
   resources :cars
   resources :rents
