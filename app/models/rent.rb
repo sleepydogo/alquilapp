@@ -4,9 +4,10 @@ class Rent < ApplicationRecord
 	belongs_to :car
 
 	accepts_nested_attributes_for :car
+	validates :tiempo, presence: true
 
 	validate :con_saldo, on: :create
-	#validate :sin_cooldown, on: :create
+	validate :sin_cooldown, on: :create
 
 	def con_saldo
         if (user.saldo < precio)
