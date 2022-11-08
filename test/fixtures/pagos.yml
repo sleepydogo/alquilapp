@@ -1,17 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  usuario: MyString
+  usuario_id: 1
   precio: 9.99
   aceptado: false
   request: MyText
   response: MyText
-  fecha: 2022-11-08 12:52:07
+  fecha: 2022-11-08 13:12:46
 
 two:
-  usuario: MyString
+  usuario_id: 1
   precio: 9.99
   aceptado: false
   request: MyText
   response: MyText
-  fecha: 2022-11-08 12:52:07
+  fecha: 2022-11-08 13:12:46

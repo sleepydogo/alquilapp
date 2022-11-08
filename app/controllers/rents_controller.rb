@@ -31,7 +31,7 @@ class RentsController < ApplicationController
   # POST /rents or /rents.json
   def create
 	#@funca = params[:car_id].to_i
-    @rent = Rent.new(rent_params)
+  @rent = Rent.new(rent_params)
 	@rent.user_id = current_user.id
 	#@rent.fecha = DateTime.now
 	if (!@rent.tiempo.nil?)

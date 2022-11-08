@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'billetera/pago', to: 'billetera#pago'
 
-  post 'billetera/wh', to: 'billetera#wh'
+  post 'billetera/alquilapp_webhook', to: 'billetera#alquilapp_webhook'
 
 
   resources :cars
