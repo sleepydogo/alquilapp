@@ -7,6 +7,7 @@ class CreatePagos < ActiveRecord::Migration[7.0]
       t.text :request
       t.text :response
       t.datetime :fecha
+	  t.references :user, null: false, foreign_key: true	
 
       t.timestamps
     end
