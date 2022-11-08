@@ -18,18 +18,15 @@
       <div class="border-end bg-white" id="sidebar-wrapper">
         <div class="sidebar-heading border-bottom bg-light pb-3">Coscu army</div>
         <div class="list-group list-group-flush">
-          <!--  
-              Hay que incluir este codigo
-                < % if el-usuario-tiene-alquiler-activo? %>
-                    < % = render '<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Estado de alquiler</a>' %>
-                < % else %>
-                    < % = render '<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Alquilar</a>' %>
-                < % end %>-->
-          <% if !(current_user.A_Verificar?) %>
+
+          <% if !(current_user.A_Verificar? || current_user.Baneado? || current_user.No_Aceptado?) %>
           
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/">Home</a>
+			<% if !(current_user.alquilando?) %>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cars">Alquilar</a>
+			<% elsif %>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!" onclick="alert('Estamos trabajando en esta funcionalidad!');">Estado de alquiler</a>
+			<% end %>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/billetera/mercadopago">Billetera</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/users/edit">Perfil</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/rents">Mis alquileres</a>

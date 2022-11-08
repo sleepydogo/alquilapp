@@ -1,6 +1,12 @@
 
 <% if user_signed_in? %>
-    <%= render 'static_pages/home_logged_user' %>
+	<% if current_user.Baneado? %>
+        <%= render 'static_pages/home_baneado' %>
+	<% elsif current_user.No_Aceptado? %>
+		<%= render 'static_pages/home_no_aceptado' %>
+	<% else %>
+    	<%= render 'static_pages/home_logged_user' %>	
+	<% end %>
 <% else %>
     <%= render 'static_pages/home-non-users' %>
 <% end %>

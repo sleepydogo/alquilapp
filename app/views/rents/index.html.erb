@@ -14,7 +14,7 @@
 <div class="container">
 <div class="row">
     <div class="col-lg-4">
-    <% current_user.rents.each do |rent| %>
+    <% @rents.each do |rent| %>
         <div class="card card-margin">
             <div class="card-header no-border">
                 <h5 class="card-title"><%= Car.find(rent.car_id).patente %></h5>

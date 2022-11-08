@@ -5,6 +5,7 @@ class CreateRents < ActiveRecord::Migration[7.0]
       #t.datetime :fecha, default: DateTime.now
 	  t.float :combustible_gastado, default: 0
 	  t.datetime :tiempo
+	  t.boolean :activo, default: true
 	  t.references :car, null: false, foreign_key: true
 	  t.references :user, null: false, foreign_key: true	
  

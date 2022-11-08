@@ -3,7 +3,7 @@ class RentsController < ApplicationController
 
   # GET /rents or /rents.json
   def index
-    @rents = Rent.all.order(created_at: :desc)
+    @rents = Rent.where(user_id: current_user.id).order(created_at: :desc)
   end
 
   # GET /rents/1 or /rents/1.json
@@ -42,7 +42,7 @@ class RentsController < ApplicationController
       if @rent.save
 		@rent.car.update(alquilado: true)
 	    @rent.user.update(alquilando: true)
-        format.html { redirect_to rent_url(@rent), notice: "Rent was successfully created." }
+        format.html { redirect_to rent_url(@rent), notice: "Alquiler realizado." }
         format.json { render :show, status: :created, location: @rent }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -84,6 +84,7 @@ class RentsController < ApplicationController
 	@rent.update(combustible_gastado: rand(@rent.car.tanque)) #Por ahora el combustible gastado es generado al azar.
 	comb_gastado= (@rent.combustible_gastado * 160)
 	@rent.update(precio: (@rent.precio + comb_gastado))
+	@rent.update(activo: false)
 	@rent.car.update(alquilado: false)
 	@rent.user.update(alquilando: false, saldo: (@rent.user.saldo - @rent.precio))
 	redirect_to root_path
