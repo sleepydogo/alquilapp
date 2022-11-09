@@ -11,29 +11,28 @@
   <% if user_signed_in? %>
       <head>
         <title>Home</title>
-        <%= stylesheet_link_tag 'bootstrap','user-home-styles'%>
+        <%= stylesheet_link_tag 'bootstrap','user-home-styles', 'billetera-styles' %>
       </head>
     <body>
     <div class="d-flex" id="wrapper">
       <div class="border-end bg-white" id="sidebar-wrapper">
-        <div class="sidebar-heading border-bottom bg-light pb-3">Coscu army</div>
+        <div class="sidebar-heading border-bottom bg-light pb-3">Grupo 6 - Ruso</div>
         <div class="list-group list-group-flush">
-
           <% if !(current_user.A_Verificar? || current_user.Baneado? || current_user.No_Aceptado?) %>
-          
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/">Home</a>
-			<% if !(current_user.alquilando?) %>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cars">Alquilar</a>
-			<% elsif %>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!" onclick="alert('Estamos trabajando en esta funcionalidad!');">Estado de alquiler</a>
-			<% end %>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/billetera/mercadopago">Billetera</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/users/edit">Perfil</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/rents">Mis alquileres</a>
-            <a></a>
-            <% if (user_signed_in? && !!current_user.Admin?) %>
-              <a class="list-group-item list-group-item-action list-group-item-bold p-3" <%= link_to "Nuevo auto", new_car_path %></a>
+			      <% if !(current_user.alquilando?) %>
+              <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cars">Alquilar</a>
+			      <% elsif %>
+              <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!" onclick="alert('Estamos trabajando en esta funcionalidad!');">Estado de alquiler</a>
+			      <% end %>
+              <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/billetera">Billetera</a>
+              <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/users/edit">Perfil</a>
+              <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/rents">Mis alquileres</a>
+            <% if ((user_signed_in? && !!current_user.Admin?) || (user_signed_in? && !!current_user.Supervisor?)) %>
               <a class="list-group-item list-group-item-action list-group-item-bold p-3" href="/users">Validación de usuarios</a>
+              <% if (user_signed_in? && !!current_user.Admin?) %>
+                <a class="list-group-item list-group-item-action list-group-item-bold p-3" <%= link_to "Nuevo auto", new_car_path %>>
+              <% end %>
             <% end %>
           <% elsif %>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/">Home</a>
@@ -47,17 +46,19 @@
         <!-- Top navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom pb-1 ">
           <div class="container-fluid">
-            <div class="col col-lg-3">  
-              <div class='row'>
+            <div class='col col-lg-3'>
+              <button class="btn btn-primary" id="sidebarToggle">Menu lateral</button>
+            </div>
+            <div class="col">
+              <div class='row d-flex justify-content-center align-items-center h-100'>
                 <%= image_tag "Logo_3-removebg-preview.png", height: 40 %>
                 <h1 class='h3 pt-1 pl-3 text-gray-800' href="/">Alquilapp</h1>
               </div>
             </div>
-            <button class="btn btn-primary" id="sidebarToggle">Menu lateral</button>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <div class = 'col-md-10'> </div>
-              <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+              <ul class="navbar-nav pl-3 ms-auto mt-2 mt-lg-0">
                   <li>
                     <%= button_to "Cerrar sesion", destroy_user_session_path, method: :delete, type:"button", class:"btn btn-primary" , id:'sidebarToggle' %> 
                   </li>
@@ -69,7 +70,15 @@
           <%= yield%>
       </div>
     </div>
-
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Alquilapp 2022</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
     
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -88,6 +97,7 @@
 
 
     </script>
+      
   </body>
   <% else %>
       <%= yield %>

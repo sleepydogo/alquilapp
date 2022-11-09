@@ -15,7 +15,7 @@
 
 
 <div class="container">
-        <div class="row m-0">
+        <div class="row m-0 h-100   ">
             <div class="col-lg-7 pb-5 pe-lg-5">
                 <div class="row">
                     <% if @car.photo.attached? %>
@@ -83,17 +83,22 @@
                                 </div>
                             </div>
                         </div>
+                        <% if (user_signed_in? && current_user.Usuario?)%>
                         <div class="row m-0">
-                            <div class="col-12  mb-4 p-0">
+                            <div class="col-12  mb-4 py-4">
                                 <%= link_to "Siguiente", new_rent_path(autito: @car), :class => "btn btn-primary" %>
                                 </div>
                             </div>
                         </div>
-						<% if (user_signed_in? && !!current_user.Admin?) %>
-								 <div class="row m-0">
-                                 <%= button_to "Borrar Auto", @car, method: :delete , :class => "btn btn-primary"%>
-								 <%= button_to "Editar Auto",@car, :class => "btn btn-primary"%>
-								                      </div>
+                        <% elsif (user_signed_in? && !!current_user.Admin?) %>
+								<div class="row d-flex justify-content-center align-items-center h-100">
+                                    <div class='col-lg-6'> 
+                                        <%= button_to "Borrar Auto", @car, method: :delete , :class => "btn btn-primary"%>
+                                    </div>
+                                    <div class='col-lg-6'> 
+                                        <%= button_to "Editar Auto",@car, :class => "btn btn-primary"%>
+                                    </div>    
+                                </div>
 						<% end %>
                         </div>
                     </div>

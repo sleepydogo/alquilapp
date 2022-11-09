@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
-  get 'billetera/mercadopago'
-  
+  resources :payments
+  get 'billetera', to: 'billetera#mercadopago'
+  get 'billetera/pago', to: 'billetera#create'
   get 'static_pages/home_logged_user'
-
-  get 'billetera/pago', to: 'billetera#pago'
-
-  post 'billetera/alquilapp_webhook', to: 'billetera#alquilapp_webhook'
-
 
   resources :cars
   resources :rents
+  resources :payments
 
   devise_for :users, components: {registrations: 'registrations', sessions: 'sessions'} #Las de devise siempre tienen que estar encima de las de USER
 
@@ -25,12 +22,6 @@ Rails.application.routes.draw do
 	member do
 		patch :terminar_alquiler
 	end
-  end
-
-  resources :billetera do 
-    member do 
-      patch :crear_preferencia
-    end
   end
 
 #, controllers: {

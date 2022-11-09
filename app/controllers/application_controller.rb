@@ -19,6 +19,14 @@ class ApplicationController < ActionController::Base
   end
   helper_method :ensure_adm
 
+
+  def ensure_sup
+    if( (user_signed_in?) && current_user.rango == 'Supervisor')
+      redirect_to root_path
+    end
+  end
+  helper_method :ensure_sup
+
   def ensure_log
     if(!(user_signed_in?) || ((current_user.rango == 'No_Aceptado') || (current_user.rango == 'A_Verificar') || (current_user.rango == 'Baneado') ) )
       redirect_to root_path  
