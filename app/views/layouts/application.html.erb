@@ -31,7 +31,7 @@
             <% if ((user_signed_in? && !!current_user.Admin?) || (user_signed_in? && !!current_user.Supervisor?)) %>
               <a class="list-group-item list-group-item-action list-group-item-bold p-3" href="/users">Validación de usuarios</a>
               <% if (user_signed_in? && !!current_user.Admin?) %>
-                <a class="list-group-item list-group-item-action list-group-item-bold p-3" <%= link_to "Nuevo auto", new_car_path %>>
+                <a class="list-group-item list-group-item-action list-group-item-bold p-3" <%= link_to "Nuevo auto", new_car_path %> 
               <% end %>
             <% end %>
           <% elsif %>

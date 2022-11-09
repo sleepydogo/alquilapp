@@ -8,28 +8,27 @@
 <%= ensure_log %>
 
 
+<h1>Vehiculos disponibles</h1>
 
 
 
 <% if !Car.where(alquilado: false).empty? %>
 
-<div class="container h-75" style="margin-top:50px;">
-  <h1>Vehiculos disponibles</h1>
-    <div class="row ">
+<div class="container">
+    <div class="row">
         <% @cars_not_rented.each do |car| %>
         <div class="col-md-3">
             <div class="card-sl">
 			    <% if car.photo.attached? %>
-                <div class="card-image">
-                    <%= image_tag(car.photo, style:'width:100%') %>
-                </div>
+                    <div class="card-image">
+                        <%= image_tag(car.photo, style:'width:100%') %>
+                    </div>
 			    <% elsif %>
-				<div class="card-image">
-                  <img
-                      src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
-                </div>
-			    <% end %>
-
+			    	<div class="card-image">
+                      <img
+                          src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+                    </div>
+		        <% end %>
                 <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
                 <div class="card-heading">
                     <%= car.modelo %>
@@ -45,26 +44,10 @@
         </div>
     </div>
 </div>
-        
-      <% end %>
+<% end %>
 <% elsif %>
          <img
                       src="https://cdn.motor1.com/images/mgl/QRK8Z/s3/10-cars-that-could-disappear-soon.webp" />
          </div>
 <% end %>
-
-
   <%= turbo_frame_tag "modal" %>
-
-
-
-
-
-  
-
-
-
-
-
-
-
