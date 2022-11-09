@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-	has_many :pagos # Cada usuario posee un historial de pagos
+	has_many :payments # Cada usuario posee un historial de pagos
 	has_many :rents #Cada usuario tiene multiples alquileres
 	has_one_attached :file
 
