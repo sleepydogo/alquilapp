@@ -5,13 +5,27 @@
     <title>Checkout</title>
 </head>
 
+<% ensure_log %>
+
 <section class="h-100" style="background-color: #eee;">
   <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="row d-flex justify-content-center py-5">
       <div class="col-lg-8 col-xl-6">
         <div class="card border-top border-bottom border-3 pb-1" style="border-color: #f37a27 !important;">
           <div class="card-body p-5">
             <p class="lead fw-bold mb-5" style="color: #f37a27;">Cargar saldo</p>
+            <%= form_with(model: payment) do |form| %>
+                    <% if payment.errors.any? %>
+                      <div style="color: red">
+                        <p>
+                        <%= pluralize(payment.errors.count, "error") %> prohibited this payment from being saved:</p>
+                        <ul>
+                          <% payment.errors.each do |error| %>
+                            <li><%= error.full_message %></li>
+                          <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
 
             <div class="row">
               <div class="col mb-3">
@@ -24,100 +38,23 @@
               </div>
             </div>
             <div class="mx-n5 px-5 py-4" style="background-color: #f2f2f2;">
-              <!--div class="row">
+              <div class="row">
                 <div class="col-md-8 col-lg-9">
                   <p>Ingrese la cantidad de saldo a cargar:</p>
                 </div>
                 <div class="input-group mb-3">
-                <div class="input-group-prepend">
+                  <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
                   </div>
-                  <input type="text" class="form-control" aria-label="Monto (to the nearest dollar)">
-                  <div class="input-group-append">
-                  <span class="input-group-text">.00</span>
-                </div>
-                </div>
-              </div -->
-              <div class='row py-5'>
-                  <%= form_with(model: payment) do |form| %>
-                    <% if payment.errors.any? %>
-                      <div style="color: red">
-                        <h2><%= pluralize(payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
-                  
-                        <ul>
-                          <% payment.errors.each do |error| %>
-                            <li><%= error.full_message %></li>
-                          <% end %>
-                        </ul>
-                      </div>
-                    <% end %>
-                    <div>
-                      <%= form.label :precio, style: "display: block" %>
-                      <%= form.number_field :precio, step: 0.5 %> 
-                    </div>
-                  
-                    <div>
-                      <%= form.label :aceptado, style: "display: block" %>
-                      <%= form.check_box :aceptado %>
-                    </div>
-                  
-                    <div>
-                      <%= form.label :request, style: "display: block" %>
-                      <%= form.text_field :request %>
-                    </div>
-                  
-                    <div>
-                      <%= form.label :response, style: "display: block" %>
-                      <%= form.text_field :response %>
-                    </div>
-                  
-                    <div>
-                      <%= form.submit %>
-                    </div>
+                  <div class='pr-4'>
+                    <%= form.number_field :precio, step: 0.5, :class => "form-control"%> 
+                  </div>
+                  <%= form.submit "Crear pago", class:"btn btn-primary btn-lg py-1", type:"submit", label:'Crear pago' %>
                   <% end %>
                   </div>
-
-            </div>
-
-            <div class="row my-4">
-            <p class="lead fw-bold mb-4 pb-2" style="color: #f37a27;">Total a pagar</p>
-              <div class="col-md-4 offset-md-8 col-lg-3 offset-lg-9">
-                <p class="lead fw-bold mb-0" style="color: #f37a27;">$420.69</p>
-              </div>
-            </div>
-
-            
-            <div class="row">
-              <div class="col-lg-12">
-
-                <div class="horizontal-timeline">
-
-                  <ul class="list-inline items d-flex justify-content-between">
-                    <li class="list-inline-item items-list">
-                      <p class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">Ordered</p
-                        class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">
-                    </li>
-                    <li class="list-inline-item items-list">
-                      <p class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">Shipped</p
-                        class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">
-                    </li>
-                    <li class="list-inline-item items-list">
-                      <p class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">On the way
-                      </p>
-                    </li>
-                    <li class="list-inline-item items-list text-end" style="margin-right: 8px;">
-                      <p style="margin-right: -8px;">Delivered</p>
-                    </li>
-                  </ul>
-
                 </div>
-
               </div>
-            </div>
-
-            <p class="mt-4 pt-2 mb-0">Want any help? <a href="#!" style="color: #f37a27;">Please contact
-                us</a></p>  
-
+            <p class="mt-4 pt-2 mb-0">Want any help? <a href="#!" style="color: #f37a27;">Please contact us</a></p>  
           </div>
         </div>
       </div>

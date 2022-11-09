@@ -7,7 +7,7 @@
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-3 col-xl-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+        <div class="card bg-dark text-white" style="border-r  adius: 1rem;">
           <div class="card-body p-3 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-2">
@@ -15,8 +15,19 @@
               <h2 class="fw-bold mb-2 text-uppercase">Iniciar sesion</h2>
               <p class="text-white-50 mb-5">Entre su correo y contraseña</p>
               <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-		          <%= render "devise/shared/error_messages", resource: resource %>
-              
+		            <% if resource.errors.any? %>
+                  <div style="color: red">
+                    <h2>
+                      <%= pluralize(resource.errors.count, "error") %>  --> Error! No se ha podido realizar el pago
+                    </h2>
+                    <ul>
+                      <% resource.errors.each do |error| %>
+                        <li><%= error.full_message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+                <%= render "devise/shared/error_messages", resource: resource %>    
                 <div class="form-outline form-white mb-4">
                   <%= f.label :email, 'E-Mail' %><br />
                   <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

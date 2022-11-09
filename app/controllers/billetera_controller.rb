@@ -1,7 +1,4 @@
 class BilleteraController < ApplicationController
-  
-  
-
 
   def alquilapp_webhook
     res_arr = {
@@ -14,7 +11,7 @@ class BilleteraController < ApplicationController
 
   private 
     def pago_params
-      params.require(:pago).permit(:usuario_id, :fecha, :)
+      params.require(:pago).permit(:usuario_id, :fecha)
     end
 
 end

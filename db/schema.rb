@@ -51,15 +51,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_235613) do
   end
 
   create_table "pagos", force: :cascade do |t|
-    t.integer "usuario_id"
     t.decimal "precio"
     t.boolean "aceptado"
     t.text "request"
     t.text "response"
-    t.datetime "fecha"
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_pagos_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.decimal "precio", default: "0.0"
+    t.boolean "aceptado", default: false
+    t.json "request"
+    t.json "response"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "rents", force: :cascade do |t|
@@ -97,6 +107,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_235613) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "pagos", "users"
+  add_foreign_key "payments", "users"
   add_foreign_key "rents", "cars"
   add_foreign_key "rents", "users"
 end
