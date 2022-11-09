@@ -24,36 +24,59 @@
               </div>
             </div>
             <div class="mx-n5 px-5 py-4" style="background-color: #f2f2f2;">
-              <div class="row">
+              <!--div class="row">
                 <div class="col-md-8 col-lg-9">
                   <p>Ingrese la cantidad de saldo a cargar:</p>
                 </div>
                 <div class="input-group mb-3">
-                  <div class="input-group-prepend">
+                <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
                   </div>
-                  <%= form_with(model: pago) do |form| %>
-                    <% if pago.errors.any? %>
+                  <input type="text" class="form-control" aria-label="Monto (to the nearest dollar)">
+                  <div class="input-group-append">
+                  <span class="input-group-text">.00</span>
+                </div>
+                </div>
+              </div -->
+              <div class='row py-5'>
+                  <%= form_with(model: payment) do |form| %>
+                    <% if payment.errors.any? %>
                       <div style="color: red">
-                        <h2>
-                          <%= pluralize(pago.errors.count, "error") %>  --> Error! No se ha podido realizar el pago
-                        </h2>
+                        <h2><%= pluralize(payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
+                  
                         <ul>
-                          <% pago.errors.each do |error| %>
+                          <% payment.errors.each do |error| %>
                             <li><%= error.full_message %></li>
                           <% end %>
                         </ul>
                       </div>
                     <% end %>
-                    <%= form.number_field :precio, step: 0.5 %>
-                    <%= form.submit 'Crear pago' %>
+                    <div>
+                      <%= form.label :precio, style: "display: block" %>
+                      <%= form.number_field :precio, step: 0.5 %> 
+                    </div>
+                  
+                    <div>
+                      <%= form.label :aceptado, style: "display: block" %>
+                      <%= form.check_box :aceptado %>
+                    </div>
+                  
+                    <div>
+                      <%= form.label :request, style: "display: block" %>
+                      <%= form.text_field :request %>
+                    </div>
+                  
+                    <div>
+                      <%= form.label :response, style: "display: block" %>
+                      <%= form.text_field :response %>
+                    </div>
+                  
+                    <div>
+                      <%= form.submit %>
+                    </div>
                   <% end %>
-                  <input type="text" class="form-control" aria-label="Monto (to the nearest dollar)">
-                  <div class="input-group-append">
-                    <span class="input-group-text">.00</span>
                   </div>
-                </div>
-              </div>
+
             </div>
 
             <div class="row my-4">
@@ -93,7 +116,7 @@
             </div>
 
             <p class="mt-4 pt-2 mb-0">Want any help? <a href="#!" style="color: #f37a27;">Please contact
-                us</a></p>
+                us</a></p>  
 
           </div>
         </div>
