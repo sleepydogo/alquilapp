@@ -31,12 +31,10 @@
                       </div>
                       <ol class="widget-49-meeting-info">
                           <li class="widget-49-meeting-item"><span>Combustible gastado: <%= rent.combustible_gastado %></span></li>
-                          <li class="widget-49-meeting-item"><span>Tiempo de alquiler: <%= rent.tiempo %></span></li>
-                          <li class="widget-49-meeting-item"><span>Session timeout increase to 30 minutes</span></li>
-                      </ol>
+                          <li class="widget-49-meeting-item"><span>Hora de finalizacion de alquiler: <%= rent.tiempo.hour %>:<%= rent.tiempo.min %> hs</span></li>                      </ol>
                       <div class="widget-49-meeting-action">
                            <%if rent.activo? %>
-                                <span class="widget-49-pro-title">Tiempo restante: <%= @hour %>:<%= @minute %>
+                                <span class="widget-49-pro-title" style="font-weight: bold; color: green" >Tiempo restante: <%=time_diff(rent.tiempo, Time.now)  %>
                             <%elsif%>
                                 <span class="widget-49-pro-title" style="color:red">Alquiler finalizado</span>
                             <% end %>
