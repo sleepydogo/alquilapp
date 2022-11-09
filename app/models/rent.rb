@@ -18,7 +18,7 @@ class Rent < ApplicationRecord
 	def sin_cooldown
 		tiempobuffer= DateTime.now
 		tiempobuffer= tiempobuffer.change(hour: (tiempobuffer.hour+3), min: tiempobuffer.minute)
-		if !(Rent.where(user_id: user.id).where("tiempo < ?", tiempobuffer).empty?)
+		if !(Rent.where(user_id: user.id).where("tiempo < ?", tiempobuffer).where(car_id: car.id).empty?)
 			errors.add(:tiempo, "No puede volver a alquilar este auto por cooldown")
 		end
 	end

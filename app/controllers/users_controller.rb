@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 	def update_rango
 		@user = User.find(params[:id])
 		@user.update(rango: params[:rango])
-		redirect_to @user, notice: 'Rango cambiado a #{@user.rango}'
+		render action: "index", notice: 'Rango cambiado'
 	end
 
 	
