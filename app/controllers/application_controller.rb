@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   helper_method :ensure_sup
 
   def ensure_log
-    if(!(user_signed_in?) || ((current_user.rango == 'No_Aceptado') || (current_user.rango == 'A_Verificar') || (current_user.rango == 'Baneado') ) )
+    if(!(user_signed_in?) && ((current_user.rango == 'No_Aceptado') || (current_user.rango == 'A_Verificar') || (current_user.rango == 'Baneado') ) )
       redirect_to root_path  
     end
   end

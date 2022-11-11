@@ -48,8 +48,12 @@
                             <td>                          
                             <% if (user.A_Verificar?) %>
                                 No verificado
-                            <% elsif %>                         
-                                Verificado
+                            <% elsif %>
+                                <% if(user.No_Aceptado?) %>                          
+                                Rechazado
+                                <% elsif %>
+                                    Verificado
+                                <%end%>
                             <% end %>
                             </td>
                             <td> <%= link_to "Descargar", user.file, download: '', :class => "btn btn-primary" %></td>

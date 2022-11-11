@@ -1,4 +1,8 @@
 
-<% if user_signed_in? %>
+<% if (user_signed_in? && current_user.rango == 'Aceptado') %>
     <%= render 'devise/registrations/edit' %>
+<% elsif %>
+    <% if (user_signed_in? && current_user.rango == 'No_Aceptado') %>
+        <%= render 'devise/registrations/editDocu' %>
+    <% end %>
 <% end %>
