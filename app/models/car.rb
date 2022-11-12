@@ -1,6 +1,6 @@
 class Car < ApplicationRecord
 
-	has_many :rents
+	has_many :rents, :dependent => :destroy
 	has_one_attached :photo
 
 	validates :patente, presence: true, uniqueness: true
