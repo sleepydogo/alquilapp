@@ -23,7 +23,7 @@
 			      <% if !(current_user.alquilando?) %>
               <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cars">Alquilar</a>
 			      <% elsif %>
-              <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!" onclick="alert('Estamos trabajando en esta funcionalidad!');">Estado de alquiler</a>
+              <a class="list-group-item list-group-item-action list-group-item-light p-3" <%= link_to "Estado del alquiler", current_user.rents.last %>
 			      <% end %>
               <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/billetera">Billetera</a>
               <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/users/edit">Perfil</a>

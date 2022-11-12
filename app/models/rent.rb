@@ -11,7 +11,7 @@ class Rent < ApplicationRecord
 
 	def con_saldo
         if (user.saldo < precio)
-            errors.add(:precio, "No te alcanza el saldo.")
+            errors.add(:precio, "No tiene el saldo suficiente.")
         end
     end
 
