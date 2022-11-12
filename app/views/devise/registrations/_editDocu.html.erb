@@ -28,7 +28,9 @@
   <div class="field form-group">
         <%= f.label :file, 'Documentos: Unico archivo con fotos de Licencia de conducir y DNI / Pasaporte' %><br />
         <%= f.file_field :file %>
-        </div>
+  </div>
+
+  <%= f.hidden_field :rango, value: "A_Verificar" %>
 
   <div class="actions">
     <%= f.submit "Actualizar datos" %>

@@ -89,7 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_235613) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "name"
-    t.integer "dni"
+    t.string "dni"
     t.integer "genero"
     t.date "birthdate"
     t.integer "telephone"
