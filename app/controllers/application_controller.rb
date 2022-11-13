@@ -34,6 +34,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :ensure_log
 
+  def ensure_user
+    if(!(@user.id == current_user.id))
+      redirect_to root_path
+    end
+  end
+  helper_method :ensure_user
+
   def ensure_not_empty
     if(user_signed_in?)
       redirect_to root_path

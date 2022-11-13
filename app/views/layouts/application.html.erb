@@ -26,7 +26,7 @@
               <a class="list-group-item list-group-item-action list-group-item-light p-3" <%= link_to "Estado del alquiler", current_user.rents.last %>
 			      <% end %>
               <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/billetera">Billetera</a>
-              <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/users/edit">Perfil</a>
+              <a class="list-group-item list-group-item-action list-group-item-light p-3" <%= link_to "Perfil", current_user %>
               <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/rents">Mis alquileres</a>
             <% if ((user_signed_in? && !!current_user.Admin?) || (user_signed_in? && !!current_user.Supervisor?)) %>
               <a class="list-group-item list-group-item-action list-group-item-bold p-3" href="/users">Validación de usuarios</a>
