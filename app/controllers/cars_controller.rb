@@ -58,6 +58,19 @@ class CarsController < ApplicationController
     end
   end
 
+
+  def dar_de_baja
+	set_car
+	if !(@car.alquilado?)
+		#notice: "Auto dado de baja de manera exitosa"
+		if (@car.update(de_baja: true))
+			redirect_to car_url(@car), notice: "Auto dado de baja de manera exitosa"
+		end
+	elsif
+		redirect_to car_url(@car), alert: "El auto que esta intentando dar de baja se encuentra en uso."
+	end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_car

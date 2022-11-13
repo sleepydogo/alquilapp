@@ -24,6 +24,12 @@ Rails.application.routes.draw do
 	end
   end
 
+  resources :cars do
+	member do
+		patch :dar_de_baja
+	end
+  end
+
 #, controllers: {
  #       sessions: 'users/sessions'
 #		registrations: 'users/registrations'
