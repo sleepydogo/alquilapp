@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 		@user.update(rango: params[:rango])
 		render action: "index", notice: 'Rango cambiado'
 	end
+	
 
 	
 
