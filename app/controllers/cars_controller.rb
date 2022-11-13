@@ -4,7 +4,7 @@ class CarsController < ApplicationController
   # GET /cars or /cars.json
   def index
     @cars = Car.all
-	@cars_not_rented = Car.where(alquilado: false)
+	@cars_not_rented = Car.where(alquilado: false, de_baja: false)
   end
 
   # GET /cars/1 or /cars/1.json
