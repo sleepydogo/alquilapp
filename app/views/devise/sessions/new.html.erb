@@ -1,62 +1,71 @@
 <head>
 	<%= stylesheet_link_tag 'bootstrap', 'login-styles'%>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 </head>
 
-<%= render 'shared/nav' %>
-<section class="vh-100 gradient-custom">
+<%= render "devise/shared/error_messages", resource: resource %>    
+
+
+<section class="vh-100" style="background-color: #F4F7FD;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-3 col-xl-5">
-        <div class="card bg-dark text-white" style="border-r  adius: 1rem;">
-          <div class="card-body p-3 text-center">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="https://media.discordapp.net/attachments/1029137847418114209/1041835460340748358/WhatsApp_Image_2022-11-14_at_19.01.23.jpeg?width=724&height=671"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
 
-            <div class="mb-md-5 mt-md-4 pb-2">
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-              <h2 class="fw-bold mb-2 text-uppercase">Iniciar sesion</h2>
-              <p class="text-white-50 mb-5">Entre su correo y contraseña</p>
-              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-		            <% if resource.errors.any? %>
-                  <div style="color: red">
-                    <h2>
-                      <%= pluralize(resource.errors.count, "error") %>  --> Error! No se ha podido realizar el pago
-                    </h2>
-                    <ul>
-                      <% resource.errors.each do |error| %>
-                        <li><%= error.full_message %></li>
-                      <% end %>
-                    </ul>
+
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                    <span class="h1 fw-bold mb-0">Alquilapp</span>
+
+
                   </div>
-                <% end %>
-                <%= render "devise/shared/error_messages", resource: resource %>    
-                <div class="form-outline form-white mb-4">
-                  <%= f.label :email, 'E-Mail' %><br />
-                  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-                </div>
 
-                <div class="form-outline form-white mb-4">
-                  <%= f.label :password, 'Contraseña'  %><br />
-                  <%= f.password_field :password, autocomplete: "current-password" %>
-                </div>
+                  <%= content_tag(:div, flash[:error], :id => "flash_error", :style => "color: red") if flash[:error]%>
+                  <%= content_tag(:div, flash[:notice], :id => "flash_notice", :style => "color: green") if flash[:notice] %>
+                  <%= content_tag(:div, flash[:alert], :id => "flash_alert", :style => "color: red") if flash[:alert] %>
 
-                <% if devise_mapping.rememberable? %>
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Inicie sesión en su cuenta</h5>
+
+
+                  <div class="form-outline mb-4">
+                    <%= f.label :email, 'E-Mail' %><br />
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control form-control-lg" %>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <%= f.label :password, 'Contraseña'  %><br />
+                    <%= f.password_field :password, autocomplete: "current-password", :class => "form-control form-control-lg" %>
+                  </div>
+
+                  <% if devise_mapping.rememberable? %>
                   <div class="field">
                     <%= f.check_box :remember_me %>
                     <%= f.label :remember_me, 'Recuerdame' %>
                   </div>
                 <% end %>
-                <div class="actions">
-                  <%= f.submit "Log in", class:"btn btn-outline-light btn-lg px-5", type:"submit", label:'Iniciar sesion' %>
-                </div>
-              <% end %>
-              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">¿Olvido la contraseña?</a></p>
+
+                  <div class="pt-1 mb-4">
+                    <%= f.submit "Iniciar sesión", class:"btn btn-dark btn-lg btn-block", type:"submit", label:'Iniciar sesion' %>
+                  </div>
+
+                  <a class="small text-muted" href="#!">¿Olvido su contraseña?</a>
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">¿No tiene cuenta?<a href="/users/sign_up" style="color: #393f81;"> Registrese aqui</a></p>
+                <% end %>
+              </div>
             </div>
-            <p class="mb-0">¿No tiene una cuenta? <a href="/users/sign_up" class="text-white-50 fw-bold"> Registrese</a> </p>
-            
           </div>
         </div>
       </div>
     </div>
   </div>
-	
 </section>
 
