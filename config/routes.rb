@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :users do
 	  member do
 	  	patch :update_rango
+		patch :baja_y_alta_supervisores
+		patch :bloquear_usuario
 	  end
   end
 
