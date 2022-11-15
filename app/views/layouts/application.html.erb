@@ -29,7 +29,7 @@
               <a class="list-group-item list-group-item-action list-group-item-light p-3" <%= link_to "Perfil", current_user %>
               <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/rents">Mis alquileres</a>
             <% if ((user_signed_in? && !!current_user.Admin?) || (user_signed_in? && !!current_user.Supervisor?)) %>
-              <a class="list-group-item list-group-item-action list-group-item-bold p-3" href="/users">Validación de usuarios</a>
+              <a class="list-group-item list-group-item-action list-group-item-bold p-3" href="/users">Gestión de usuarios</a>
               <% if (user_signed_in? && !!current_user.Admin?) %>
                 <a class="list-group-item list-group-item-action list-group-item-bold p-3" <%= link_to "Nuevo auto", new_car_path %> 
               <% end %>
