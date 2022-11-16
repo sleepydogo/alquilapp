@@ -68,6 +68,7 @@
         </nav>
         <!-- Page content-->
           <%= yield%>
+        <%= turbo_frame_tag "remote_modal", target: "_top" %>
       </div>
     </div>
     <!-- Footer -->
