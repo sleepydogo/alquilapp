@@ -30,19 +30,19 @@ class RentsController < ApplicationController
 
   # POST /rents or /rents.json
   def create
-	#@funca = params[:car_id].to_i
-  @rent = Rent.new(rent_params)
-	@rent.user_id = current_user.id
-	#@rent.fecha = DateTime.now
-	if (!@rent.tiempo.nil?)
-		if (@rent.tiempo < DateTime.now)
-			@rent.tiempo = @rent.tiempo.change(day: (@rent.tiempo.day + 1))
-		end
-	@rent.precio = (((@rent.tiempo - DateTime.now)/60)/60) * 1000
-	end
+	  #@funca = params[:car_id].to_i
+    @rent = Rent.new(rent_params)
+	  @rent.user_id = current_user.id
+	  #@rent.fecha = DateTime.now
+	  if (!@rent.tiempo.nil?)
+	  	if (@rent.tiempo < DateTime.now)
+	  		@rent.tiempo = @rent.tiempo.change(day: (@rent.tiempo.day + 1))
+	  	end
+	  @rent.precio = (((@rent.tiempo - DateTime.now)/60)/60) * 1000
+	  end
     respond_to do |format|
       if @rent.save
-		@rent.car.update(alquilado: true)
+	  @rent.car.update(alquilado: true)
 	    @rent.user.update(alquilando: true)
         format.html { redirect_to rent_url(@rent), notice: "Alquiler realizado." }
         format.json { render :show, status: :created, location: @rent }

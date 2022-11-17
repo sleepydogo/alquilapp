@@ -1,14 +1,13 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Payments</h1>
-
-<div id="payments">
-  <% @payments.each do |payment| %>
-    <%= render payment %>
-    <p>
-      <%= link_to "Show this payment", payment %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New payment", new_payment_path %>
+<section style="background-color: #eee;">
+  <div class="container">
+    <div class="row d-flex justify-content-center py-5">
+      <% @payments.each do |payment| %>
+        <div class="col-lg-8 col-xl-6">
+          <div id="payments" class='mb-3'>
+              <%= render payment %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

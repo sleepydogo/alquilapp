@@ -22,7 +22,7 @@ class PaymentsController < ApplicationController
   # POST /payments or /payments.json
   def create
     @payment = Payment.new(payment_params)
-
+    @payment.user_id = current_user.id
     respond_to do |format|
       if @payment.save
         format.html { redirect_to payment_url(@payment), notice: "Payment was successfully created." }

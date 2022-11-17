@@ -1,22 +1,52 @@
-<div id="<%= dom_id payment %>">
-  <p>
-    <strong>Precio:</strong>
-    <%= payment.precio %>
-  </p>
+<head>
+    <%= stylesheet_link_tag 'saldo-editer-styles' %>    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Checkout</title>
+</head>
 
-  <p>
-    <strong>Aceptado:</strong>
-    <%= payment.aceptado %>
-  </p>
+<% ensure_log %>
 
-  <p>
-    <strong>Request:</strong>
-    <%= payment.request %>
-  </p>
-
-  <p>
-    <strong>Response:</strong>
-    <%= payment.response %>
-  </p>
-
-</div>
+<div class="card border-top border-bottom border-3 pb-1" style="border-color: #f37a27 !important;">
+  <div class="card-body px-5">
+    <p class="lead fw-bold mb-3" style="color: #f37a27;">Pago <%= payment.id%></p>
+    <p class="lead text-muted">Detalles</p>
+    <div class="row">
+      <div class="col mb-3">
+        <p class="small text-muted mb-1">Fecha de creacion</p>
+        <p><%= payment.created_at %></p>
+      </div>
+      <div class="col mb-3">
+        <p class="small text-muted mb-1">Fecha de confirmacion</p>
+        <p><%= payment.updated_at %></p>
+      </div>
+    </div>
+    <div class="px-5 py-4" style="background-color: #f2f2f2;">
+      <div class="row">
+        <div class="col-md-6 col-lg-8">
+          <p>Precio pagado:</p>
+        </div>
+        <p class="lead"> $<%= payment.precio %> </p>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-lg-9">
+          <p>Estado</p>
+        </div>
+        <% if ((payment.response != '') and (payment.aceptado == false))  %>
+          <p class="medium text-danger">   
+            <%=   'Rechazado' %>
+          </p>        
+        <% elsif (payment.response == '') and (payment.aceptado == false) %>
+          <p class="medium text-warning">
+            <%=   'Pendiente' %>
+          </p>
+        <% elsif (payment.aceptado == true) and (payment.response != '') %>
+          <p class='medium text-success'>
+            <%=   'Aceptado'%>
+          </p>
+        <% end %>
+      </div>
+      <p class="pt-1">Necesitas ayuda?<a href="#!" style="color: #f37a27;" onclick="alert('Estamos trabajando en esta funcionalidad!')"> Por favor, contactenos</a></p>  
+    </div>
+  </div>
+</div>  

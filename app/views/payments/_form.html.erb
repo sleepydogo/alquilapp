@@ -14,13 +14,13 @@
         <div class="card border-top border-bottom border-3 pb-1" style="border-color: #f37a27 !important;">
           <div class="card-body p-5">
             <p class="lead fw-bold mb-5" style="color: #f37a27;">Cargar saldo</p>
-            <%= form_with(model: payment) do |form| %>
-                    <% if payment.errors.any? %>
+            <%= form_with(model: @payment) do |form| %>
+                    <% if @payment.errors.any? %>
                       <div style="color: red">
                         <p>
-                        <%= pluralize(payment.errors.count, "error") %> prohibited this payment from being saved:</p>
+                        <%= pluralize(@payment.errors.count, "error") %> prohibited this payment from being saved:</p>
                         <ul>
-                          <% payment.errors.each do |error| %>
+                          <% @payment.errors.each do |error| %>
                             <li><%= error.full_message %></li>
                           <% end %>
                         </ul>
@@ -30,11 +30,11 @@
             <div class="row">
               <div class="col mb-3">
                 <p class="small text-muted mb-1">Fecha</p>
-                <p>10 April 2021</p>
+                <p><%= Time.now.strftime("%d-%m-%Y") %></p>
               </div>
               <div class="col mb-3">
                 <p class="small text-muted mb-1">Numero de pedido</p>
-                <p>012j1gvs356c</p>
+                <p>12</p>
               </div>
             </div>
             <div class="mx-n5 px-5 py-4" style="background-color: #f2f2f2;">
@@ -47,14 +47,19 @@
                     <span class="input-group-text">$</span>
                   </div>
                   <div class='pr-4'>
-                    <%= form.number_field :precio, step: 0.5, :class => "form-control"%> 
+                    <%= form.number_field :precio, step: 0.5, :class => "form-control" %> 
+                    <%= form.hidden_field :aceptado, value: true %>
+                    <%= form.hidden_field :request, value: '' %>
+                    <%= form.hidden_field :response, value: 'asdfasd' %>
+                    <%= form.hidden_field :user_id, value: current_user.id %>
+                    <%= form.hidden_field :aceptado, value: false %>
                   </div>
                   <%= form.submit "Crear pago", class:"btn btn-primary btn-lg py-1", type:"submit", label:'Crear pago' %>
                   <% end %>
                   </div>
                 </div>
               </div>
-            <p class="mt-4 pt-2 mb-0">Want any help? <a href="#!" style="color: #f37a27;">Please contact us</a></p>  
+            <p class="mt-4 pt-2 mb-0">Necesitas ayuda? <a href="#!" style="color: #f37a27;" onclick="alert('Estamos trabajando en esta funcionalidad!')">Por favor, contactenos</a></p>  
           </div>
         </div>
       </div>
