@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_235613) do
     t.boolean "alquilado", default: false
     t.boolean "estacionado", default: true
     t.boolean "de_baja", default: false
+    t.float "point_x"
+    t.float "point_y"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

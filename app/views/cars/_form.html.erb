@@ -43,7 +43,26 @@
       </div>
 
       <div>
+    	<%= form.hidden_field :point_x %>
+      </div>
+
+      <div>
+    	<%= form.hidden_field :point_y %>
+      </div>
+
+      <div>
         <%= form.submit %>
       </div>
     <% end %>
 </div>
+
+
+<script>
+  navigator.geolocation.getCurrentPosition((pos) => 
+  {   document.querySelector("#car_point_x").value =
+      `${pos.coords.latitude}`,
+      document.querySelector("#car_point_y").value =
+      `${pos.coords.longitude}`;
+  });
+</script>
+

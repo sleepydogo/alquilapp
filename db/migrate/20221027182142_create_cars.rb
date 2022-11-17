@@ -8,7 +8,9 @@ class CreateCars < ActiveRecord::Migration[7.0]
 	  t.integer :kilometraje, default: 0
 	  t.boolean :alquilado, default: false
 	  t.boolean :estacionado, default: true
-	  t.boolean :de_baja, default: false 
+	  t.boolean :de_baja, default: false
+    t.float :point_x
+    t.float :point_y 
 
       t.timestamps
     end
