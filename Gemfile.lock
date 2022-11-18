@@ -267,6 +267,8 @@ DEPENDENCIES
   rails (~> 7.0.4)
   rails-i18n
   selenium-webdriver
+  geokit
+  geokit-rails
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
