@@ -218,6 +218,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.5.3-aarch64-linux)
+    sqlite3 (1.5.3-x86_64-linux)
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     thor (1.2.1)
@@ -259,6 +260,9 @@ DEPENDENCIES
   capybara
   debug
   devise
+  geokit
+  geokit-rails
+  httparty
   importmap-rails
   jbuilder
   mercadopago-sdk
@@ -267,8 +271,6 @@ DEPENDENCIES
   rails (~> 7.0.4)
   rails-i18n
   selenium-webdriver
-  geokit
-  geokit-rails
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
