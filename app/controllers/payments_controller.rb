@@ -1,4 +1,6 @@
 class PaymentsController < ApplicationController
+  include HTTParty
+
   before_action :set_payment, only: %i[ show edit update destroy ]
 
   # GET /payments or /payments.json

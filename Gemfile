@@ -78,3 +78,4 @@ gem "devise"
 gem "mercadopago-sdk"
 gem "popper_js"
 gem 'rails-i18n'
+gem 'httparty'
