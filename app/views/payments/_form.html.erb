@@ -47,14 +47,16 @@
                     <span class="input-group-text">$</span>
                   </div>
                   <div class='pr-4'>
-                    <%= form.number_field :precio, step: 0.5, :class => "form-control" %> 
+                    <%= form.number_field :precio, :class => "form-control", type: "text", placeholder:".$1000.00"%> 
                     <%= form.hidden_field :aceptado, value: true %>
                     <%= form.hidden_field :request, value: '' %>
                     <%= form.hidden_field :response, value: 'asdfasd' %>
                     <%= form.hidden_field :user_id, value: current_user.id %>
                     <%= form.hidden_field :aceptado, value: false %>
                   </div>
-                  <%= form.submit "Crear pago", class:"btn btn-primary btn-lg py-1", type:"submit", label:'Crear pago' %>
+                  <div class='py-3'>
+                    <%= form.submit "Crear pago", class:"btn btn-primary btn-lg", type:"submit", label:'Crear pago' %>
+                  </div>
                   <% end %>
                   </div>
                 </div>
