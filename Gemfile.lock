@@ -97,6 +97,10 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.11.0)
+    geokit (1.13.1)
+    geokit-rails (2.3.2)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     http-accept (1.7.0)
@@ -210,6 +214,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.5.3-aarch64-linux)
+    sqlite3 (1.5.3-x86_64-linux)
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     thor (1.2.1)
@@ -251,6 +256,8 @@ DEPENDENCIES
   capybara
   debug
   devise
+  geokit
+  geokit-rails
   importmap-rails
   jbuilder
   mercadopago-sdk

@@ -43,11 +43,11 @@
       </div>
 
       <div>
-    	<%= form.hidden_field :point_x %>
+    	<%= form.hidden_field :lat, value: rand(-34.943789..-34.897041) %>
       </div>
 
       <div>
-    	<%= form.hidden_field :point_y %>
+    	<%= form.hidden_field :lng, value: rand(-57.973537..-57.933111) %>
       </div>
 
       <div>
@@ -57,12 +57,5 @@
 </div>
 
 
-<script>
-  navigator.geolocation.getCurrentPosition((pos) => 
-  {   document.querySelector("#car_point_x").value =
-      `${pos.coords.latitude}`,
-      document.querySelector("#car_point_y").value =
-      `${pos.coords.longitude}`;
-  });
-</script>
+
 

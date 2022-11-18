@@ -2,6 +2,7 @@ class Car < ApplicationRecord
 
 	has_many :rents, :dependent => :destroy
 	has_one_attached :photo
+	acts_as_mappable
 	
 
 	validates :patente, presence: true, uniqueness: true
