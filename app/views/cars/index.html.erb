@@ -9,13 +9,11 @@
 <%= ensure_log %>
 
 
-<h1>Vehiculos disponibles</h1>
-
-
 
 <% if !@cars_not_rented.empty? %>
 
 <div class="container" style="margin-top:50px;">
+    <h1>Vehiculos disponibles</h1>
   <div class="row">
     <% @cars_not_rented.each do |car| %>
       <div class="col-md-3">
@@ -46,10 +44,13 @@
       </div>
       <% end %>
 <% elsif %>
-		 <div> No hay autos disponibles en este momento. Intente en otro momento. </div>
-         <img
-                      src="https://cdn.motor1.com/images/mgl/QRK8Z/s3/10-cars-that-could-disappear-soon.webp" />
-         </div>
+    <div class='container py-3'>
+        <h1>Vehiculos disponibles</h1>
+		<div> No hay autos disponibles en este momento. Intente en otro momento. </div>
+        <img
+            src="https://cdn.motor1.com/images/mgl/QRK8Z/s3/10-cars-that-could-disappear-soon.webp" />
+        </div>
+    </div>
 <% end %>
   <%= turbo_frame_tag "modal" %>
 

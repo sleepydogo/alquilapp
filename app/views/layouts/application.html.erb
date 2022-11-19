@@ -21,17 +21,21 @@
           <% if !(current_user.A_Verificar? || current_user.Baneado? || current_user.No_Aceptado?) %>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/">Home</a>
 			      <% if !(current_user.alquilando?) %>
-              <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cars">Alquilar</a>
-			      <% elsif %>
+              <% if (user_signed_in? && !!current_user.Usuario?) %>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cars">Alquilar</a>
+              <% elsif %>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cars">Gestion de autos</a>
+              <% end %>  
+            <% elsif %>
               <a class="list-group-item list-group-item-action list-group-item-light p-3" <%= link_to "Estado del alquiler", current_user.rents.last %>
 			      <% end %>
               <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/billetera">Billetera</a>
               <a class="list-group-item list-group-item-action list-group-item-light p-3" <%= link_to "Perfil", current_user %>
               <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/rents">Mis alquileres</a>
             <% if ((user_signed_in? && !!current_user.Admin?) || (user_signed_in? && !!current_user.Supervisor?)) %>
-              <a class="list-group-item list-group-item-action list-group-item-bold p-3" href="/users">Gestión de usuarios</a>
+              <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/users">Gestión de usuarios</a>
               <% if (user_signed_in? && !!current_user.Admin?) %>
-                <a class="list-group-item list-group-item-action list-group-item-bold p-3" <%= link_to "Nuevo auto", new_car_path %> 
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" <%= link_to "Nuevo auto", new_car_path %> 
               <% end %>
             <% end %>
           <% elsif %>
@@ -94,10 +98,7 @@
               });
           }
       });
-
-
     </script>
-      
   </body>
   <% else %>
       <%= yield %>

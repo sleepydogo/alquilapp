@@ -2,11 +2,11 @@
     <%= stylesheet_link_tag 'saldo-editer-styles' %>    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
     <title>Checkout</title>
 </head>
 
 <% ensure_log %>
-
 <section class="h-100" style="background-color: #eee;">
   <div class="container h-100">
     <div class="row d-flex justify-content-center py-5">
@@ -43,21 +43,38 @@
                   <p>Ingrese la cantidad de saldo a cargar:</p>
                 </div>
                 <div class="input-group mb-3">
-                  <div class="input-group-prepend">
+                  <div class="input-group-prepend py-2">
                     <span class="input-group-text">$</span>
                   </div>
-                  <div class='pr-4'>
-                    <%= form.number_field :precio, :class => "form-control", type: "text", placeholder:".$1000.00"%> 
+                  <div class='pr-4 py-2'>
+                    <%= form.number_field :precio, class:"form-control form-control-lg", type:"text" , placeholder:"1000.00"%> 
                     <%= form.hidden_field :aceptado, value: true %>
                     <%= form.hidden_field :request, value: '' %>
-                    <%= form.hidden_field :response, value: 'asdfasd' %>
+                    <%= form.hidden_field :response, value: '' %>
                     <%= form.hidden_field :user_id, value: current_user.id %>
                     <%= form.hidden_field :aceptado, value: false %>
                   </div>
-                  <div class='py-3'>
-                    <%= form.submit "Crear pago", class:"btn btn-primary btn-lg", type:"submit", label:'Crear pago' %>
+                  <div class='py-2 justify-content-center align-items-center'>
+                    <div class="cho-container"></div>
+                    <% form.submit%>
                   </div>
                   <% end %>
+                  <script>
+                     // public key
+                    const mp = new MercadoPago('APP_USR-2f791e89-1594-42e1-aa71-848704777626', {
+                      locale: 'es-AR'
+                    });
+    
+                    mp.checkout({
+                      preference: {
+                        id: 2
+                      },
+                      render: {
+                        container: '.cho-container',
+                        label: 'Crear pago',
+                      }
+                    });
+                  </script>
                   </div>
                 </div>
               </div>
@@ -68,3 +85,5 @@
     </div>
   </div>
 </section>
+
+
