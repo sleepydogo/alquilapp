@@ -1,0 +1,147 @@
+
+Peticion:
+
+get 'https: //api.mercadopago.com/v1/payments/51696956594?access_token=APP_USR-7349775986801427-111915-13c2e770c6dc4ab73f6613f81b74ee3d-1243047107'
+ -->'https: //api.mercadopago.com/v1/payments/ <id de pago recuperado de notificacion> ?access_token=APP_USR-7349775986801427-111915-13c2e770c6dc4ab73f6613f81b74ee3d-1243047107'
+Respuesta: {
+    "acquirer_reconciliation": [],
+    "additional_info": {
+        "authentication_code": null,
+        "available_balance": null,
+        "ip_address": "181.169.163.188",
+        "items": [
+            {
+                "category_id": null,
+                "description": null,
+                "id": null,
+                "picture_url": null,
+                "quantity": "1",
+                "title": "Carga de saldo",
+                "unit_price": "22.0"
+            }
+        ],
+        "nsu_processadora": null
+    },
+    "authorization_code": null,
+    "binary_mode": true,
+    "brand_id": null,
+    "build_version": "2.119.1",
+    "call_for_authorize_id": null,
+    "captured": true,
+    "card": {},
+    "charges_details": [
+        {
+            "accounts": {
+                "from": "collector",
+                "to": "mp"
+            },
+            "amounts": {
+                "original": 0.9,
+                "refunded": 0
+            },
+            "client_id": 0,
+            "date_created": "2022-11-19T18:45:08.000-04:00",
+            "id": "51696956594-001",
+            "last_updated": "2022-11-19T18:45:08.000-04:00",
+            "metadata": {},
+            "name": "mercadopago_fee",
+            "refund_charges": [],
+            "reserve_id": null,
+            "type": "fee"
+        }
+    ],
+    "collector_id": 1243047107,
+    "corporation_id": null,
+    "counter_currency": null,
+    "coupon_amount": 0,
+    "currency_id": "ARS",
+    "date_approved": "2022-11-19T18:45:08.000-04:00",
+    "date_created": "2022-11-19T18:45:07.000-04:00",
+    "date_last_updated": "2022-11-19T18:47:22.000-04:00",
+    "date_of_expiration": null,
+    "deduction_schema": null,
+    "description": "Carga de saldo",
+    "differential_pricing_id": null,
+    "external_reference": null,
+    "fee_details": [
+        {
+            "amount": 0.9,
+            "fee_payer": "collector",
+            "type": "mercadopago_fee"
+        }
+    ],
+    "financing_group": null,
+    "id": 51696956594,
+    "installments": 1,
+    "integrator_id": null,
+    "issuer_id": null,
+    "live_mode": true,
+    "marketplace_owner": null,
+    "merchant_account_id": null,
+    "merchant_number": null,
+    "metadata": {},
+    "money_release_date": "2022-12-07T18:45:08.000-04:00",
+    "money_release_schema": null,
+    "money_release_status": "pending",
+    "notification_url": "https://webhook.site/47eb27ca-1a8a-4d9f-96aa-048a865b1e48",
+    "operation_type": "regular_payment",
+    "order": {
+        "id": "6558261067",
+        "type": "mercadopago"
+    },
+    "payer": {
+        "email": "test_user_56829565@testuser.com",
+        "entity_type": null,
+        "first_name": null,
+        "id": "1243047035",
+        "identification": {
+            "number": "23011111114",
+            "type": "CUIL"
+        },
+        "last_name": null,
+        "operator_id": null,
+        "phone": {
+            "area_code": null,
+            "extension": null,
+            "number": null
+        },
+        "type": null
+    },
+    "payment_method": {
+        "id": "account_money",
+        "type": "account_money"
+    },
+    "payment_method_id": "account_money",
+    "payment_type_id": "account_money",
+    "platform_id": null,
+    "point_of_interaction": {
+        "business_info": {
+            "sub_unit": "checkout_pro",
+            "unit": "online_payments"
+        },
+        "type": "UNSPECIFIED"
+    },
+    "pos_id": null,
+    "processing_mode": "aggregator",
+    "refunds": [],
+    "shipping_amount": 0,
+    "sponsor_id": null,
+    "statement_descriptor": null,
+    "status": "approved",
+    "status_detail": "accredited",
+    "store_id": null,
+    "taxes_amount": 0,
+    "transaction_amount": 22,
+    "transaction_amount_refunded": 0,
+    "transaction_details": {
+        "acquirer_reference": null,
+        "external_resource_url": null,
+        "financial_institution": null,
+        "installment_amount": 0,
+        "net_received_amount": 21.1,
+        "overpaid_amount": 0,
+        "payable_deferral_period": null,
+        "payment_method_reference_id": null,
+        "total_paid_amount": 22
+    }
+}

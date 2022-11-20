@@ -20,20 +20,7 @@
       Precio pagado: $<%= payment.precio %>
       <br>
       <span style='background-color: #494949' class='px-5'>
-        Estado: 
-        <% if ((payment.response != '') and (payment.aceptado == false))  %>
-        <span class='text-danger'>  
-          <%=   'Rechazado' %>
-        </span>
-        <% elsif (payment.response == '') and (payment.aceptado == false) %>
-        <span class='text-warning'>  
-          <%=   'Pendiente' %>   
-        </span>
-        <% elsif (payment.aceptado == true) and (payment.response != '') %>
-        <span class='text-success'>  
-          <%=   'Aceptado'%>     
-        </span>
-        <% end %>
+        Estado: <%= payment.aceptado %>
       </span>
     </p>
   </div>

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'billetera', to: 'billetera#mercadopago'
   get 'billetera/pago', to: 'billetera#create'
   get 'static_pages/home_logged_user'
+  post '/payment/notification' => 'payments#receive_and_update'
+
 
   resources :cars
   resources :rents

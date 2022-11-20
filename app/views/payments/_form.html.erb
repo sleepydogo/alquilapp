@@ -43,20 +43,23 @@
                   <p>Ingrese la cantidad de saldo a cargar:</p>
                 </div>
                 <div class="input-group mb-3">
-                  <div class="input-group-prepend py-2">
-                    <span class="input-group-text">$</span>
+                  <div class='row'>
+                    <div class="input-group-prepend py-2">
+                      <span class="input-group-text">$</span>
+                      <%= form.number_field :precio, class:"form-control form-control-lg", type:"text" , placeholder:"1000.00"%> 
+                      <%= form.hidden_field :aceptado, value: true %>
+                      <%= form.hidden_field :request, value: '' %>
+                      <%= form.hidden_field :response, value: '' %>
+                      <%= form.hidden_field :user_id, value: current_user.id %>
+                      <%= form.hidden_field :aceptado, value: false %>
+                    </div>
                   </div>
-                  <div class='pr-4 py-2'>
-                    <%= form.number_field :precio, class:"form-control form-control-lg", type:"text" , placeholder:"1000.00"%> 
-                    <%= form.hidden_field :aceptado, value: true %>
-                    <%= form.hidden_field :request, value: '' %>
-                    <%= form.hidden_field :response, value: '' %>
-                    <%= form.hidden_field :user_id, value: current_user.id %>
-                    <%= form.hidden_field :aceptado, value: false %>
-                  </div>
-                  <div class='py-2 justify-content-center align-items-center'>
-                    <div class="cho-container"></div>
-                    <% form.submit%>
+                </div>
+                  <div class='row'>
+                    <div class='py-2 justify-content-center align-items-center'>
+                      <div class="cho-container"></div>
+                      <% form.submit%>
+                    </div>
                   </div>
                   <% end %>
                   <script>
@@ -76,7 +79,6 @@
                     });
                   </script>
                   </div>
-                </div>
               </div>
             <p class="mt-4 pt-2 mb-0">Necesitas ayuda? <a href="#!" style="color: #f37a27;" onclick="alert('Estamos trabajando en esta funcionalidad!')">Por favor, contactenos</a></p>  
           </div>

@@ -1,9 +1,11 @@
 class PaymentsController < ApplicationController
   require 'json'
   require 'mercadopago'
+  require 'net/http'
+  
+  skip_before_action :verify_authenticity_token
   before_action :set_payment, only: %i[ show edit update destroy ]
-  
-  
+
   # GET /payments or /payments.json
   def index
     @payments = Payment.all
@@ -29,20 +31,26 @@ class PaymentsController < ApplicationController
     sdk = Mercadopago::SDK.new('APP_USR-7349775986801427-111915-13c2e770c6dc4ab73f6613f81b74ee3d-1243047107')
     # Crea un objeto de preferencia
     preference_data = {
+      notification_url: 'https://80e6-181-169-163-188.sa.ngrok.io/payment-notification',
       items: [
         {
-          title: 'Carga de saldo',
-          unit_price: @payment.precio.to_f,
-          quantity: 1
+          currency_id: "ARS",
+          picture_url: "https://i.ibb.co/HTxfHyn/Logo-3.png",
+          title: 'Carga de saldo - Alquilapp',
+          unit_price: @payment.precio.to_i,
+          quantity: 1,
         }
       ],
       back_urls: {
-          success: 'http://127.0.0.1:3000/payments/',
-          failure: 'http://127.0.0.1:3000/payments/', 
-          pending: 'http://127.0.0.1:3000/payments/'
+          success: 'https://80e6-181-169-163-188.sa.ngrok.io/payments/',
+          failure: 'https://80e6-181-169-163-188.sa.ngrok.io/payments/', 
+          pending: 'https://80e6-181-169-163-188.sa.ngrok.io/payments/'
       },
       auto_return: "all",
-      purpose: 'wallet_purchase'
+      purpose: 'wallet_purchase',
+      metadata: {
+        id_pago_interno: @payment.id
+      }
     }
     preference_response = sdk.preference.create(preference_data)
     @preference = preference_response[:response]
@@ -61,51 +69,36 @@ class PaymentsController < ApplicationController
     end
   end
 
+  # POST /payment/notification
+  def receive_and_update
+    data_json = JSON.parse request.body.read
+    
+      @idPago = data_json['data']['id']
+      aux = 'https://api.mercadopago.com/v1/payments/' + @idPago 
+      uri = URI(aux)
+      req = Net::HTTP::Get.new(uri)
+      # access token
+      req['Authorization'] = 'Bearer APP_USR-7349775986801427-111915-13c2e770c6dc4ab73f6613f81b74ee3d-1243047107'
+      req_options = {
+        use_ssl: uri.scheme == "https"
+      }
+      res = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+        http.request(req) 
 
-
-  def make_payment
-    preference = {
-      "items": [
-        { 
-            "id": @payment.id,
-            "title": "Carga de saldo",
-            "currency_id": "ARS",
-            "picture_url": "https://media.istockphoto.com/vectors/money-cash-icon-with-soft-shadow-vector-id657141614?k=20&m=657141614&s=170667a&w=0&h=qvGWi5yb9MlgrgzjSlgKwbKz-dPOBaNcwH8gtg3Qx7U=",
-            "quantity": 1,
-            "unit_price": @payment.precio
-        }
-      ]
-    }
-    response = HTTParty.get('https://api.mercadopago.com', {
-      body: JSON.generate(preference),
-      headers: {'access_token' => 'TEST-2532652832399670-110414-7036796f99ef154e08293e261abd3a4b-155190845'}
-    })
-
-    #if response.body.nil? || response.body.empty? 
-    puts response.body
-    redirect_to response.body
-    #end 
+      data_finder = res.body.inspect
+      data_json = JSON.parse res.body
+      # creo peticion get para recuperar el pago en el server de mp
+      if (data_finder["approved"])
+        id = data_json["metadata"]["id_pago_interno"]
+        puts id
+        Payment.find(id).update(aceptado: true) 
+        userid = Payment.find(id).user_id
+        saldoActualizado = User.find(userid).saldo + data_json['transaction_amount'] 
+        User.find(userid).update(saldo: saldoActualizado)
+      end
+    end
   end
 
-  def make_payment_v2
-    sdk = Mercadopago::SDK.new(Rails.application.credentials.mercadopago.access_token)
-    # Crea un objeto de preferencia
-    preference_data = {
-      items: [
-        {
-          title: 'Carga de saldo',
-          unit_price: @payment.precio,
-          quantity: 1
-        }
-      ],
-      purpose: 'wallet_purchase'
-    }
-    preference_response = sdk.preference.create(preference_data)
-    preference = preference_response[:response]
-  
-    # Este valor substituirá a la string "<%= @preference_id %>" en tu HTML
-    @preference_id = preference['id']
-  end
 
   # PATCH/PUT /payments/1 or /payments/1.json
   def update
