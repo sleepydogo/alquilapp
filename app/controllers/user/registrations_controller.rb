@@ -60,11 +60,4 @@ class User::RegistrationsController < Devise::RegistrationsController
      super(resource)
    end
 
-   protected
-
-   def after_update_path_for(resource)
-    flash[:notice] = "Datos actualizados exitosamente"
-    current_user
-   end
-
 end

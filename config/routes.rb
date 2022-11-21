@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :rents
   resources :payments
 
-  devise_for :users, components: {registrations: 'registrations', sessions: 'sessions'}, controllers: { registrations: 'user/registrations'}  #Las de devise siempre tienen que estar encima de las de USER
+  devise_for :users, components: {registrations: 'registrations', sessions: 'sessions'} #Las de devise siempre tienen que estar encima de las de USER
 
   resources :users, only: [:show]
 

@@ -1,6 +1,14 @@
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <%= stylesheet_link_tag 'bootstrap', "map" %>  
+</head>
+
+
 <body>
+<p style="color: green"><%= notice %></p>
 <div class="container-fluid">
 <%= destruir_docu %>
-<p> Tu registro no fue aceptado. Para volver a subir sus documentos dirijase a la sección de "Perfil" </p>
+<p><b> Tu registro no fue aceptado ya que se encontraron inconsistencias en la documentación y sus datos de registro. 
+Para actualizar sus datos y reintentar su validación dirijase a la sección de "Perfil"</b> </p>
 </div>
 </body>
