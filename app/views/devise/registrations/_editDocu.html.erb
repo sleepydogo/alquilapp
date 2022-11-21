@@ -34,7 +34,7 @@
                         <h4><%= @user.name %></h4>
                         </div>
                         <div class="mt-3">
-                    <% if ((@user.rango == 'Admin') || (@user.rango == 'Supervisor')) %>
+                    <% if ((current_user.rango == 'Admin') || (current_user.rango == 'Supervisor')) %>
                         <h4 class="p-3 mb-2 bg-gradient-light text-dark"><%= @user.rango %></h4>
                     <% end %>
                     </div>
