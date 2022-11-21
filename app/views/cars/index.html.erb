@@ -46,7 +46,13 @@
               <div class="card-text">
                   Alquiler por hora: $1000
               </div>
-              <%= link_to "Alquilar", car, :class => "card-button" %>
+              <% if current_user.rango == "Usuario" %>
+                <%= link_to "Alquilar", car, :class => "card-button" %>
+              <% elsif %>
+                <% if current_user.rango == "Admin" %>
+                <%= link_to "Detalles", car, :class => "card-button" %>
+              <% end %>
+              <% end %>
           </div>
       </div>
       <% end %>

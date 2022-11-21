@@ -67,6 +67,7 @@
                         </div>
                     </div>
                     <div class="col-12 px-0">
+                    <% if current_user.rango == "Usuario" %>
                         <div class="row bg-light m-0">
                             <div class="col-12 px-4 my-4">
                                 <p class="fw-bold">Detalle de pago</p>
@@ -84,6 +85,7 @@
                                     </span>
                                 </div>
                             </div>
+                    <% end %>
                         </div>
                         <% if (user_signed_in? && current_user.Usuario?)%>
                         <div class="row m-0">
@@ -102,18 +104,18 @@
                                         <a class= 'btn btn-primary' href='' onClick='reveal()'>No</a> 
                                         </div>
                                     </div>
-                                    <div class='col-lg-6'> 
+                                    <div class='col lg-6'> 
                                         <%= button_to "Editar Auto",@car, :class => "btn btn-primary"%>
                                     </div>
 								<% if (!@car.de_baja?) %>
-									<div class='col-lg-6'> 
+									<div class='col mt-6'> 
                                         <%= button_to "Dar de baja", dar_de_baja_car_path(@car), method: :patch, :class => "btn btn-primary"%>
                                     </div>
 								<% else %>
-									<div class='col-lg-6'> 
+									<div class='col mt-6'> 
                                         <%= button_to "Dar de alta", @car, :class => "btn btn-primary"%>
                                     </div>
-								<% end %>		      
+								<% end %>
                                 </div>
 						<% elsif (user_signed_in? && !!current_user.Supervisor?) %>
 								<% if (!@car.de_baja?) %>

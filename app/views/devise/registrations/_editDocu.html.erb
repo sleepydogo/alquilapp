@@ -4,35 +4,145 @@
 </head>
 
 
-<h2>Perfil</h2>
+<%= ensure_log %>
+
+<p style="color: green"><%= notice %></p>
+<p style="color: red"><%= alert %></p>
+<head>
+<%= stylesheet_link_tag 'bootstrap' %>
+<%= stylesheet_link_tag 'rent-index-style'%>
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+</head>
 
 <%= ensure_log %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :current_password, 'Contraseña actual'%> <i>(Necesitamos su contraseña actual para confirmar los cambios)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="field form-group">
-        <%= f.label :file, 'Documentos: Unico archivo con fotos de Licencia de conducir y DNI / Pasaporte' %><br />
-        <%= f.file_field :file %>
-  </div>
-
-  <%= f.hidden_field :rango, value: "A_Verificar" %>
-
-  <div class="actions">
-    <%= f.submit "Actualizar datos" %>
-  </div>
 <% end %>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="container">
+        <div class="main-body">  
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                        <div class="mt-3">
+                        <h4><%= @user.name %></h4>
+                        </div>
+                        <div class="mt-3">
+                    <% if ((@user.rango == 'Admin') || (@user.rango == 'Supervisor')) %>
+                        <h4 class="p-3 mb-2 bg-gradient-light text-dark"><%= @user.rango %></h4>
+                    <% end %>
+                    </div>
+                        <% if (!@user.Admin?) %>
+                        <div class="mt-3">
+                        <h4 class="p-3 mb-2 bg-dark text-white"> Panel de control </h4>
+                        </div>
+                        <% end %>
+                        <div class="mt-3">
+                        <% if (@user.Supervisor? && current_user.Admin?) %>
+                                    <%= button_to 'Remover supervisor', baja_y_alta_supervisores_user_path(@user, rango: 'Usuario'), method: :patch, class: "btn btn-sm btn-danger" %>
+                        <% elsif (@user.Usuario? && current_user.Admin?) %>
+                                    <%= button_to 'Convertir a supervisor', baja_y_alta_supervisores_user_path(@user, rango: 'Supervisor'), method: :patch, class: "btn btn-sm btn-success" %>
+                        <% end %>
+                        </div>
+                        <div class="mt-3">
+                        <% if (!@user.Admin?) %>
+                                <% if (!@user.Baneado? && (current_user.Admin? || current_user.Supervisor?)) %>
+                                    <%= button_to 'Bloquear', bloquear_usuario_user_path(@user), method: :patch, class: "btn btn-sm btn-danger" %>
+                                <% elsif (@user.Baneado? && (current_user.Admin? || current_user.Supervisor?)) %>
+                                    <%= button_to 'Desbloquear', @user, method: :patch, class: "btn btn-sm btn-success" %>
+                                <% end %>
+                        <% end %>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                        <h6 class="mb-0">Nombre</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                        <%= @user.name %>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                        <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                        <%= @user.email %>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                        <h6 class="mb-0">Telefono</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                        <%= @user.telephone %>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Fecha de nacimiento</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <%= @user.birthdate %>
+                    </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                        <h6 class="mb-0">Numero de documento</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                        <%= @user.dni %>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                    <div class="col-sm-3">
+                    <h6 class="mb-0">Documentos</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <%= f.label :file, 'Unico archivo con fotos de Licencia de conducir y DNI / Pasaporte' %><br />
+                      <%= f.file_field :file%>
+                      <%= f.hidden_field :rango, value: "A_Verificar" %>
+                    </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                        <h6 class="mb-0">Contraseña</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                        <div class="field mb-4">
+                        <div class="field">
+                          <%= f.label :current_password, 'Contraseña actual'%> <i>(Necesitamos su contraseña actual para confirmar los cambios)</i><br />
+                          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+                      </div>
+                         </div>
+                        </div>
+
+                    <div class="row">
+                        <div class="col-sm-8">
+                        </div>
+                    </div>
+                </div>
+                <%= f.submit "Actualizar datos", :class => "btn btn-primary" %>
+            </div>
+            </div>
+        </div>
+        <% end %>
+
