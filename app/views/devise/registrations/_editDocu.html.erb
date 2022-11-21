@@ -44,6 +44,7 @@
                         </div>
                         <% end %>
                         <div class="mt-3">
+                        <i>Debe actualizar sus datos de manera que la documentación y sus datos personales coincidan para que su cuenta sea validada</i>
                         <% if (@user.Supervisor? && current_user.Admin?) %>
                                     <%= button_to 'Remover supervisor', baja_y_alta_supervisores_user_path(@user, rango: 'Usuario'), method: :patch, class: "btn btn-sm btn-danger" %>
                         <% elsif (@user.Usuario? && current_user.Admin?) %>
