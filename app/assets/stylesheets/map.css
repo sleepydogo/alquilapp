@@ -1,5 +1,5 @@
 #map-container {
-    height: 500px;
+    height: 600px;
     width: 100%;
 }
 
@@ -8,3 +8,28 @@
     height: inherit;
     width: inherit;
 }
+
+body{
+    background: #F4F7FD;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.mapboxgl-popup {
+    max-width: 500px;
+}
+    
+.mapboxgl-popup-content {
+    text-align: center;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    width: auto;
+}
+
+.marker{
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+

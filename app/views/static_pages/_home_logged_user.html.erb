@@ -11,11 +11,7 @@
       <p style="color: black"><strong>Su usuario no se encuentra validado por lo que no tendrá disponibles todas las funcionalidades de la aplicación</strong></p>
     <% end %>
     <h1 class="mt-4">Bienvenido a Alquilapp</h1>
-    <p>Somos un emprendimiento de La Plata, bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blas</p>
-    <p>Si su cuenta es nueva recibe media hora gratis bla blabla blabla blabla blabla blabla blabla blabla bla</p>
     <div class="row">
-    <div class="col-6 offset-3">
-        <div class="card mb-3">
           <div class="card-body mb-4">
             <div id="map-container">
               <div id="map">
@@ -40,13 +36,17 @@
 
     
     <% Car.all.each do |car| %>
+      <% if !(car.alquilado || car.de_baja) %>
 
-      var popup = new mapboxgl.Popup({ offset: 25 }).setText('<%= car.modelo %>, <%= car.patente %>');
-      
-      var marker = new mapboxgl.Marker()
-        .setLngLat(['<%= car.lng %>', '<%= car.lat %>'])
-        .setPopup(popup)
-        .addTo(map);
+
+        var popup = new mapboxgl.Popup({ closeOnClick: true }, {offset: 50})
+        .setHTML('<h5><%= car.modelo %></h5> <b><%= car.patente %></b> | Capacidad del tanque: <%= car.tanque %>');
+        
+        var marker = new mapboxgl.Marker()
+          .setLngLat(['<%= car.lng %>', '<%= car.lat %>'])
+          .setPopup(popup)
+          .addTo(map);
+      <% end %>
     
     <% end %>
      
