@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
 	validates :email, presence: true, uniqueness: true #se fija si esta puesto y si es unico en el formulario/en la consola
 	validates :dni, presence: true, uniqueness: true  
-	validates :telephone, presence: true, numericality: true
+	validates :telephone, presence: true, numericality: true, uniqueness: true
 	validates :birthdate, presence: true
 	validate :en_edad
 	validates_format_of :dni,:with => /\A([a-zA-Z]{0,3}[0-9]{6,9})?\z/, :message => "o numero de pasaporte incorrecto. Pon uno en formato adecuado."
