@@ -35,20 +35,34 @@
      });
 
     
-    <% Car.all.each do |car| %>
-      <% if !(car.alquilado || car.de_baja) %>
+    <% if (current_user.rango == 'Usuario') %>
+      <% Car.all.each do |car| %>
+        <% if !(car.alquilado || car.de_baja) %>
 
-
-        var popup = new mapboxgl.Popup({ closeOnClick: true }, {offset: 50})
-        .setHTML('<h5><%= car.modelo %></h5> <b><%= car.patente %></b> | Capacidad del tanque: <%= car.tanque %>');
-        
-        var marker = new mapboxgl.Marker()
-          .setLngLat(['<%= car.lng %>', '<%= car.lat %>'])
-          .setPopup(popup)
-          .addTo(map);
+          var popup = new mapboxgl.Popup({ closeOnClick: true }, {offset: 50})
+          .setHTML('<h5><%= car.modelo %></h5> <b><%= car.patente %></b> | Capacidad del tanque: <%= car.tanque %>');
+          
+          var marker = new mapboxgl.Marker()
+            .setLngLat(['<%= car.lng %>', '<%= car.lat %>'])
+            .setPopup(popup)
+            .addTo(map);
       <% end %>
-    
     <% end %>
+    <% elsif %>
+      <% if ((current_user.rango == "Admin") || (current_user.rango == "Supervisor")) %>
+        <% Car.all.each do |car| %>
+          var popup = new mapboxgl.Popup({ closeOnClick: true }, {offset: 50})
+          .setHTML('<h5><%= car.modelo %></h5> <b><%= car.patente %></b> | Capacidad del tanque: <%= car.tanque %> | Estado: <% if (car.de_baja?) %> De baja <%end%> <% if (!car.de_baja?) %> Activo <% end %>');
+          
+          var marker = new mapboxgl.Marker()
+            .setLngLat(['<%= car.lng %>', '<%= car.lat %>'])
+            .setPopup(popup)
+            .addTo(map);
+        <% end %>
+      <% end %>
+    <% end %>
+        
+          
      
 </script>
 </body>
