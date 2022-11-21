@@ -19,6 +19,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :ensure_adm
 
+  def destruir_docu
+		if(current_user.rango == 'No_Aceptado')
+			current_user.file.purge
+		end
+	end
+  helper_method :destruir_docu
+
 
   def ensure_sup
     if( (user_signed_in?) && current_user.rango == 'Supervisor')
