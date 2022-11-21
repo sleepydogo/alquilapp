@@ -39,7 +39,7 @@ class RentsController < ApplicationController
 	  		@rent.tiempo = @rent.tiempo.change(day: (@rent.tiempo.day + 1))
 	  	end
 	  @rent.precio = (((@rent.tiempo - DateTime.now)/60)/60) * 1000
-    @rent.tiempo_original = @rent.tiempo
+    #@rent.tiempo_original = @rent.tiempo
 	  end
     respond_to do |format|
       if @rent.save
@@ -67,7 +67,7 @@ class RentsController < ApplicationController
       params[:rent][:tiempo] = tiempo
       respond_to do |format|
         if @rent.update(rent_params)   #terrible negreada mal programada pero bueno, no funciona si toco los params
-          @rent.update(precio: (@rent.precio + ((((@rent.tiempo - @rent.tiempo_original)/60)/60) * 2000)))
+          @rent.update(precio: (@rent.precio + ((((@rent.tiempo - tiempo_anterior)/60)/60) * 2000)))
           format.html { redirect_to rent_url(@rent), notice: "Alquiler extendido." }
           format.json { render :show, status: :ok, location: @rent }
         else

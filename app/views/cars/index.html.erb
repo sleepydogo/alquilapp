@@ -8,8 +8,15 @@
 
 <%= ensure_log %>
 
-
-
+<div class="row">
+		<%= form_with url: "/cars", method: :get do |form| %>
+				<div class="col"> Modelo </div>
+			<%= form.text_field :search_modelo %>
+	<div class="col"> Kilometraje (menor a) </div>
+			<%= form.text_field :search_kilometraje %>
+  			<%= form.submit "Buscar", class: 'btn btn-primary' %>
+		<% end %>
+</div>
 <% if !@cars_not_rented.empty? %>
 
 <div class="container" style="margin-top:50px;">

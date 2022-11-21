@@ -4,7 +4,15 @@ class CarsController < ApplicationController
   # GET /cars or /cars.json
   def index
     @cars = Car.all
-	@cars_not_rented = Car.where(alquilado: false, de_baja: false)
+	  @cars_not_rented = Car.where(alquilado: false, de_baja: false)
+    if params[:search_modelo] && params[:search_modelo] != ""
+			@cars = @cars.where("modelo like ?", "#{params[:search_modelo]}%")
+      @cars_not_rented = @cars_not_rented.where("modelo like ?", "#{params[:search_modelo]}%")
+		end
+    if params[:search_kilometraje] && params[:search_kilometraje] != ""
+			@cars = @cars.where("kilometraje < ?", "#{params[:search_kilometraje]}%")
+      @cars_not_rented = @cars_not_rented.where("kilometraje < ?", "#{params[:search_kilometraje]}%")
+		end
   end
 
   # GET /cars/1 or /cars/1.json

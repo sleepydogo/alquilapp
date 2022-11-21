@@ -7,7 +7,7 @@ class Rent < ApplicationRecord
 	validates :tiempo, presence: true
 
 	validate :con_saldo
-	#validate :sin_cooldown, on: :create
+	validate :sin_cooldown, on: :create
   validate :no_mas_de_24, on: :update
   #validate :no_antes, on: :update
 
@@ -32,10 +32,10 @@ class Rent < ApplicationRecord
     end
   end
   
-  def no_antes
-    if (tiempo < tiempo_original)
-      errors.add(:tiempo, "Selecciona una hora posterior a tu pedido original")
-    end
-  end
+  #def no_antes
+  #  if (tiempo < tiempo_original)
+  #    errors.add(:tiempo, "Selecciona una hora posterior a tu pedido original")
+  #  end
+  #end
 
 end
