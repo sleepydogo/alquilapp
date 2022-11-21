@@ -31,13 +31,13 @@
                     </div>
                      <% end %>
 					<div class="mt-3">
-					<% if (current_user.Admin?) %>
-                       <% if (@user.Supervisor? %>
-                                <%= button_to 'Remover supervisor', baja_y_alta_supervisores_user_path(@user, rango: 'Usuario'), method: :patch, class: "btn btn-sm btn-danger" %>
-                       <% elsif (@user.Usuario?) %>
-                                <%= button_to 'Convertir a supervisor', baja_y_alta_supervisores_user_path(@user, rango: 'Supervisor'), method: :patch, class: "btn btn-sm btn-success" %>
+					   <% if current_user.Admin? %>
+                       		<% if (@user.Supervisor?) %>
+                        	        <%= button_to 'Remover supervisor', baja_y_alta_supervisores_user_path(@user, rango: 'Usuario'), method: :patch, class: "btn btn-sm btn-danger" %>
+                       		<% elsif (@user.Usuario?) %>
+                        	        <%= button_to 'Convertir a supervisor', baja_y_alta_supervisores_user_path(@user, rango: 'Supervisor'), method: :patch, class: "btn btn-sm btn-success" %>
+					   		<% end %>
 					   <% end %>
-					<% end %>
                     </div>
 					<div class="mt-3">
 					   <% if (!@user.Admin? && (current_user.Admin? || current_user.Supervisor?)) %>
