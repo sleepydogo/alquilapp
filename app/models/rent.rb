@@ -6,8 +6,10 @@ class Rent < ApplicationRecord
 	accepts_nested_attributes_for :car
 	validates :tiempo, presence: true
 
-	validate :con_saldo, on: :create
-	validate :sin_cooldown, on: :create
+	validate :con_saldo
+	#validate :sin_cooldown, on: :create
+  validate :no_mas_de_24, on: :update
+  #validate :no_antes, on: :update
 
 	def con_saldo
         if (user.saldo < precio)
@@ -22,5 +24,18 @@ class Rent < ApplicationRecord
 			errors.add(:tiempo, "No puede volver a alquilar este auto por cooldown")
 		end
 	end
+  
+  def no_mas_de_24
+    tiempobuffer = created_at.change(day: (created_at.day+1))
+    if (tiempo > tiempobuffer)
+      errors.add(:tiempo, "No se puede alquilar mas de 24 horas")
+    end
+  end
+  
+  def no_antes
+    if (tiempo < tiempo_original)
+      errors.add(:tiempo, "Selecciona una hora posterior a tu pedido original")
+    end
+  end
 
 end

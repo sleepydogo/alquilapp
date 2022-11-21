@@ -39,6 +39,7 @@ class RentsController < ApplicationController
 	  		@rent.tiempo = @rent.tiempo.change(day: (@rent.tiempo.day + 1))
 	  	end
 	  @rent.precio = (((@rent.tiempo - DateTime.now)/60)/60) * 1000
+    @rent.tiempo_original = @rent.tiempo
 	  end
     respond_to do |format|
       if @rent.save
@@ -55,13 +56,24 @@ class RentsController < ApplicationController
 
   # PATCH/PUT /rents/1 or /rents/1.json
   def update
-    respond_to do |format|
-      if @rent.update(rent_params)
-        format.html { redirect_to rent_url(@rent), notice: "Rent was successfully updated." }
-        format.json { render :show, status: :ok, location: @rent }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @rent.errors, status: :unprocessable_entity }
+    tiempo_anterior= Rent.find(params[:id]).tiempo
+    tiempo = Rent.new(rent_params).tiempo
+    if (tiempo < DateTime.now)
+      tiempo = tiempo.change(day: (tiempo.day + 1))
+    end
+    if (tiempo <= tiempo_anterior)
+       redirect_to rent_url(Rent.find(params[:id])), alert: "No puede alquilar por menos tiempo. Verifique su tiempo restante."
+    else
+      params[:rent][:tiempo] = tiempo
+      respond_to do |format|
+        if @rent.update(rent_params)   #terrible negreada mal programada pero bueno, no funciona si toco los params
+          @rent.update(precio: (@rent.precio + ((((@rent.tiempo - @rent.tiempo_original)/60)/60) * 2000)))
+          format.html { redirect_to rent_url(@rent), notice: "Alquiler extendido." }
+          format.json { render :show, status: :ok, location: @rent }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @rent.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -79,7 +91,7 @@ class RentsController < ApplicationController
   def terminar_alquiler
 	@rent = Rent.find(params[:id])
 	if (DateTime.now > @rent.tiempo)
-		excedente = -((((@rent.tiempo - DateTime.now)/60)/60) * 1000) #Se cobra el exceso de tiempo
+		excedente = -((((@rent.tiempo - DateTime.now)/60)/60) * 4000) #Se cobra el exceso de tiempo
 		@rent.update(precio: (@rent.precio + excedente))
 	end
 	@rent.update(tiempo: DateTime.now)
