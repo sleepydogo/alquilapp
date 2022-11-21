@@ -71,7 +71,7 @@
                         <h6 class="mb-0">Nombre</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                        <%= @user.name %>
+                        <%= f.text_area :name, autofocus: true, class: "form-control" %>
                         </div>
                     </div>
                     <hr>
@@ -98,7 +98,7 @@
                         <h6 class="mb-0">Fecha de nacimiento</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        <%= @user.birthdate %>
+                      <%= f.date_field :birthdate %>
                     </div>
                     </div>
                     <hr>
@@ -107,7 +107,7 @@
                         <h6 class="mb-0">Numero de documento</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                        <%= @user.dni %>
+                      <%= f.text_area :dni, size: "26x1", class:"form-control" %>
                         </div>
                     </div>
                     <hr>
