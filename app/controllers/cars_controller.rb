@@ -58,12 +58,13 @@ class CarsController < ApplicationController
 
   # DELETE /cars/1 or /cars/1.json
   def destroy
+  set_car
+  if !(@car.alquilado?)
     @car.destroy
-
-    respond_to do |format|
-      format.html { redirect_to cars_url, notice: "Car was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to cars_path, notice: "Auto eliminado de manera exitosa"
+  elsif
+    redirect_to car_url(@car), alert: "El auto que esta intentando eliminar se encuentra en uso."
+  end
   end
 
 
