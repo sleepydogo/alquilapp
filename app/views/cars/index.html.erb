@@ -1,62 +1,63 @@
 
 <head>
-<%= stylesheet_link_tag 'bootstrap' %>
-<%= stylesheet_link_tag 'cars-index-styles'%>
+<%= stylesheet_link_tag 'bootstrap', 'cars-index-styles' %>
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
 </head>
-
+<div >
 <%= ensure_log %>
-
-<div class="row">
-		<%= form_with url: "/cars", method: :get do |form| %>
-				<div class="col"> Modelo </div>
-			<%= form.text_field :search_modelo %>
-	<div class="col"> Kilometraje (menor a) </div>
-			<%= form.text_field :search_kilometraje %>
-  			<%= form.submit "Buscar", class: 'btn btn-primary' %>
-		<% end %>
-</div>
-<% if !@cars_not_rented.empty? %>
-
-<div class="container" style="margin-top:50px;">
+<div class="container mb-4 pb-4" style="margin-top:50px">
+    <% if !@cars_not_rented.empty? %>
     <h1>Vehiculos disponibles</h1>
-  <div class="row">
+    <h4> Filtrar por caracteristicas </h4>
+    <div class="row w-100 justify-content-center align-items-center" style='width:100%'>
+        <div class="col pb-3">    
+            <%= form_with url: "/cars", method: :get do |form| %>
+		    
+            <%= form.text_field :search_modelo, placeholder: 'Modelo', :class => 'form-control rounded px-3 pb-2' %>
+        </div>
+        <div class="col pb-3">    
+            <%= form.text_field :search_kilometraje, placeholder:'Kilometraje (menor a)', :class => 'form-control rounded px-3 pb-2'%>
+  		</div>
+        <div class='col-sm pb-3'>
+            <%= form.submit "Buscar", class: 'btn btn-primary' %>
+	        <% end %>
+        </div>
+    </div>
+    <div class="row">
     <% @cars_not_rented.each do |car| %>
-      <div class="col-md-3">
+      <div class="col-md-3 py-4">
           <div class="card-sl">
 			<% if car.photo.attached? %>
              <div class="card-image">
                   <%= image_tag(car.photo, style:'width:100%') %>
               </div>
 			<% elsif %>
-				             <div class="card-image">
-                  <img
-                      src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
-              </div>
+				<div class="card-image">
+                  <img src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+                </div>
 			<% end %>
-
-              <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
-              <div class="card-heading">
-                  <%= car.modelo %>
-              </div>
-              <div class="card-text">
-                  <%= car.patente %>
-              </div>
-              <div class="card-text">
-                  Alquiler por hora: $1000
-              </div>
-              <% if current_user.rango == "Usuario" %>
-                <%= link_to "Alquilar", car, :class => "card-button" %>
-              <% elsif %>
-                <% if current_user.rango == "Admin" %>
-                <%= link_to "Detalles", car, :class => "card-button" %>
+            <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
+            <div class="card-heading">
+                <%= car.modelo %>
+            </div>
+            <div class="card-text">
+                <%= car.patente %>
+            </div>
+            <div class="card-text">
+                Alquiler por hora: $1000
+            </div>
+            <% if current_user.rango == "Usuario" %>
+              <%= link_to "Alquilar", car, :class => "card-button" %>
+            <% elsif %>
+              <% if current_user.rango == "Admin" %>
+                  <%= link_to "Detalles", car, :class => "card-button" %>
               <% end %>
-              <% end %>
+            <% end %>
           </div>
       </div>
       <% end %>
-<% elsif %>
+    <% elsif %>
     <div class='container py-3'>
         <h1>Vehiculos disponibles</h1>
 		<div> No hay autos disponibles en este momento. Intente en otro momento. </div>

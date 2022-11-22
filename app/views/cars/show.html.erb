@@ -1,5 +1,3 @@
-<p style="color: green"><%= notice %></p>
-<p style="color: red"><%= alert %></p>
 <style>
 .hidden {
   display: none
@@ -13,12 +11,16 @@
 </head>
 <body>
 <div class="container">
+    <div class='row'>
+        <p style="color: green"><%= notice %></p>
+        <p style="color: red"><%= alert %></p>
+    </div>
         <div class="row m-0 h-100">
             <div class="col-lg-7 pb-5 pe-lg-5">
                 <div class="row">
                     <% if @car.photo.attached? %>
                         <div class="col-12 p-5">
-                            <img <%= image_tag(@car.photo, style:'width:100%') %>>
+                            <%= image_tag(@car.photo, style:'width:100%') %>
                         </div>
                     <%elsif%>
                         <div class="col-12 p-5">

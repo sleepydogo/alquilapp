@@ -36,7 +36,7 @@
                         <th>Estado</th>
                         <th>Rango actual</th>
                         <th>Perfil</th>
-                        <th>Documentación<th>
+                        <th>Documentación</th>
                         <th>Validar?</th>
                     </tr>
                 </thead>
@@ -59,15 +59,17 @@
                             </td>
                             <td><%= user.rango %></td>
                             <td><%= link_to "Perfil",user, :class => "btn btn-primary" %></td>
+                            <td> 
                             <% if (user.file.attached?) %>
-                                <td> <%= link_to "Descargar", user.file, download: '', :class => "btn btn-primary" %></td>
+                                <%= link_to "Descargar", user.file, download: '', :class => "btn btn-primary" %>
                             <% elsif %>
-                                <td>Debe resubir documentacion</td>
+                                Debe resubir documentacion
                             <% end %>
-                            <td>
+                            </td>
+                            <td class='justify-content-center align-items-center'>
                             <% if (user.A_Verificar?) %>
-                                <%= button_to 'Aceptar', update_rango_user_path(user, rango: 'Usuario'), method: :patch, class: "btn btn-sm btn-success" %>
-                                <%= button_to 'Rechazar', update_rango_user_path(user, rango: 'No_Aceptado'), method: :patch, class: "btn btn-sm btn-danger" %>
+                                <%= button_to 'Aceptar', update_rango_user_path(user, rango: 'Usuario'), method: :patch, class: "btn btn-sm btn-success m-1" %>
+                                <%= button_to 'Rechazar', update_rango_user_path(user, rango: 'No_Aceptado'), method: :patch, class: "btn btn-sm btn-danger m-1" %>
                             <% end %>
                             </td>
                         </tr>

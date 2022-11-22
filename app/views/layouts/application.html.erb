@@ -10,13 +10,13 @@
 
   <% if user_signed_in? %>
       <head>
-        <title>Home</title>
+        <title>Alquilapp - Home</title>
         <%= stylesheet_link_tag 'bootstrap','user-home-styles', 'billetera-styles' %>
       </head>
     <body>
     <div class="d-flex" id="wrapper">
       <div class="border-end bg-white" id="sidebar-wrapper">
-        <div class="sidebar-heading border-bottom bg-light pb-3">Grupo 6 - Ruso</div>
+        <div class="sidebar-heading border-bottom bg-light pb-3 text-muted">BetaSoftware™ </div>
         <div class="list-group list-group-flush">
           <% if !(current_user.A_Verificar? || current_user.Baneado? || current_user.No_Aceptado?) %>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/">Home</a>
@@ -61,8 +61,8 @@
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <div class = 'col-md-10'> </div>
-              <ul class="navbar-nav pl-3 ms-auto mt-2 mt-lg-0">
+              <div class = 'col-md-8'> </div>
+              <ul class="navbar-nav">
                   <li>
                     <%= button_to "Cerrar sesion", destroy_user_session_path, method: :delete, type:"button", class:"btn btn-primary" , id:'sidebarToggle' %> 
                   </li>

@@ -10,7 +10,18 @@
     <% if (current_user.A_Verificar?) %>
       <p style="color: black"><strong>Su usuario no se encuentra validado por lo que no tendrá disponibles todas las funcionalidades de la aplicación</strong></p>
     <% end %>
-    <h1 class="mt-4">Bienvenido a Alquilapp</h1>
+    <%
+      vectorAutos = Car.where(alquilado: true) + Car.where(de_baja: true) 
+      if ((current_user.rango == 'Usuario') || (current_user.rango == 'No_aceptado') || (current_user.rango == 'A_verificar')) then 
+        if ((Car.all.length() == vectorAutos.length())) then %>
+          <h1> No hay autos disponibles para alquilar. </h1>
+        <% else %>
+          <h1> Autos disponibles:</h1>
+        <% end %>
+      <% else %>
+        <h1> Autos disponibles: nashsee </h1>
+      <% end %>
+    <h1 class="mt-4"></h1>
     <div class="row">
           <div class="card-body mb-4">
             <div id="map-container">

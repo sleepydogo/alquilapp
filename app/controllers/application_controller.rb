@@ -72,8 +72,26 @@ class ApplicationController < ActionController::Base
   end
   helper_method :time_diff
   
-
-
+  def esta_en_LP
+    @car = Car.find(params[:id])
+    points = []
+    points << Geokit::LatLng.new("-34.953870", "-57.952073")
+    points << Geokit::LatLng.new("-34.936172", "-57.932483")
+    points << Geokit::LatLng.new("-34.917481", "-57.913090")
+    points << Geokit::LatLng.new("-34.902048", "-57.933242")
+    points << Geokit::LatLng.new("-34.887068", "-57.954214")
+    points << Geokit::LatLng.new("-34.906173", "-57.975110")
+    points << Geokit::LatLng.new("-34.923029", "-57.993184")
+    points << Geokit::LatLng.new("-34.938827", "-57.972390")
+    polygon = Geokit::Polygon.new(points)
+    ubicacionAuto = Geokit::LatLng.new(@car.lat, @car.lng)
+    if (polygon.contains?(ubicacionAuto))
+      return true
+    else
+      return false
+    end
+  end
+  helper_method :esta_en_LP  
 
 
 end

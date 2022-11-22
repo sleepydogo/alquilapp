@@ -31,7 +31,7 @@ class PaymentsController < ApplicationController
     sdk = Mercadopago::SDK.new('APP_USR-7349775986801427-111915-13c2e770c6dc4ab73f6613f81b74ee3d-1243047107')
     # Crea un objeto de preferencia
     preference_data = {
-      notification_url: 'https://80e6-181-169-163-188.sa.ngrok.io/payment-notification',
+      notification_url: 'https://84b1-181-169-163-188.sa.ngrok.io/payment-notification',
       items: [
         {
           currency_id: "ARS",
@@ -42,9 +42,9 @@ class PaymentsController < ApplicationController
         }
       ],
       back_urls: {
-          success: 'https://80e6-181-169-163-188.sa.ngrok.io/payments/',
-          failure: 'https://80e6-181-169-163-188.sa.ngrok.io/payments/', 
-          pending: 'https://80e6-181-169-163-188.sa.ngrok.io/payments/'
+          success: 'https://84b1-181-169-163-188.sa.ngrok.io/payments/',
+          failure: 'https://84b1-181-169-163-188.sa.ngrok.io/payments/', 
+          pending: 'https://84b1-181-169-163-188.sa.ngrok.io/payments/'
       },
       auto_return: "all",
       purpose: 'wallet_purchase',
@@ -73,18 +73,18 @@ class PaymentsController < ApplicationController
   def receive_and_update
     data_json = JSON.parse request.body.read
     
-      @idPago = data_json['data']['id']
-      aux = 'https://api.mercadopago.com/v1/payments/' + @idPago 
-      uri = URI(aux)
-      req = Net::HTTP::Get.new(uri)
-      # access token
-      req['Authorization'] = 'Bearer APP_USR-7349775986801427-111915-13c2e770c6dc4ab73f6613f81b74ee3d-1243047107'
-      req_options = {
-        use_ssl: uri.scheme == "https"
-      }
-      res = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-        http.request(req) 
-
+    @idPago = data_json['data']['id']
+    
+    aux = 'https://api.mercadopago.com/v1/payments/' + @idPago 
+    uri = URI(aux)
+    req = Net::HTTP::Get.new(uri)
+    # access token
+    req['Authorization'] = 'Bearer APP_USR-7349775986801427-111915-13c2e770c6dc4ab73f6613f81b74ee3d-1243047107'
+    req_options = {
+      use_ssl: uri.scheme == "https"
+    }
+    res = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+      http.request(req) 
       data_finder = res.body.inspect
       data_json = JSON.parse res.body
       # creo peticion get para recuperar el pago en el server de mp
