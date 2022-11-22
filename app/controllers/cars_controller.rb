@@ -11,7 +11,11 @@ class CarsController < ApplicationController
 		end
     if params[:search_kilometraje] && params[:search_kilometraje] != ""
 			@cars = @cars.where("kilometraje < ?", "#{params[:search_kilometraje]}%")
-      @cars_not_rented = @cars_not_rented.where("kilometraje < ?", "#{params[:search_kilometraje]}%")
+      @cars_not_rented = @cars_not_rented.where("kilometraje < ?", params[:search_kilometraje])
+		end
+    if params[:search_tanque] && params[:search_tanque] != ""
+			@cars = @cars.where("tanque > ?", "#{params[:search_tanque]}%")
+      @cars_not_rented = @cars_not_rented.where("tanque > ?", params[:search_tanque])
 		end
   end
 
