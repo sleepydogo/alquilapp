@@ -58,11 +58,15 @@
       </div>
       <% end %>
     <% elsif %>
-    <div class='container py-3'>
-        <h1>Vehiculos disponibles</h1>
-		<div> No hay autos disponibles en este momento. Intente en otro momento. </div>
-        <img
-            src="https://cdn.motor1.com/images/mgl/QRK8Z/s3/10-cars-that-could-disappear-soon.webp" />
+    <div class="page-wrap d-flex flex-row align-items-center" style='min-height: 60vh;min-width: 100vh;'>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <span class="display-1 d-block">:(</span>
+                    <div class="mb-4 lead">Lo sentimos, no se han encontrado autos disponibles por el momento.</div>
+                    <div class="mb-4 lead">Espere unos minutos y reintente mas tarde.</div>
+                </div>
+            </div>
         </div>
     </div>
 <% end %>
