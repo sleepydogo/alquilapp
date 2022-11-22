@@ -26,7 +26,7 @@
                             <img src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
                         </div>
                     <% end %>
-                    <div class="row m-0 bg-light">
+                    <div class="row mb-3 ml-3 bg-light">
                         <div class="col-md-4 col-6 ps-30 pe-0 my-4">
                             <p class="text-muted">Kilometros</p>
                             <p class="h5"><%= @car.kilometraje %><span class="ps-1">Km</span></p>
@@ -48,7 +48,7 @@
                             <% if esta_en_LP then %>
                                 <p class="h5 m-0">Si</p>
                             <% else %>
-                                <p class="h5 m-0">Si</p>
+                                <p class="h5 m-0">No</p>
                             <% end %>
                         </div>
                         <div class="col-md-4 col-6 ps-30 my-4">
@@ -56,7 +56,7 @@
                             <% if !(@car.de_baja) then %>
                                 <p class="h5 m-0">Disponible</p>
                             <% else %>
-                                <p class="h5 m-0">Dado de baja momentaneamente</p>
+                                <p class="h5 m-0">Dado de baja</p>
                             <% end %>
                         </div>
                     </div>
@@ -70,12 +70,12 @@
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <p class="textmuted">Precio por hora</p>
-                            <p class="fs-14 fw-bold"><span class="fas fa-dollar-sign pe-1"></span>1,000</p>
+                            <p class="fs-14 fw-bold"><span class="fas fa-dollar-sign pe-1" style='height:10px'></span>1,000</p>
                         </div>
                         <div class="d-flex justify-content-between mb-3">
                             <p class="textmuted fw-bold">Total</p>
                             <div class="d-flex align-text-top ">
-                                <span class="fas fa-dollar-sign mt-1 pe-1 fs-14 "></span><span class="h4">1,000</span>
+                                <span class="fas fa-dollar-sign mt-1 pe-1 fs-14"></span><span class="h4">1,000</span>
                             </div>
                         </div>
                     </div>

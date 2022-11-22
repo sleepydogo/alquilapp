@@ -58,7 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_08_235613) do
     t.decimal "precio", default: "0.0"
     t.boolean "aceptado", default: false
     t.integer "id_mp", default: 0
-    t.json "request"
+    t.json "request"Enter Your Keywords
     t.json "response"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false

@@ -1,18 +1,16 @@
-<p style="color: green"><%= notice %></p>
-
-<section style="background-color: #eee;">
+<section class='h-100' style="background-color: #eee;">
   <div class="container h-100">
+    
     <div class="row d-flex justify-content-center py-5">
       <div class="col-lg-8 col-xl-6">
+    <p style="color: green"><%= notice %></p>
+
         <%= render @payment %>
       </div>
     </div>
+    <div class="row d-flex justify-content-center py-5">
+    
+    <%= link_to "Back to payments", payments_path, class:'btn btn-primary' %>
+    </div>
   </div>
 </section>
-
-<div>
-  <%= link_to "Edit this payment", edit_payment_path(@payment) %> |
-  <%= link_to "Back to payments", payments_path %>
-
-  <%= button_to "Destroy this payment", @payment, method: :delete %>
-</div>

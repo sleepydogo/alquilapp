@@ -10,6 +10,16 @@ class PaymentsController < ApplicationController
   # GET /payments or /payments.json
   def index
     @payments = @rents = Payment.where(user_id: current_user.id)
+    if params[:search_precio] && params[:search_precio] != ""
+			@payments = @payments.where("precio like ?", "#{params[:search_precio]}%")
+    end
+    if params[:search_estado] && params[:search_estado] != ""
+			if (params[:seach_estado] == 'Aceptado') || (params[:seach_estado] == 'aceptado') then
+        @payments = @payments.where("aceptado = true")
+      elsif (params[:seach_estado] == 'Rechazado') || (params[:seach_estado] == 'rechazado') then
+        @payments = @payments.where("aceptado = false")      
+      end
+    end
   end
 
   # GET /payments/1 or /payments/1.json
