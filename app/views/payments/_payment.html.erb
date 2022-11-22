@@ -19,9 +19,15 @@
       <br>
       Precio pagado: $<%= payment.precio %>
       <br>
-      <span style='background-color: #494949' class='px-5'>
-        Estado: <%= payment.aceptado %>
-      </span>
+      <% if payment.aceptado == true then %> 
+        <span class='lead px-1 text-success font-weight-bold' style='background-color:#F8F9FC'>
+          Estado: Aceptado
+        </span>
+      <%else %>
+        <span class='lead px-1 text-danger font-weight-bold' style='background-color:#F8F9FC'>
+          Estado: Rechazado
+        </span>
+      <%end%>
     </p>
   </div>
 </div>

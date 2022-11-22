@@ -9,9 +9,10 @@
     <p style="color: green"><%= notice %></p>
 
     <div class="row">
-    <div class="col-lg-4">
     <% if !(@rents.empty?) then %>
     <% @rents.each do |rent| %>
+        
+        <div class="col-lg-4">
         <div class="card card-margin">
             <div class="card-header no-border">
                 <h5 class="card-title"><%= Car.find(rent.car_id).patente %> - <%= Car.find(rent.car_id).modelo %></h5>
@@ -36,15 +37,15 @@
                             <%elsif%>
                                 <span class="widget-49-pro-title" style="color:red">Alquiler finalizado</span>
                             <% end %>
-                          <a <%= link_to "Detalles", rent, :class => "btn btn-sm btn-flash-border-primary" %></a>
+                          <%= link_to "Detalles", rent, :class => "btn btn-sm btn-flash-border-primary" %>
                       </div>
                   </div>
             </div>
         </div>
-
+</div>
 <% end %>
 <%else %>
-        <div class="page-wrap d-flex flex-row align-items-center" style='min-height: 60vh;min-width: 100vh;'>
+        <div class="page-wrap d-flex flex-row align-items-center" style=''>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-12 text-center">
@@ -59,6 +60,6 @@
 
 
 
-    </div>
+    
 </div>
 </div>

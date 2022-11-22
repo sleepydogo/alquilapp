@@ -142,8 +142,22 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class='row p-4'>
-                                <% @payments.each do |payment| %>
-                                  <%= render payment %>
+                                <%if !(@payments.empty?) then%>   
+                                    <% @payments.each do |payment| %>
+                                      <%= render payment %>
+                                    <% end %>
+                                <% else %>
+                                    <div class="page-wrap d-flex flex-row align-items-center" style='min-width: 100vh;'>
+                                        <div class="container">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-12 text-center">
+                                                    <span class="display-1 d-block mb-3">:(</span>
+                                                    <div class="mb-4 lead">Lo sentimos, no se han encontrado autos disponibles por el momento.</div>
+                                                    <div class="mb-4 lead">Espere unos minutos y reintente mas tarde.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 <% end %>
                                 </div>
                             </div>

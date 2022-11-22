@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :cars do
 	member do
 		patch :dar_de_baja
+    patch :dar_de_alta
 	end
   end
 

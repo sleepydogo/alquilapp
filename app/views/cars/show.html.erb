@@ -11,12 +11,11 @@
 </head>
 <body>
 <div class="container">
-    <div class='row'>
-        <p style="color: green"><%= notice %></p>
-        <p style="color: red"><%= alert %></p>
-    </div>
+    
         <div class="row m-0 h-100">
-            <div class="col-lg-7 pb-5 pe-lg-5">
+            <div class="col-lg-7 pe-lg-5 pt-4">    
+            <p class='px-5' style="color: green"><%= notice %></p>
+            <p class='px-5' style="color: red"><%= alert %></p>
                 <div class="row">
                     <% if @car.photo.attached? %>
                         <div class="col-12 p-5">
@@ -46,12 +45,24 @@
                         </div>
                         <div class="col-md-4 col-6 ps-30 my-4">
                             <p class="text-muted">Esta en La Plata?</p>
-                            <p class="h5 m-0"><%= esta_en_LP %></p>
+                            <% if esta_en_LP then %>
+                                <p class="h5 m-0">Si</p>
+                            <% else %>
+                                <p class="h5 m-0">Si</p>
+                            <% end %>
+                        </div>
+                        <div class="col-md-4 col-6 ps-30 my-4">
+                            <p class="text-muted">Estado</p>
+                            <% if !(@car.de_baja) then %>
+                                <p class="h5 m-0">Disponible</p>
+                            <% else %>
+                                <p class="h5 m-0">Dado de baja momentaneamente</p>
+                            <% end %>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5 p-0 ps-lg-4">
+            <div class="col-lg-5 p-0 ps-lg-4 mt-3 pb-5 mb-5">
                 <div class="row m-0">
                     <div class="col-12 px-4">
                         <div class="d-flex align-items-end mt-4 mb-2">
@@ -97,27 +108,34 @@
                             </div>
                         </div>
                         <% elsif (user_signed_in? && !!current_user.Admin?) %>
-								<div class="row d-flex justify-content-center align-items-center h-100">
+                                <div class='row py-4 px-4' style='width:50%'>
+                                    <div class='col lg-6'> 
+                                        <!-- % = button_to "Editar Auto",@car, :class => "btn btn-primary"% -->
+                                        <button class='btn btn-primary' onclick="alert('Disculpe, estamos trabajando en esa funcionalidad!')"> Editar auto</button>
+                                    </div>
+                                </div>
+								<% if (!@car.de_baja?) %>
+                                <div class='row py-4 px-4' style='width:50%'>
+									<div class='col mt-6'> 
+                                        <%= button_to "Dar de baja", dar_de_baja_car_path(@car), method: :patch, :class => "btn btn-primary bg-danger"%>
+                                    </div>
+                                </div>
+								<% else %>
+                                <div class='row py-4 px-4' style='width:50%'>
+									<div class='col mt-6'> 
+                                        <%= button_to "Dar de alta", dar_de_alta_car_path(@car), method: :patch, :class => "btn btn-primary bg-success"%>
+                                    </div>
+								</div>
+                                <% end %>
+                                <div class='row py-4 px-4' style='width:100%'>
                                     <div class='col-lg-6'>
                                     <a class= 'btn btn-primary' href='#' onClick='reveal()'>Borrar auto</a> 
                                     <div id='hidden-div' class='hidden'>
-                                        <p class="row d-flex justify-content-center align-items-center h-100 p-3 " >¿Esta seguro de que desea borrar el auto?</p>
-                                        <%= button_to "Si, borrar", @car, method: :delete, :class => "btn btn-danger" %>
-                                        <a class= 'btn btn-primary' href='' onClick='reveal()'>No</a> 
+                                        <span class="row d-flex justify-content-center align-items-center h-100 p-3 " >¿Esta seguro de que desea borrar el auto?</span>
+                                        <%= button_to "Si, borrar", @car, method: :delete, :class => "btn btn-danger my-1" %>
+                                        <a class= 'btn btn-primary my-1' href='' onClick='reveal()'>No</a> 
                                         </div>
                                     </div>
-                                    <div class='col lg-6'> 
-                                        <%= button_to "Editar Auto",@car, :class => "btn btn-primary"%>
-                                    </div>
-								<% if (!@car.de_baja?) %>
-									<div class='col mt-6'> 
-                                        <%= button_to "Dar de baja", dar_de_baja_car_path(@car), method: :patch, :class => "btn btn-primary"%>
-                                    </div>
-								<% else %>
-									<div class='col mt-6'> 
-                                        <%= button_to "Dar de alta", @car, :class => "btn btn-primary"%>
-                                    </div>
-								<% end %>
                                 </div>
 						<% elsif (user_signed_in? && !!current_user.Supervisor?) %>
 								<% if (!@car.de_baja?) %>

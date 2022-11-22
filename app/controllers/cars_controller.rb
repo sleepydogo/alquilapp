@@ -80,6 +80,15 @@ class CarsController < ApplicationController
 	end
   end
 
+  def dar_de_alta
+	  set_car
+	  if (@car.de_baja?)
+	  	if (@car.update(de_baja: false))
+	  		redirect_to car_url(@car), notice: "Auto dado de alta de manera exitosa"
+	  	end
+	  end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_car
@@ -90,4 +99,5 @@ class CarsController < ApplicationController
     def car_params
       params.require(:car).permit(:patente, :modelo, :photo, :tanque, :kilometraje, :lat, :lng)
     end  
+    
 end
