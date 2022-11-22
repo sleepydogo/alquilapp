@@ -1,78 +1,145 @@
 
 <head>
-<%= stylesheet_link_tag 'bootstrap', 'cars-index-styles' %>
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+    <%= stylesheet_link_tag 'bootstrap', 'cars-index-styles' %>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 </head>
 <div >
 <%= ensure_log %>
 <div class="container mb-4 pb-4" style="margin-top:50px">
-    <% if !@cars_not_rented.empty? %>
     <h1>Vehiculos disponibles</h1>
-    <h4> Filtrar por caracteristicas </h4>
-    <div class="row w-100 justify-content-center align-items-center" style='width:100%'>
-        <div class="col pb-3">    
-            <%= form_with url: "/cars", method: :get do |form| %>
-		    
-            <%= form.text_field :search_modelo, placeholder: 'Modelo', :class => 'form-control rounded px-3 pb-2' %>
-        </div>
-        <div class="col pb-3">    
-            <%= form.number_field :search_kilometraje, placeholder:'Kilometraje (menor a)', :class => 'form-control rounded px-3 pb-2'%>
-  		</div>
-		<div class="col pb-3">    
-            <%= form.number_field :search_tanque, placeholder:'Tanque (mayor a)', :class => 'form-control rounded px-3 pb-2'%>
-  		</div>
-        <div class='col-sm pb-3'>
-            <%= form.submit "Buscar", class: 'btn btn-primary' %>
-	        <% end %>
-        </div>
-    </div>
-    <div class="row">
-    <% @cars_not_rented.each do |car| %>
-      <div class="col-md-3 py-4">
-          <div class="card-sl">
-			<% if car.photo.attached? %>
-             <div class="card-image">
-                  <%= image_tag(car.photo, style:'width:100%') %>
-              </div>
-			<% elsif %>
-				<div class="card-image">
-                  <img src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+    <% if (current_user.rango == 'Usuario') then %>
+        <% if !@cars_not_rented.empty? && ensure_log then %>
+            <h4> Filtrar por caracteristicas </h4>
+            <div class="row w-100 justify-content-center align-items-center" style='width:100%'>
+                <div class="col pb-3">    
+                <%= form_with url: "/cars", method: :get do |form| %>
+        
+                    <%= form.text_field :search_modelo, placeholder: 'Modelo', :class => 'form-control rounded px-3 pb-2' %>
                 </div>
-			<% end %>
-            <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
-            <div class="card-heading">
-                <%= car.modelo %>
+                <div class="col pb-3">    
+                    <%= form.number_field :search_kilometraje, placeholder:'Kilometraje (menor a)', :class => 'form-control rounded px-3 pb-2'%>
+  	        	</div>
+	        	<div class="col pb-3">    
+                    <%= form.number_field :search_tanque, placeholder:'Tanque (mayor a)', :class => 'form-control rounded px-3 pb-2'%>
+  	        	</div>
+                <div class='col-sm pb-3'>
+                    <%= form.submit "Buscar", class: 'btn btn-primary' %>
+	            <% end %>
+                </div>
             </div>
-            <div class="card-text">
-                <%= car.patente %>
-            </div>
-            <div class="card-text">
-                Alquiler por hora: $1000
-            </div>
-            <% if current_user.rango == "Usuario" %>
-              <%= link_to "Alquilar", car, :class => "card-button" %>
-            <% elsif %>
-              <% if current_user.rango == "Admin" %>
-                  <%= link_to "Detalles", car, :class => "card-button" %>
-              <% end %>
+            <div class="row">
+            <% @cars_not_rented.each do |car| %>
+              <div class="col-md-3 py-4">
+                  <div class="card-sl">
+	        		<% if car.photo.attached? %>
+                     <div class="card-image">
+                          <%= image_tag(car.photo, style:'width:100%') %>
+                      </div>
+	        		<% elsif %>
+	        			<div class="card-image">
+                          <img src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+                        </div>
+	        		<% end %>
+                    <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
+                    <div class="card-heading">
+                        <%= car.modelo %>
+                    </div>
+                    <div class="_not_rentedcard-text">
+                        <%= car.patente %>
+                    </div>
+                    <div class="card-text">
+                        Alquiler por hora: $1000
+                    </div>
+                    <% if current_user.rango == "Usuario" %>
+                      <%= link_to "Alquilar", car, :class => "card-button" %>
+                    <% elsif %>
+                      <% if current_user.rango == "Admin" %>
+                          <%= link_to "Detalles", car, :class => "card-button" %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
             <% end %>
-          </div>
-      </div>
-      <% end %>
-    <% elsif %>
-    <div class="page-wrap d-flex flex-row align-items-center" style='min-height: 60vh;min-width: 100vh;'>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12 text-center">
-                    <span class="display-1 d-block">:(</span>
-                    <div class="mb-4 lead">Lo sentimos, no se han encontrado autos disponibles por el momento.</div>
-                    <div class="mb-4 lead">Espere unos minutos y reintente mas tarde.</div>
+        <% else %>
+        <div class="page-wrap d-flex flex-row align-items-center" style='min-height: 60vh;min-width: 100vh;'>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 text-center">
+                        <span class="display-1 d-block">:(</span>
+                        <div class="mb-4 lead">Lo sentimos, no se han encontrado autos disponibles por el momento.</div>
+                        <div class="mb-4 lead">Espere unos minutos y reintente mas tarde.</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-<% end %>
+        <% end %>
+    <% elsif ((current_user.rango == 'Admin') || (current_user.rango == 'Supervisor')) then %>
+        <% if !(@cars.empty?) then %>
+            <h4> Filtrar por caracteristicas </h4>
+            <div class="row w-100 justify-content-center align-items-center" style='width:100%'>
+                <div class="col pb-3">    
+            <%= form_with url: "/cars", method: :get do |form| %>
+                <%= form.text_field :search_modelo, placeholder: 'Modelo', :class => 'form-control rounded px-3 pb-2' %>
+
+                </div>
+                <div class="col pb-3">    
+                    <%= form.number_field :search_kilometraje, placeholder:'Kilometraje (menor a)', :class => 'form-control rounded px-3 pb-2'%>
+  	        	</div>
+	        	<div class="col pb-3">    
+                    <%= form.number_field :search_tanque, placeholder:'Tanque (mayor a)', :class => 'form-control rounded px-3 pb-2'%>
+  	        	</div>
+                <div class='col-sm pb-3'>
+                    <%= form.submit "Buscar", class: 'btn btn-primary' %>
+	        <% end %>
+                </div>
+            </div>
+            <div class="row">
+            <% @cars.each do |car| %>
+              <div class="col-md-3 py-4">
+                  <div class="card-sl">
+	        		<% if car.photo.attached? %>
+                     <div class="card-image">
+                          <%= image_tag(car.photo, style:'width:100%') %>
+                      </div>
+	        		<% elsif %>
+	        			<div class="card-image">
+                          <img src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+                        </div>
+	        		<% end %>
+                    <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
+                    <div class="card-heading">
+                        <%= car.modelo %>
+                    </div>
+                    <div class="card-text">
+                        <%= car.patente %>
+                    </div>
+                    <div class="card-text">
+                        Alquiler por hora: $1000
+                    </div>
+                    <% if current_user.rango == "Usuario" then %>
+                      <%= link_to "Alquilar", car, :class => "card-button" %>
+                    <% elsif %>
+                        <% if current_user.rango == "Admin" %>
+                            <%= link_to "Detalles", car, :class => "card-button" %>
+                        <% end %>
+                    <% end %>
+                  </div>
+              </div>
+            <% end %>
+        <% else %>
+            <div class="page-wrap d-flex flex-row align-items-center" style='min-height: 60vh;min-width: 100vh;'>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12 text-center">
+                            <span class="display-1 d-block">:(</span>
+                            <div class="mb-4 lead">Lo sentimos, no se han encontrado autos disponibles por el momento.</div>
+                            <div class="mb-4 lead">Espere unos minutos y reintente mas tarde.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
 </div>
 </div>
 </div>
