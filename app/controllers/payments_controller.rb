@@ -1,7 +1,8 @@
+require 'httparty'
+
 class PaymentsController < ApplicationController
   require 'json'
   require 'mercadopago'
-  require 'net/http'
   
   skip_before_action :verify_authenticity_token
   before_action :set_payment, only: %i[ show edit update destroy ]
@@ -31,7 +32,7 @@ class PaymentsController < ApplicationController
     sdk = Mercadopago::SDK.new('APP_USR-7349775986801427-111915-13c2e770c6dc4ab73f6613f81b74ee3d-1243047107')
     # Crea un objeto de preferencia
     preference_data = {
-      notification_url: 'https://84b1-181-169-163-188.sa.ngrok.io/payment-notification',
+      notification_url: 'https://1c62-181-169-163-188.sa.ngrok.io/paymentNotification',
       items: [
         {
           currency_id: "ARS",
@@ -42,21 +43,18 @@ class PaymentsController < ApplicationController
         }
       ],
       back_urls: {
-          success: 'https://84b1-181-169-163-188.sa.ngrok.io/payments/',
-          failure: 'https://84b1-181-169-163-188.sa.ngrok.io/payments/', 
-          pending: 'https://84b1-181-169-163-188.sa.ngrok.io/payments/'
+          success: 'https://1c62-181-169-163-188.sa.ngrok.io/payments/',
+          failure: 'https://1c62-181-169-163-188.sa.ngrok.io/payments/', 
+          pending: 'https://1c62-181-169-163-188.sa.ngrok.io/payments/'
       },
       auto_return: "all",
       purpose: 'wallet_purchase',
-      metadata: {
-        id_pago_interno: @payment.id
-      }
     }
     preference_response = sdk.preference.create(preference_data)
     @preference = preference_response[:response]
     @payment.request = preference_data
     @payment.response = preference_response[:response]
-    # Este valor substituirá a la string "<%= @preference_id %>" en tu HTML
+    @payment.id_mp = @payment.response['collector_id']
     @preference_id = @preference['id']
     respond_to do |format|
       if @payment.save
@@ -71,32 +69,27 @@ class PaymentsController < ApplicationController
 
   # POST /payment/notification
   def receive_and_update
-    data_json = JSON.parse request.body.read
-    
-    @idPago = data_json['data']['id']
-    
-    aux = 'https://api.mercadopago.com/v1/payments/' + @idPago 
-    uri = URI(aux)
-    req = Net::HTTP::Get.new(uri)
-    # access token
-    req['Authorization'] = 'Bearer APP_USR-7349775986801427-111915-13c2e770c6dc4ab73f6613f81b74ee3d-1243047107'
-    req_options = {
-      use_ssl: uri.scheme == "https"
-    }
-    res = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-      http.request(req) 
-      data_finder = res.body.inspect
-      data_json = JSON.parse res.body
+    @data_json = JSON.parse request.body.string
+    puts JSON.pretty_generate(@data_json)
+    if ((@data_json['action'] == "payment.created") || (@data_json['action'] == "payment.updated")) then
+      @idPago = @data_json['data']['id']
+      aux = 'https://api.mercadopago.com/v1/payments/' + @idPago + '/?access_token=APP_USR-7349775986801427-111915-13c2e770c6dc4ab73f6613f81b74ee3d-1243047107'
+      puts 'GET request a --> ' + aux
+      response = HTTParty.get(aux)
+      @data_json2 = JSON.parse response.body
+      puts JSON.pretty_generate(@data_json2)
+      puts @data_json2["status"]
       # creo peticion get para recuperar el pago en el server de mp
-      if (data_finder["approved"])
-        id = data_json["metadata"]["id_pago_interno"]
-        puts id
-        Payment.find(id).update(aceptado: true) 
-        userid = Payment.find(id).user_id
-        saldoActualizado = User.find(userid).saldo + data_json['transaction_amount'] 
+      if (@data_json2["status"] == "approved")
+        Payment.where(id_mp: @data_json2["collector_id"]).first.update(aceptado: true) 
+        userid = Payment.where(id_mp: @data_json2["collector_id"]).first.user_id
+        saldoActualizado = User.find(userid).saldo + @data_json2['transaction_amount'] 
+        puts saldoActualizado
+        puts userid 
         User.find(userid).update(saldo: saldoActualizado)
+        puts 'final de receive and update'
       end
-    end
+    end 
   end
 
 
