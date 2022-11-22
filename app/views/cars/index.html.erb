@@ -17,7 +17,10 @@
             <%= form.text_field :search_modelo, placeholder: 'Modelo', :class => 'form-control rounded px-3 pb-2' %>
         </div>
         <div class="col pb-3">    
-            <%= form.text_field :search_kilometraje, placeholder:'Kilometraje (menor a)', :class => 'form-control rounded px-3 pb-2'%>
+            <%= form.number_field :search_kilometraje, placeholder:'Kilometraje (menor a)', :class => 'form-control rounded px-3 pb-2'%>
+  		</div>
+		<div class="col pb-3">    
+            <%= form.number_field :search_tanque, placeholder:'Tanque (mayor a)', :class => 'form-control rounded px-3 pb-2'%>
   		</div>
         <div class='col-sm pb-3'>
             <%= form.submit "Buscar", class: 'btn btn-primary' %>
