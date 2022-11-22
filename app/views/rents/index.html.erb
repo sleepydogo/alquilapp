@@ -23,13 +23,13 @@
                               <span class="widget-49-date-day"><%= rent.created_at.day %>/<%= rent.created_at.month %></span>
                           </div>
                           <div class="widget-49-meeting-info">
-                              <span class="widget-49-pro-title">Precio del alquiler: $<%= number_with_precision rent.precio, :precision => 2 %></span>
+                              <span class="widget-49-pro-title">Precio del alquiler: <b>$<%= number_with_precision rent.precio, :precision => 2 %></span></b>
                               <span class="widget-49-meeting-time">Hora de comienzo del alquiler: <%= rent.created_at.hour %>:<%= rent.created_at.min %> hs </span>
                           </div>
                       </div>
                       <ol class="widget-49-meeting-info">
                           <li class="widget-49-meeting-item"><span>Combustible gastado: <%= rent.combustible_gastado %></span></li>
-                          <li class="widget-49-meeting-item"><span>Hora de finalizacion de alquiler: <%= rent.tiempo.hour %>:<%= rent.tiempo.min %> hs</span></li>                      </ol>
+                          <li class="widget-49-meeting-item"><span>Hora de finalizacion de alquiler: <%= Time.new.change(hour: rent.tiempo.hour, min: rent.tiempo.min).strftime("%H:%M")%> hs</span></li> </ol>
                       <div class="widget-49-meeting-action">
                            <%if rent.activo? %>
                                 <span class="widget-49-pro-title" style="font-weight: bold; color: green" >Tiempo restante: <%=time_diff(rent.tiempo, Time.now)  %>

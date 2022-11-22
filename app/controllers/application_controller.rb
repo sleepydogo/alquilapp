@@ -55,6 +55,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :ensure_not_empty
 
+  def ensure_renting
+    if(current_user.alquilando)
+      redirect_to root_path
+    end
+  end
+  helper_method :ensure_renting
+
   def time_diff(start_time, end_time)
     seconds_diff = (start_time - end_time).to_i.abs
   
