@@ -4,7 +4,7 @@ class CarsController < ApplicationController
   # GET /cars or /cars.json
   def index
     if (current_user.Admin? || current_user.Supervisor?)
-      @cars = Car.all
+      @cars_not_rented = Car.all
     elsif
 	    @cars_not_rented = Car.where(alquilado: false, de_baja: false)
     end
