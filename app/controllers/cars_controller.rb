@@ -3,8 +3,11 @@ class CarsController < ApplicationController
 
   # GET /cars or /cars.json
   def index
-    @cars = Car.all
-	  @cars_not_rented = Car.where(alquilado: false, de_baja: false)
+    if (current_user.Admin? || current_user.Supervisor?)
+      @cars = Car.all
+    elsif
+	    @cars_not_rented = Car.where(alquilado: false, de_baja: false)
+    end
     if params[:search_modelo] && params[:search_modelo] != ""
 			@cars = @cars.where("modelo like ?", "#{params[:search_modelo]}%")
       @cars_not_rented = @cars_not_rented.where("modelo like ?", "#{params[:search_modelo]}%")

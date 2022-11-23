@@ -80,7 +80,7 @@ class ApplicationController < ActionController::Base
   helper_method :time_diff
   
   def esta_en_LP
-    @car = Car.find(params[:id])
+    @car = Rent.find(params[:id]).car
     points = []
     points << Geokit::LatLng.new("-34.953870", "-57.952073")
     points << Geokit::LatLng.new("-34.936172", "-57.932483")
