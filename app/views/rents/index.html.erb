@@ -7,11 +7,9 @@
 <div class="container">
     <h1 class='my-3 py-3'>Mis alquileres</h1>
     <p style="color: green"><%= notice %></p>
-
     <div class="row">
     <% if !(@rents.empty?) then %>
-    <% @rents.each do |rent| %>
-        
+    <% @rents.each do |rent| %>        
         <div class="col-lg-4">
         <div class="card card-margin">
             <div class="card-header no-border">
@@ -24,8 +22,8 @@
                               <span class="widget-49-date-day"><%= rent.created_at.day %>/<%= rent.created_at.month %></span>
                           </div>
                           <div class="widget-49-meeting-info">
-                              <span class="widget-49-pro-title">Precio del alquiler: <b>$<%= number_with_precision rent.precio, :precision => 2 %></span></b>
-                              <span class="widget-49-meeting-time">Hora de comienzo del alquiler: <%= rent.created_at.hour %>:<%= rent.created_at.min %> hs </span>
+                                <span class="widget-49-pro-title">Precio del alquiler: <b>$<%= number_with_precision rent.precio, :precision => 2 %></span></b>
+                                <span class="widget-49-meeting-time">Hora de comienzo del alquiler: <%= rent.created_at.hour %>:<%= rent.created_at.min %> hs </span>
                           </div>
                       </div>
                       <ol class="widget-49-meeting-info">
@@ -45,21 +43,17 @@
 </div>
 <% end %>
 <%else %>
-        <div class="page-wrap d-flex flex-row align-items-center" style=''>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12 text-center">
-                        <span class="display-1 d-block">:(</span>
-                        <div class="mb-4 lead">Lo sentimos, no se han encontrado alquileres.</div>
-                        <a href="/cars" class="btn btn-link">Realiazar un alquiler...</a>
-                    </div>
+    <div class="page-wrap d-flex flex-row" style=''>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 justify-content-center align-items-center">
+                    <span class="display-1 d-block">:(</span>
+                    <div class="mb-4 lead">Lo sentimos, no se han encontrado alquileres.</div>
+                    <a href="/cars" class="btn btn-link">Realiazar un alquiler...</a>
                 </div>
             </div>
+        </div>
     </div>
 <%end%>
-
-
-
-    
 </div>
 </div>
