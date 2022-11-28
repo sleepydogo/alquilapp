@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :payments
   get 'static_pages/home_logged_user'
+  get '/tickets/:id', to: 'tickets#show'
+  get '/tickets', to: 'tickets#index'
   post '/paymentNotification', to: 'payments#receive_and_update'
 
 
