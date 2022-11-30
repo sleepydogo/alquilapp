@@ -44,14 +44,6 @@
                             <p class="h5 m-0">#<%= @car.id %></p>
                         </div>
                         <div class="col-md-4 col-6 ps-30 my-4">
-                            <p class="text-muted">Esta en La Plata?</p>
-                            <% if esta_en_LP then %>
-                                <p class="h5 m-0">Si</p>
-                            <% else %>
-                                <p class="h5 m-0">No</p>
-                            <% end %>
-                        </div>
-                        <div class="col-md-4 col-6 ps-30 my-4">
                             <p class="text-muted">Estado</p>
                             <% if !(@car.de_baja) then %>
                                 <p class="h5 m-0">Disponible</p>

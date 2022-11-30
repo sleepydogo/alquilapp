@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
   resources :payments
   get 'static_pages/home_logged_user'
-  get '/tickets/:id', to: 'tickets#show'
   get '/tickets', to: 'tickets#index'
+
   post '/paymentNotification', to: 'payments#receive_and_update'
+  post '/tickets/new', to: 'tickets#create'
 
 
   resources :cars
   resources :rents
   resources :payments
-
+  resources :tickets
   devise_for :users, components: {registrations: 'registrations', sessions: 'sessions'} #Las de devise siempre tienen que estar encima de las de USER
 
   resources :users, only: [:show]

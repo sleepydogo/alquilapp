@@ -80,8 +80,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_220843) do
   end
 
   create_table "tickets", force: :cascade do |t|
+    t.boolean "activo", default: true
+    t.datetime "creacion"
+    t.string "opcion"
+    t.string "mensaje"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "car_id", null: false
+    t.integer "user_id", null: false
+    t.index ["car_id"], name: "index_tickets_on_car_id"
+    t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -109,4 +117,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_220843) do
   add_foreign_key "payments", "users"
   add_foreign_key "rents", "cars"
   add_foreign_key "rents", "users"
+  add_foreign_key "tickets", "cars"
+  add_foreign_key "tickets", "users"
 end

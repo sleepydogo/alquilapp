@@ -13,11 +13,12 @@ class ApplicationController < ActionController::Base
   
 
   def ensure_adm
-    if( (user_signed_in?) && current_user.rango == 'Usuario')
+    if( (user_signed_in?) && !(current_user.rango == 'Admin'))
       redirect_to root_path
     end
   end
   helper_method :ensure_adm
+  
 
   def destruir_docu
 		if(current_user.rango == 'No_Aceptado')

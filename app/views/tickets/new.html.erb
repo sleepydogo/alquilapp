@@ -1,0 +1,57 @@
+<head>
+	<%= stylesheet_link_tag 'bootstrap', 'login-styles'%>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+</head>
+
+
+
+<section class="vh-100" style="background-color: #F4F7FD;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center ">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="https://media.discordapp.net/attachments/1029137847418114209/1041835460340748358/WhatsApp_Image_2022-11-14_at_19.01.23.jpeg?width=724&height=671"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex ">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+              <%= form_with(model: @tickets) do |form| %>
+
+              <div>
+                <%= form.label :opcion, "Elija el problema detectado en el vehiculo", style: "display: block" %>
+                <%= form.select :opcion, [["El vehiculo sufrió un daño fisico causado por mi/por terceros"], 
+                ["El vehiculo no fue entregado en correctas condiciones"],
+                ["He detectado un daño no estipulado en las incidencias del vehiculo"],
+                ["El vehiculo tiene una avería la cual no permitió continuar con el alquiler"],  
+                ], {}, :style => "width:400px" %>
+              
+                <div>
+                <%= form.label :mensaje, style: "display: block" %>
+                <%= form.text_area :mensaje, :cols => "25", :rows => "3" %>
+              </div>
+        
+              <div>
+               <%= form.label :creacion, "Fecha y hora de creacion del reporte", style: "display: block" %>
+               <%= Time.now.strftime("%d-%m-%Y %H:%M") %>
+                
+               <%= form.hidden_field :creacion, value: Time.now %>
+              </div>
+        
+                      
+                <div>
+                  <%= form.submit "Crear reporte" %>
+                </div>
+              <% end %>
+          </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
