@@ -136,7 +136,7 @@
                                     </div>
 								<% else %>
 									<div class='col-lg-6'> 
-                                        <%= button_to "Dar de alta", @car, :class => "btn btn-primary"%>
+                                        <%= button_to "Dar de alta", dar_de_alta_car_path(@car), method: :patch, :class => "btn btn-primary"%>
                                     </div>
 								<% end %>								   
 						<% end %>

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 		render action: "index", notice: 'Rango cambiado'
 	end
 
-	def baja_y_alta_supervisores
+	def baja_y_alta_supervisores #Tambien sirve para desbloquear usuarios.
 		@user = User.find(params[:id])
 		@user.update(rango: params[:rango])
 		redirect_to user_url(@user), notice: 'Rango cambiado'
@@ -26,8 +26,5 @@ class UsersController < ApplicationController
 			end
 		end
 	end
-	
-
-	
 
 end

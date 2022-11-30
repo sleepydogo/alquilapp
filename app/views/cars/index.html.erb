@@ -6,7 +6,7 @@
 <div >
 <%= ensure_log %>
 <div class="container mb-4 pb-4" style="margin-top:50px">
-    <% if !@cars_not_rented.empty? %>
+    <% if !@cars.empty? %>
     <h1>Vehiculos disponibles</h1>
     <h4> Filtrar por caracteristicas </h4>
     <div class="row w-100 justify-content-center align-items-center" style='width:100%'>
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="row">
-    <% @cars_not_rented.each do |car| %>
+    <% @cars.each do |car| %>
       <div class="col-md-3 py-4">
           <div class="card-sl">
 			<% if car.photo.attached? %>

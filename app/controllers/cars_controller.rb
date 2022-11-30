@@ -4,21 +4,21 @@ class CarsController < ApplicationController
   # GET /cars or /cars.json
   def index
     if (current_user.Admin? || current_user.Supervisor?)
-      @cars_not_rented = Car.all
-    elsif
-	    @cars_not_rented = Car.where(alquilado: false, de_baja: false)
+      @cars = Car.all
+    else
+	    @cars = Car.where(alquilado: false, de_baja: false)
     end
     if params[:search_modelo] && params[:search_modelo] != ""
 			@cars = @cars.where("modelo like ?", "#{params[:search_modelo]}%")
-      @cars_not_rented = @cars_not_rented.where("modelo like ?", "#{params[:search_modelo]}%")
+     # @cars_not_rented = @cars_not_rented.where("modelo like ?", "#{params[:search_modelo]}%")
 		end
     if params[:search_kilometraje] && params[:search_kilometraje] != ""
 			@cars = @cars.where("kilometraje < ?", "#{params[:search_kilometraje]}%")
-      @cars_not_rented = @cars_not_rented.where("kilometraje < ?", params[:search_kilometraje])
+      #@cars_not_rented = @cars_not_rented.where("kilometraje < ?", params[:search_kilometraje])
 		end
     if params[:search_tanque] && params[:search_tanque] != ""
 			@cars = @cars.where("tanque > ?", "#{params[:search_tanque]}%")
-      @cars_not_rented = @cars_not_rented.where("tanque > ?", params[:search_tanque])
+      #@cars_not_rented = @cars_not_rented.where("tanque > ?", params[:search_tanque])
 		end
   end
 

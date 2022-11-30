@@ -43,7 +43,7 @@
                        		<% if (!@user.Baneado?) %>
                        	         <%= button_to 'Bloquear', bloquear_usuario_user_path(@user), method: :patch, class: "btn btn-sm btn-danger" %>
                        		<% else %>
-                       	         <%= button_to 'Desbloquear', @user, method: :patch, class: "btn btn-sm btn-success" %>
+                       	         <%= button_to 'Desbloquear', baja_y_alta_supervisores_user_path(@user, rango: 'Usuario'), method: :patch, class: "btn btn-sm btn-success" %>
 					   		<% end %>
 					   <% end %>
                     </div>
