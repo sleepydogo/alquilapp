@@ -1,1 +1,13 @@
-<h1>show el pity</h1>
+<h1>Ticket <%= @ticket.id %></h1>
+<div>
+Fotos subidas:
+<% @ticket.photos.each do |photo| %>
+    <%= image_tag(photo, :width => 200) %>
+<% end %>
+</div>
+<div>
+Mensaje:<%= @ticket.mensaje %>
+</div>
+<div>
+Opcion: <%= @ticket.opcion %>
+</div>

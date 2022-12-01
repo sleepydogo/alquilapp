@@ -15,34 +15,48 @@
               <img src="https://media.discordapp.net/attachments/1029137847418114209/1041835460340748358/WhatsApp_Image_2022-11-14_at_19.01.23.jpeg?width=724&height=671"
                 alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
             </div>
-            <div class="col-md-6 col-lg-7 d-flex ">
-              <div class="card-body p-4 p-lg-5 text-black">
+            <div class="col-md-50 col-lg-50 d-flex ">
+              <div class="card-body p-4 p-lg-50 text-black">
 
-              <%= form_with(model: @tickets) do |form| %>
+
+              <%= form_with(model: @ticket) do |form| %>
+                <% @ticket.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
 
               <div>
-                <%= form.label :opcion, "Elija el problema detectado en el vehiculo", style: "display: block" %>
+
+                <%= form.label :opcion, "Elija el problema detectado en el vehiculo:", style: "display: block" %>
                 <%= form.select :opcion, [["El vehiculo sufrió un daño fisico causado por mi/por terceros"], 
                 ["El vehiculo no fue entregado en correctas condiciones"],
                 ["He detectado un daño no estipulado en las incidencias del vehiculo"],
                 ["El vehiculo tiene una avería la cual no permitió continuar con el alquiler"],  
                 ], {}, :style => "width:400px" %>
-              
+                
+                
+                <% if (User.find(current_user.id).alquilando?) %>
                 <div>
+                  <%= form.hidden_field :car_id, value: Rent.where(:user_id => current_user.id, :activo => true).ids.first %>
+                  <span style ="font-weight:bold">Vehiculo a reportar: <%= Car.find(Rent.where(:user_id => current_user.id, :activo => true).ids.first).modelo %></span>
+                </div>
+                  <% elsif %>
+                <div>
+                  <%= form.label :car_id, "Elija el alquiler del cual desea hacer el reclamo:.", style: "display: block" %>
+                  <%= form.select :car_id, Rent.where(:user_id => current_user.id).map {|r| [Car.find(r.car_id).modelo + r.created_at.strftime(" - %d/%m/%Y %H:%Mhs"), r.car_id]} %>                  </div>
+                  <% end %>
+                  <div>
                 <%= form.label :mensaje, style: "display: block" %>
                 <%= form.text_area :mensaje, :cols => "25", :rows => "3" %>
-              </div>
-        
-              <div>
-               <%= form.label :creacion, "Fecha y hora de creacion del reporte", style: "display: block" %>
-               <%= Time.now.strftime("%d-%m-%Y %H:%M") %>
+                </div>
                 
-               <%= form.hidden_field :creacion, value: Time.now %>
-              </div>
+                <div class="photos">
+                <%= form.label :photos, "Seleccione las fotos que desee subir", style: "display: block" %>
+                <%= form.file_field :photos, :multiple => true %>
+                </div>
+
         
-                      
-                <div>
-                  <%= form.submit "Crear reporte" %>
+                <div class="mt-4">
+                  <%= form.submit "Crear reporte", class: "btn btn-primary" %>
                 </div>
               <% end %>
           </div>

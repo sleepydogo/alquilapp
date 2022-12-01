@@ -81,7 +81,7 @@
                                 <div class="d-flex  mb-4">
                                     <span class="">
                                         <p class="text-muted">Hora y fecha de comienzo: </p>
-                                        <%= Time.new.change(hour: @rent.created_at.hour, min: @rent.created_at.min).strftime("%D %H:%Mhs")%>                                          
+                                        <%= Time.new.change(hour: @rent.created_at.hour, min: @rent.created_at.min).strftime("%d/%m/%Y %H:%Mhs")%>                                          
                                     </span>
                                 </div>
                                 <div class="d-flex  mb-4">
