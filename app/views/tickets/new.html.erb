@@ -2,10 +2,21 @@
 	<%= stylesheet_link_tag 'bootstrap', 'login-styles'%>
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 </head>
+<% alquileresPasados = [] %>
+
+<% rentaActiva = Rent.where(:user_id => current_user.id, :activo => true).first %>
+
+<% Rent.where(:user_id => current_user.id).all.each do |rent| %>
+  <% if !(pasaron_12h(rent.tiempo)) %>
+      <% alquileresPasados << rent %>
+  <% end %>
+<% end %>
+
 
 
 
 <section class="vh-100" style="background-color: #F4F7FD;">
+<% if (!(alquileresPasados.empty?) || (current_user.alquilando)) %> 
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center ">
       <div class="col col-xl-10">
@@ -36,13 +47,13 @@
                 
                 <% if (User.find(current_user.id).alquilando?) %>
                 <div>
-                  <%= form.hidden_field :car_id, value: Rent.where(:user_id => current_user.id, :activo => true).ids.first %>
-                  <span style ="font-weight:bold">Vehiculo a reportar: <%= Car.find(Rent.where(:user_id => current_user.id, :activo => true).ids.first).modelo %></span>
+                  <%= form.hidden_field :car_id, value: rentaActiva.car_id %>
+                  <span style ="font-weight:bold">Vehiculo a reportar: <%= Car.find(rentaActiva.car_id).modelo %></span>
                 </div>
                   <% elsif %>
                 <div>
                   <%= form.label :car_id, "Elija el alquiler del cual desea hacer el reclamo:.", style: "display: block" %>
-                  <%= form.select :car_id, Rent.where(:user_id => current_user.id).map {|r| [Car.find(r.car_id).modelo + r.created_at.strftime(" - %d/%m/%Y %H:%Mhs"), r.car_id]} %>                  </div>
+                  <%= form.select :car_id, alquileresPasados.map {|r| [Car.find(r.car_id).modelo + r.tiempo.strftime(" - %d/%m/%Y %H:%Mhs"), r.car_id]} %>                  </div>
                   <% end %>
                   <div>
                 <%= form.label :mensaje, style: "display: block" %>
@@ -67,5 +78,17 @@
       </div>
     </div>
   </div>
+<%elsif%>
+  <div class="page-wrap d-flex flex-row align-items-center" style='min-height: 60vh;min-width: 100vh;'>
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-md-12 text-center">
+              <span class="display-1 d-block">:(</span>
+              <div class="mb-4 lead">Lo sentimos, no puede reportar ningun alquiler debido a que no tiene ninguno activo o todos han superado las 12hs de finalizado</div>
+          </div>
+      </div>
+  </div>
+  </div>
+<%end%>
 </section>
 
