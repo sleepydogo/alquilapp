@@ -10,6 +10,7 @@ class TicketsController < ApplicationController
     end
 
     def edit
+        @ticket = Ticket.find(params[:id])
     end
     
     def create

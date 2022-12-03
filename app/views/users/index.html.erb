@@ -38,6 +38,7 @@
                         <th>Perfil</th>
                         <th>Documentación</th>
                         <th>Validar?</th>
+                        <th>Alquilando?</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,6 +73,16 @@
                                 <%= button_to 'Rechazar', update_rango_user_path(user, rango: 'No_Aceptado'), method: :patch, class: "btn btn-sm btn-danger m-1" %>
                             <% end %>
                             </td>
+                            <td>
+                                <% if (user.alquilando?) %>
+                                  Si 
+                                  <div>
+                                  <%= link_to "Alquiler actual", user.rents.last, :class => "btn btn-primary" %>
+                                  </div>
+                                <%elsif%>
+                                  No
+                                <% end %>
+                            </td>            
                         </tr>
                     <% end %>
                 </tbody>

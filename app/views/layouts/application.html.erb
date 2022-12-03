@@ -25,6 +25,9 @@
 			      <% if !(current_user.alquilando?) %>
               <% if (user_signed_in? && !!current_user.Usuario?) %>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cars">Alquilar</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/rents">Mis alquileres</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/tickets">Reportar un problema</a>
+
               <% elsif %>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/cars">Gestion de autos</a>
               <% end %>  
@@ -33,8 +36,6 @@
 			      <% end %>
               <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/payments">Billetera</a>
               <a class="list-group-item list-group-item-action list-group-item-light p-3" <%= link_to "Perfil", current_user %> 
-              <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/rents">Mis alquileres</a>
-              <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/tickets">Reportar un problema</a>
             <% if ((user_signed_in? && !!current_user.Admin?) || (user_signed_in? && !!current_user.Supervisor?)) %>
               <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/users">Gestión de usuarios</a>
               <% if (user_signed_in? && !!current_user.Admin?) %>

@@ -11,12 +11,73 @@
 <% end %>
 
 <div class="container">
-    <h1 class='my-3 py-3'>Mis reportes	<a class="btn btn-primary" href="/tickets/new">Crear reporte</a></h1>
-
+<% if ((current_user.rango == "Admin") || (current_user.rango == "Supervisor")) %>
+    <h1 class='my-3 py-3'>Reportes de usuarios</h1>
+<% else %>
+	<h1 class='my-3 py-3'>Mis reportes	<a class="btn btn-primary" href="/tickets/new">Crear reporte</a></h1>
+<% end %>
     <p style="color: green"><%= notice %></p>
     <div class="row">
-    <% if !(ticketsUsuario.empty?) then %>
-    <% ticketsUsuario.each do |ticket| %>
+	<% if ((current_user.rango == "Admin") || (current_user.rango == "Supervisor")) %>
+		<% if !(@tickets.empty?) then %>
+		<% @tickets.each do |ticket| %>
+				<div class="col-lg-10">
+				<div class="card card-margin">
+					<div class="card-header no-border">
+						<h5 class="card-title"><b>Problema:</b> <%= ticket.opcion %></h5>
+					</div>
+					<div class="card-body pt-0">
+						<div class="widget-49">
+							<div class="widget-49-title-wrapper">
+								<div class="widget-49-date-primary">
+									<span class="widget-49-date-day"><%= ticket.created_at.day %>/<%= ticket.created_at.month %></span>
+								</div>
+								<div class="widget-49-meeting-title ml-2">
+										<span class="widget-49-pro-title">Vehiculo reportado: <b><%= Car.find(ticket.car_id).modelo %></span></b>
+										<div>
+										<span class="widget-49-pro-title">Usuario: <b><%= User.find(ticket.user_id).name  %></span></b>
+										</div>
+										<div>
+										<span class="widget-49-pro-title">DNI/N° de pasaporte: <b><%= User.find(ticket.user_id).dni  %></span></b>
+										</div>
+
+								</div>
+							</div>
+							<ol class="widget-49-meeting-info mt-2">
+									<div>
+									<class="widget-49-meeting-info mr-5"><b>Descripcion del problema:</b></class>
+									</div>
+								<class="widget-49-meeting-info mr-5"><span><%= ticket.mensaje %> </span>
+							<div class="widget-49-meeting-action">
+								<%if ticket.activo? %>
+										<span class="widget-49-pro-title" style="font-weight: bold; color: green">Reporte abierto</span>
+									<%elsif%>
+										<span class="widget-49-pro-title" style="color:red">Reporte cerrado</span>
+									<% end %>
+								<%= link_to "Detalles", ticket, :class => "btn btn-sm btn-flash-border-primary" %>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+	</div>
+	<% end %>
+	<%else %>
+		<div class="page-wrap d-flex flex-row" style=''>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-12 justify-content-center align-items-center">
+						<span class="display-1 d-block">:(</span>
+						<div class="mb-4 lead">Lo sentimos, no se han encontrado alquileres.</div>
+						<a href="/cars" class="btn btn-link">Realizar un alquiler...</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	<%end%>
+	<%elsif%>
+	<% if !(ticketsUsuario.empty?) then %>
+	<% ticketsUsuario.each do |ticket| %>
 			<div class="col-lg-10">
 			<div class="card card-margin">
 				<div class="card-header no-border">
@@ -52,17 +113,19 @@
 </div>
 <% end %>
 <%else %>
-    <div class="page-wrap d-flex flex-row" style=''>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12 justify-content-center align-items-center">
-                    <span class="display-1 d-block">:(</span>
-                    <div class="mb-4 lead">Lo sentimos, no se han encontrado alquileres.</div>
-                    <a href="/cars" class="btn btn-link">Realizar un alquiler...</a>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="page-wrap d-flex flex-row" style=''>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-12 justify-content-center align-items-center">
+					<span class="display-1 d-block">:(</span>
+					<div class="mb-4 lead">Lo sentimos, no se han encontrado alquileres.</div>
+					<a href="/cars" class="btn btn-link">Realizar un alquiler...</a>
+				</div>
+			</div>
+		</div>
+	</div>
 <%end%>
+<%end%>
+			
 </div>
 </div>
