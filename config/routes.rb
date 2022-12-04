@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/paymentNotification', to: 'payments#receive_and_update'
   post '/tickets/new', to: 'tickets#create'
 
+  post '/password/reset', to: 'users#enviar_mail_recuperar_contrasenia'
 
   resources :cars
   resources :rents

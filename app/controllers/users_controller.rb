@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+	require 'json'
+
 	def show
   		@user = User.find(params[:id])
 	end
@@ -24,6 +26,17 @@ class UsersController < ApplicationController
 			if (@user.update(rango: "Baneado"))
 				redirect_to user_url(@user), notice: "Usuario bloqueado."
 			end
+		end
+	end
+
+	# recibe un metodo post desde la vista de recuperar contrasenia
+	def enviar_mail_recuperar_contrasenia
+		mail = request.params['email']
+		@user = User.find_by email: mail
+		if @user != nil
+			puts @user.name
+		else
+			puts 'email no encontrado'
 		end
 	end
 
