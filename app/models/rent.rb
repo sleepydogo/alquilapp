@@ -6,7 +6,7 @@ class Rent < ApplicationRecord
 	accepts_nested_attributes_for :car
 	validates :tiempo, presence: true
 
-	validate :con_saldo
+	validate :con_saldo, on: :create
 	validate :sin_cooldown, on: :create
   validate :no_mas_de_24, on: :update
   #validate :no_antes, on: :update
