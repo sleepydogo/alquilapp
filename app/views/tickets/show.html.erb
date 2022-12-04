@@ -1,1 +1,21 @@
-<h1>show el pity</h1>
+<head>
+	<%= stylesheet_link_tag 'bootstrap', 'login-styles'%>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+</head>
+
+<div class="container py-5 h-100">
+<div class="row d-flex justify-content-center ">
+  <div class="col col-xl-10">
+    <div class="card" style="border-radius: 1rem;">
+      <div class="row g-0">
+        <div class="col-md-6 col-lg-5 d-none d-md-block">
+        <% @ticket.photos.each do |photo| %>
+            <%= image_tag(photo, :width => 350) %>
+        <% end %>
+        </div>
+        <div class="col-md-50 col-lg-50 d-flex ">
+          <div class="card-body p-4 p-lg-90 ">
+            <h2>Ticket #<%= @ticket.id %></h2>
+
+          </div>
+        </div>

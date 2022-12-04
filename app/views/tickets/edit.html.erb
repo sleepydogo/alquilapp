@@ -1,0 +1,56 @@
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center ">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="https://media.discordapp.net/attachments/1029137847418114209/1041835460340748358/WhatsApp_Image_2022-11-14_at_19.01.23.jpeg?width=724&height=671"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-50 col-lg-50 d-flex ">
+              <div class="card-body p-4 p-lg-50 text-black">
+
+
+              <%= form_with model: @ticket, url: ticket_path, method: :patch, local: true, scope: :ticket do |form| %>
+                <% @ticket.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+
+              <div>
+
+                <%= form.label :opcion, "Elija el problema detectado en el vehiculo:", style: "display: block" %>
+                <%= form.select :opcion, [["El vehiculo sufrió un daño fisico causado por mi/por terceros"], 
+                ["El vehiculo no fue entregado en correctas condiciones"],
+                ["He detectado un daño no estipulado en las incidencias del vehiculo"],
+                ["El vehiculo tiene una avería la cual no permitió continuar con el alquiler"],  
+                ], {}, :style => "width:400px" %>
+                
+                
+                <div>
+                  <%= form.hidden_field :car_id, value: @ticket.car_id %>
+                  <span style ="font-weight:bold">Vehiculo reportado: <%= Car.find(@ticket.car_id).modelo %></span>
+                </div>
+                  <div>
+                <%= form.label :mensaje, "Mensaje subido por el usuario", style: "display: block" %>
+                <%= @ticket.mensaje %>
+                </div>
+                
+                <div class="photos">
+                <%= form.label :photos, "Seleccione las fotos que desee subir", style: "display: block" %>
+                <%= form.file_field :photos, :multiple => true %>
+                </div>
+
+        
+                <div class="mt-4">
+                  <%= form.submit "Crear reporte", class: "btn btn-primary" %>
+                </div>
+          </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+</section>

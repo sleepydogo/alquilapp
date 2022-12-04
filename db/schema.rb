@@ -70,7 +70,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_220843) do
     t.float "precio", default: 0.0
     t.float "combustible_gastado", default: 0.0
     t.datetime "tiempo"
-    t.datetime "tiempo_original"
     t.boolean "activo", default: true
     t.integer "car_id", null: false
     t.integer "user_id", null: false
@@ -82,7 +81,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_220843) do
 
   create_table "tickets", force: :cascade do |t|
     t.boolean "activo", default: true
-    t.datetime "creacion"
     t.string "opcion"
     t.string "mensaje"
     t.datetime "created_at", null: false

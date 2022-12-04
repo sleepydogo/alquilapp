@@ -101,5 +101,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :esta_en_LP  
 
+  def pasaron_12h(finish_time)
+    if((finish_time + 12.hours) > Time.now)
+      return false
+    else
+      return true
+    end
+  end
+  helper_method :pasaron_12h
 
 end
