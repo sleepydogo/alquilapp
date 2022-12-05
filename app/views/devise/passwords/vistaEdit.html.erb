@@ -1,3 +1,5 @@
+<!--Esta vista es solo para aniadirla mas tarde en password/edit -->
+
 <head>
 	<%= stylesheet_link_tag 'bootstrap', 'login-styles'%>
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -22,15 +24,24 @@
                     <i class="fas fa-lock fa-2x me-3" style="color: #6aa9e9;"></i>
                     <h5 class="fw-normal text-bold pt-2" style="letter-spacing: 1px;">Recuperar contraseña</h5>
                   </div>
+                  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+                  <%= f.hidden_field :reset_password_token %>
                   <div class="form-outline mb-4">
-                    <%= f.label :email, 'Introduce tu correo electrónico. Se le enviara un correo electronico para reestablecer la contraseña.', :class => 'pb-2' %><br />
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control form-control-lg" %>
+                    <%= f.label :password, "Nueva contraseña:", :class => 'pb-2' %><br />
+                    <% if @minimum_password_length %>
+                      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+                    <% end %>
+                    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control form-control-lg" %>
+                  </div>
+                  <div class='form-outline mb-4'>
+                    <%= f.label :password_confirmation, 'Confirme su nueva contraseña:' %>
+                    <%= f.password_field :password_confirmation, class: "form-control form-control-lg" %>    
                   </div>
                   <div id='hidden-div' class='hidden'>
                       <span class="row d-flex justify-content-center align-items-center h-100 p-3 " >Se ha enviado un correo electronico con un link de reestablecimiento.</span>
                   </div>
                   <div class="pt-1 mb-4">
-                    <%= f.submit "Reestablecer contraseña", class:"btn btn-dark btn-lg btn-block", type:"submit", label:'Enviar correo electrónico', onClick: 'reveal()' %>
+                    <%= f.submit "Reestablecer contraseña", class:"btn btn-dark btn-lg btn-block", type:"submit", label:'Enviar correo electrónico'%>
                   </div>
                 <% end %>
                 <a class="small text-muted" href="/users/sign_in">Iniciar sesion</a>
@@ -50,3 +61,6 @@
     element.classList.remove("hidden");
   }
 </script>
+
+
+
