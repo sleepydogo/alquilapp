@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
 	require 'json'
 
 	def show
@@ -35,9 +34,11 @@ class UsersController < ApplicationController
 		@user = User.find_by email: mail
 		if @user != nil
 			puts @user.name
+			if PasswordMailer.with(user: @user).reset_password.deliver_now
+				puts 'Mail enviado con exito!'
+			end
 		else
 			puts 'email no encontrado'
 		end
 	end
-
 end

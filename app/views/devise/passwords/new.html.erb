@@ -17,7 +17,7 @@
                     <h5 class="fw-normal text-bold pt-2" style="letter-spacing: 1px;">Recuperar constraseña</h5>
                   </div>
                   <div class="form-outline mb-4">
-                    <%= f.label :email, 'E-Mail' %><br />
+                    <%= f.label :email, 'Introduce tu correo electrónico. Se le enviara un correo electronico para reestablecer la contraseña.', :class => 'pb-2' %><br />
                     <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control form-control-lg" %>
                   </div>
                   <%= render "devise/shared/error_messages", resource: resource %>

@@ -42,7 +42,7 @@ class PaymentsController < ApplicationController
     sdk = Mercadopago::SDK.new('APP_USR-7349775986801427-111915-13c2e770c6dc4ab73f6613f81b74ee3d-1243047107')
     # Crea un objeto de preferencia
     preference_data = {
-      notification_url: 'https://7414-181-169-233-8.sa.ngrok.io/paymentNotification',
+      notification_url: 'https://38fc-181-169-178-229.sa.ngrok.io/paymentNotification',
       items: [
         {
           currency_id: "ARS",
@@ -53,9 +53,9 @@ class PaymentsController < ApplicationController
         }
       ],
       back_urls: {
-          success: 'https://7414-181-169-233-8.sa.ngrok.io/payments/',
-          failure: 'https://7414-181-169-233-8.sa.ngrok.io/payments/', 
-          pending: 'https://7414-181-169-233-8.sa.ngrok.io/payments/'
+          success: 'https://38fc-181-169-178-229.sa.ngrok.io/payments/',
+          failure: 'https://38fc-181-169-178-229.sa.ngrok.io/payments/', 
+          pending: 'https://38fc-181-169-178-229.sa.ngrok.io/payments/'
       },
       auto_return: "all",
       purpose: 'wallet_purchase',
