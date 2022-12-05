@@ -95,10 +95,20 @@
                         <% if (user_signed_in? && current_user.Usuario?)%>
                         <div class="row m-0">
                             <div class="col-12  mb-4 py-4">
+                                <div class="row ml-4">
                                 <%= link_to "Siguiente", new_rent_path(autito: @car), :class => "btn btn-primary" %>
+                                </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="row m-0">
+                        <div class="col-12  mb-4 py-4">
+                            <div class="row ml-4">
+                            <%= link_to "Descargar informe de incidencias", @car.file, download: '', :class => "btn btn-primary" %>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                         <% elsif (user_signed_in? && !!current_user.Admin?) %>
                                 <div class='row py-4 px-4' style='width:50%'>
                                     <div class='col lg-6'> 

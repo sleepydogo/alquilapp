@@ -2,6 +2,7 @@ class Car < ApplicationRecord
 
 	has_many :rents, :dependent => :destroy
 	has_one_attached :photo
+	has_one_attached :file
 	acts_as_mappable
 	
 

@@ -43,6 +43,11 @@
       </div>
 
       <div>
+      <%= form.label :file, "Reporte de incidencias"%>
+      <%= form.file_field :file %>
+      </div>
+
+      <div>
     	<%= form.hidden_field :lat, value: rand(-34.943789..-34.897041) %>
       </div>
 
@@ -51,7 +56,7 @@
       </div>
 
       <div>
-        <%= form.submit %>
+        <%= form.submit "Cargar auto", :class => "btn btn-primary" %>
       </div>
     <% end %>
 </div>
