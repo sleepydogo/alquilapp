@@ -35,10 +35,11 @@ class UsersController < ApplicationController
 		if @user != nil
 			puts @user.name
 			if PasswordMailer.with(user: @user).reset_password.deliver_now
-				puts 'Mail enviado con exito!'
+				redirect_to new_user_password_path, notice: 'Se ha enviado un correo con un enlace para restablecer su contraseña'
+
 			end
 		else
-			puts 'email no encontrado'
+			redirect_to new_user_password_path, alert: 'El e-mail ingresado no se encuentra registrado'
 		end
 	end
 end
