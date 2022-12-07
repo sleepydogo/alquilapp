@@ -42,7 +42,7 @@ class PaymentsController < ApplicationController
     sdk = Mercadopago::SDK.new('APP_USR-7349775986801427-111915-13c2e770c6dc4ab73f6613f81b74ee3d-1243047107')
     # Crea un objeto de preferencia
     preference_data = {
-      notification_url: 'https://2034-181-169-163-188.sa.ngrok.io/paymentNotification',
+      notification_url: 'https://3e48-181-169-163-188.sa.ngrok.io/paymentNotification',
       items: [
         {
           currency_id: "ARS",
@@ -53,9 +53,9 @@ class PaymentsController < ApplicationController
         }
       ],
       back_urls: {
-          success: 'https://2034-181-169-163-188.sa.ngrok.io/payments/',
-          failure: 'https://2034-181-169-163-188.sa.ngrok.io/payments/', 
-          pending: 'https://2034-181-169-163-188.sa.ngrok.io/payments/'
+          success: 'https://3e48-181-169-163-188.sa.ngrok.io/payments/',
+          failure: 'https://3e48-181-169-163-188.sa.ngrok.io/payments/', 
+          pending: 'https://3e48-181-169-163-188.sa.ngrok.io/payments/'
       },
       auto_return: "all",
       purpose: 'wallet_purchase',
@@ -68,7 +68,7 @@ class PaymentsController < ApplicationController
     @preference_id = @preference['id']
     respond_to do |format|
       if @payment.save
-        format.html { redirect_to @payment.response['init_point'], allow_other_host: true, notice: "Payment was successfully created." }
+        format.html { redirect_to @payment.response['init_point'], allow_other_host: true, notice: "El pago fue creado exitosamente!" }
         format.json { render :show, status: :created, location: @payment }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -88,16 +88,27 @@ class PaymentsController < ApplicationController
       response = HTTParty.get(aux)
       @data_json2 = JSON.parse response.body
       puts JSON.pretty_generate(@data_json2)
-      puts @data_json2["status"]
+      puts 'Estado del pago -->' + @data_json2["status"]
       # creo peticion get para recuperar el pago en el server de mp
       if (@data_json2["status"] == "approved")
-        Payment.where(id_mp: @data_json2["collector_id"]).first.update(aceptado: true) 
+        Payment.where(id_mp: @data_json2["collector_id"]).last.update(aceptado: true) 
+        Payment.where(id_mp: @data_json2["collector_id"]).last.update(updated_at: DateTime.now) 
         userid = Payment.where(id_mp: @data_json2["collector_id"]).first.user_id
         saldoActualizado = User.find(userid).saldo + @data_json2['transaction_amount'] 
         puts saldoActualizado
         puts userid 
         User.find(userid).update(saldo: saldoActualizado)
-        puts 'final de receive and update'
+        puts '================================================================'
+        puts '    Actualizacion de Pago realizada con exito!   '
+        puts '    El pago fue aceptado :D '
+        puts '================================================================'
+      elsif (@data_json2["status"] == "rejected")
+        Payment.where(id_mp: @data_json2["collector_id"]).last.update(aceptado: false) 
+        Payment.where(id_mp: @data_json2["collector_id"]).last.update(updated_at: DateTime.now)
+        puts '================================================================'
+        puts '    Actualizacion de Pago realizada con exito!   '
+        puts '    El pago fue rechazado :( '
+        puts '================================================================'
       end
     end 
   end
@@ -118,7 +129,7 @@ class PaymentsController < ApplicationController
 
   # DELETE /payments/1 or /payments/1.json
   def destroy
-    @payment.destroy
+    @payment.destroypa
 
     respond_to do |format|
       format.html { redirect_to payments_url, notice: "Payment was successfully destroyed." }

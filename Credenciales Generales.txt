@@ -3,6 +3,7 @@ Credenciales mercado pago :
     Comprador: 
         ↳user: TESTTGAAXDUO
         ↳psw: 6AvNtVHJXd
+        ↳dni: 01111111
     ---------------------------------------------------------
     Vendedor:
         ↳user: TETE192142
@@ -16,5 +17,4 @@ Credenciales mercado pago :
 ====================================================================================
 Credenciales mailtrap: 
     ↳ user: roboticlenin@gmail.com
-    ↳ psw: nfCjcHbUYbz2HiK
-
+    ↳ psw:  nfCjcHbUYbz2HiK

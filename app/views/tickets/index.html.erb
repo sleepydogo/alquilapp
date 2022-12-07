@@ -14,7 +14,10 @@
 <% if ((current_user.rango == "Admin") || (current_user.rango == "Supervisor")) %>
     <h1 class='my-3 py-3'>Reportes de usuarios</h1>
 <% else %>
-	<h1 class='my-3 py-3'>Mis reportes	<a class="btn btn-primary" href="/tickets/new">Crear reporte</a></h1>
+	<div class='col px-4'>
+		<h1 class='my-3 py-4 px-3'>Mis reporte</h1>
+		<a class="btn btn-primary px-3 mx-3" href="/tickets/new">Crear reporte</a>
+	</div>
 <% end %>
     <p style="color: green"><%= notice %></p>
     <div class="row">
@@ -63,15 +66,9 @@
 	</div>
 	<% end %>
 	<%else %>
-		<div class="page-wrap d-flex flex-row" style=''>
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-md-12 justify-content-center align-items-center">
-						<span class="display-1 d-block">:(</span>
-						<div class="mb-4 lead">Lo sentimos, no se han encontrado repoertes.</div>
-					</div>
-				</div>
-			</div>
+		<div class='container py-4' align='center'>
+			<span class="display-1 d-block">:(</span>
+			<div class="mb-4 lead">Lo sentimos, no se han encontrado reportes.</div>
 		</div>
 	<%end%>
 	<%elsif%>
@@ -112,15 +109,9 @@
 </div>
 <% end %>
 <%else %>
-	<div class="page-wrap d-flex flex-row" style=''>
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-12 justify-content-center align-items-center">
-					<span class="display-1 d-block">:(</span>
-					<div class="mb-4 lead">Lo sentimos, no se han encontrado reportes.</div>
-				</div>
-			</div>
-		</div>
+	<div class='container py-4' align='center'>
+		<span class="display-1 d-block">:(</span>
+		<div class="mb-4 lead">Lo sentimos, no se han encontrado reportes.</div>
 	</div>
 <%end%>
 <%end%>
